@@ -77,7 +77,8 @@ CREATE TABLE HoaDon(
 );
 GO
 
-insert into HoaDon values('HD02','2023-07-15',150,'HV01');
+insert into HoaDon values('HD01','2023-07-15',250,'HV01');
+delete from HoaDon where MaHD= 'HD01';
 CREATE TABLE ChiTietDK_TT(
 	MaHV nchar(10) ,
 	MaTT nchar(10),
@@ -95,7 +96,7 @@ CREATE TABLE ChiTietDK_LH(
 GO
 insert into ChiTietDK_LH values ('HV01', 'TCB01','2023-07-10');
 
-ALTER TRIGGER CheckInvoiceAmount
+CREATE TRIGGER KiemTraTienHD
 ON HoaDon
 AFTER INSERT
 AS
@@ -104,15 +105,28 @@ BEGIN
     DECLARE @MaLH nchar(10);
     DECLARE @SoTien float;
     DECLARE @HocPhi float;
+	DECLARE @MaHV nchar(10);
 
-    SELECT @MaHD = i.MaHD, @MaLH = c.MaLH, @SoTien = i.SoTien, @HocPhi = l.HocPhi
+    SELECT @MaHD = i.MaHD, @MaLH = c.MaLH, @SoTien = i.SoTien, @HocPhi = l.HocPhi, @MaHV= c.MaHV
     FROM inserted i
     INNER JOIN ChiTietDK_LH c ON i.MaHV = c.MaHV
     INNER JOIN LopHoc l ON c.MaLH = l.MaLH;
 
     IF (@SoTien < @HocPhi)
     BEGIN
-        PRINT('Phai dong du moi duoc in hoa đon.');
+        DECLARE @ErrorMessage NVARCHAR(1000);
+        SET @ErrorMessage = 'Phai dong du ' + CAST(@SoTien AS NVARCHAR) + ' moi duoc in hoa don cho hoc vien ' + @MaHV + 'lop '+@MaLH;
+        PRINT(@ErrorMessage);
         ROLLBACK TRANSACTION;
     END;
-END
+	 IF (@SoTien > @HocPhi)
+    BEGIN
+        DECLARE @ErrorMessage1 NVARCHAR(1000);
+		DECLARE @TienDu float;
+		
+		SET @TienDu = @SoTien-@HocPhi;
+		SET @ErrorMessage1 = 'Hoc vien '+@MaHV + 'lop '+@MaLH+' dong du ' + CAST(@TienDu AS NVARCHAR);
+        PRINT(@ErrorMessage1);
+        ROLLBACK TRANSACTION;
+    END;
+END;
