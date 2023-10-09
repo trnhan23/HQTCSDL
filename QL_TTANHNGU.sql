@@ -1,4 +1,4 @@
-
+﻿
 CREATE DATABASE QL_TTANHNGU
 GO
 
@@ -47,7 +47,7 @@ CREATE TABLE HocVien(
 	DiaChiHV nvarchar(100)
 );
 GO
-
+insert into HocVien values('HV01','Minh Tai', '2003-10-21', 'Nam','0326344***','so 1 VVN');
 CREATE TABLE GiangVien(
 	MaGV nchar(10) CONSTRAINT PK_GiangVien PRIMARY KEY,
 	HoTen nvarchar(50) NOT NULL,
@@ -56,7 +56,7 @@ CREATE TABLE GiangVien(
 	Luong float NOT NULL check(Luong>0)
 );
 GO
-
+insert into GiangVien values('GV01', 'Nguyen Van A', '07712345****','0123456789',1000);
 CREATE TABLE LopHoc(
 	MaLH nchar(10) CONSTRAINT PK_LopHoc PRIMARY KEY,
 	TenLH nvarchar(50) NOT NULL,
@@ -68,6 +68,7 @@ CREATE TABLE LopHoc(
 );
 GO
 
+insert into LopHoc values ('TCB01','Nang cao','P01',200,42,30,'GV01');
 CREATE TABLE HoaDon(
 	MaHD nchar(10) CONSTRAINT PK_HoaDon PRIMARY KEY,
 	NgayGioGD date NOT NULL check (DATEDIFF(day, NgayGioGD, GETDATE())>=0),
@@ -76,6 +77,7 @@ CREATE TABLE HoaDon(
 );
 GO
 
+insert into HoaDon values('HD02','2023-07-15',150,'HV01');
 CREATE TABLE ChiTietDK_TT(
 	MaHV nchar(10) ,
 	MaTT nchar(10),
@@ -91,4 +93,26 @@ CREATE TABLE ChiTietDK_LH(
 	CONSTRAINT PK_ChiTietDK_LH PRIMARY KEY (MaHV,MaLH)
 );
 GO
+insert into ChiTietDK_LH values ('HV01', 'TCB01','2023-07-10');
 
+ALTER TRIGGER CheckInvoiceAmount
+ON HoaDon
+AFTER INSERT
+AS
+BEGIN
+    DECLARE @MaHD nchar(10);
+    DECLARE @MaLH nchar(10);
+    DECLARE @SoTien float;
+    DECLARE @HocPhi float;
+
+    SELECT @MaHD = i.MaHD, @MaLH = c.MaLH, @SoTien = i.SoTien, @HocPhi = l.HocPhi
+    FROM inserted i
+    INNER JOIN ChiTietDK_LH c ON i.MaHV = c.MaHV
+    INNER JOIN LopHoc l ON c.MaLH = l.MaLH;
+
+    IF (@SoTien < @HocPhi)
+    BEGIN
+        PRINT('Phai dong du moi duoc in hoa đon.');
+        ROLLBACK TRANSACTION;
+    END;
+END
