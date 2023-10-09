@@ -1,5 +1,5 @@
 # HQTCSDL
-# Quản lý trung tâm anh văn
+# Quản lý trung tâm anh ngữ
 Nhóm 15
 Trần Nguyễn Thu Lài_21110524
 Đào nguyễn Hoàng Ngân_21110553
