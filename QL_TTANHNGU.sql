@@ -23,7 +23,7 @@ CREATE TABLE NhanVien(
 	on update cascade
 );
 GO
-
+/**/
 CREATE TABLE CongViec(
 	MaCV nchar(10) CONSTRAINT PK_CongViec PRIMARY KEY,
 	TenCV nvarchar(50) NOT NULL,
