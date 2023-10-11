@@ -70,7 +70,7 @@ GO
 
 CREATE TABLE HoaDon(
 	MaHD nchar(10) CONSTRAINT PK_HoaDon PRIMARY KEY,
-	NgayGioGD date NOT NULL check (DATEDIFF(day, NgayGioGD, GETDATE())>=0),
+	NgayGD date NOT NULL check (DATEDIFF(day, NgayGD, GETDATE())>=0),
 	SoTien float NOT NULL check (SoTien>0),
 	MaHV nchar(10) CONSTRAINT FK_HoaDon_MaHV FOREIGN KEY REFERENCES HocVien(MaHV)
 );
