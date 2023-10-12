@@ -331,7 +331,7 @@ END
 GO
 
 /* Trigger đặt trạng thái cho lớp học*/
-ALTER TRIGGER set_LopHoc_TrangThai
+CREATE TRIGGER set_LopHoc_TrangThai
 ON LopHoc
 FOR INSERT
 AS
@@ -351,9 +351,9 @@ END
 
 
 GO
-/* Trigger kiểm tra MaQl tạo lớp học phải giống với MaQL NhanVien*/
+/* Trigger kiểm tra MaQl quản lý lớp học phải là MaQL của NhanVien*/
 
-ALTER TRIGGER KiemTra_TaoLH_MaQL
+CREATE TRIGGER KiemTra_TaoLH_MaQL
 ON TaoLopHoc
 AFTER INSERT
 AS
