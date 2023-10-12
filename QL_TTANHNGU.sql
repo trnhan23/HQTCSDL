@@ -172,7 +172,7 @@ BEGIN
         PRINT(@ErrorMessage);
         ROLLBACK TRANSACTION;
     END;
-	 IF (@SoTien > @HocPhi)
+	 IF (@SoTien >= @HocPhi)
     BEGIN
         DECLARE @ErrorMessage1 NVARCHAR(1000);
 		DECLARE @TienDu float;
