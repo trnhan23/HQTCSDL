@@ -220,3 +220,52 @@ BEGIN
 			PRINT(@ThongBao2);
 		END;
 END
+--VIEW
+--Xem danh sách học viên của các lớp học đã full
+CREATE VIEW DanhSachHocVienLopHocFull AS
+SELECT LH.MaLH, LH.TenLH, HV.MaHV, HV.HoTenHV, HV.NgaySinh, HV.GioiTinh, HV.SoDT, HV.DiaChiHV
+FROM LopHoc LH
+INNER JOIN ChiTietDK_LH DKLH ON LH.MaLH = DKLH.MaLH
+INNER JOIN HocVien HV ON DKLH.MaHV = HV.MaHV
+WHERE LH.TrangThai = 'Du'
+GO
+
+--Xem danh sách các lớp học còn trống
+CREATE VIEW LopHocConTrong AS
+SELECT MaLH, TenLH, TenPhongHoc, HocPhi, SoBuoiHoc, SoLuongHV
+FROM LopHoc
+WHERE TrangThai != 'Du'
+GO
+
+--Thống kê danh sách hóa đơn
+CREATE VIEW ThongKeHoaDon AS
+SELECT HV.MaHV, HV.HoTenHV, HV.NgaySinh, HV.GioiTinh, HV.SoDT, HV.DiaChiHV, HD.MaHD, HD.NgayGioGD, HD.SoTien
+FROM HocVien HV
+LEFT JOIN HoaDon HD ON HV.MaHV = HD.MaHV
+GO
+
+--Thống kê danh sách lớp học và số lượng HV đã đăng ký
+CREATE VIEW LopHoc_SoLuongHocVien AS
+SELECT LH.MaLH,LH.TenLH, COUNT(DKLH.MaHV) AS SoLuongHocVien
+FROM LopHoc LH
+LEFT JOIN ChiTietDK_LH DKLH ON LH.MaLH = DKLH.MaLH
+GROUP BY LH.MaLH, LH.TenLH
+GO
+
+--Thống kê ca dạy
+CREATE VIEW ViewThongKeCaDay AS
+SELECT GV.MaGV, GV.HoTen AS TenGiangVien, LH.TenLH, CD.NgayBatDau, CD.NgayKetThuc
+FROM GiangVien GV
+INNER JOIN ChiTiet_CaDay CD ON GV.MaGV = CD.MaGV
+INNER JOIN LopHoc LH ON CD.MaLH = LH.MaLH
+GO
+
+--Thống kê số lượng học viên đăng ký lớp học theo từng tháng
+CREATE VIEW SoLuongHocVienDangKyLopHocTheoThang AS
+SELECT 
+  YEAR(NgayDK) AS Nam, 
+  MONTH(NgayDK) AS Thang, 
+  COUNT(MaHV) AS SoLuongHocVienDangKy
+FROM ChiTietDK_LH
+GROUP BY YEAR(NgayDK), MONTH(NgayDK)
+GO
