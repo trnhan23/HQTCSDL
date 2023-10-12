@@ -76,7 +76,16 @@ GO
 insert into HocVien values('HV02','Minh Tai', '2003-10-21', 'Nam','0326344***','so 1 VVN');
 
 GO
-
+/* Tạo bảng kết quả mới ===========================================*/
+CREATE TABLE KetQua (
+	MaHV nchar(10) CONSTRAINT FK_KetQua_MaHV FOREIGN KEY REFERENCES HocVien(MaHV),
+	MaTT nchar(10) CONSTRAINT FK_KetQua_MaTT FOREIGN KEY REFERENCES ThiThu(MaTT),
+	SoCauDocDung int,
+	SoCauNgheDung int,
+	Diem int,
+	CONSTRAINT PK_KetQua PRIMARY KEY (MaHV,MaTT)
+);
+GO
 CREATE TABLE GiangVien(
 	MaGV nchar(10) CONSTRAINT PK_GiangVien PRIMARY KEY,
 	HoTen nvarchar(50) NOT NULL,
@@ -167,11 +176,6 @@ insert into ChiTietDK_LH values ('HV01', 'TCB01','2023-07-10');
 delete from ChiTietDK_LH where MaHV ='HV01' AND MaLH = 'TCB01'*/
 
 
-/*Kiểm tra lúc nhân viên sai sót nhập tiền thiếu hoặc dư*/
-=======
-insert into ChiTietDK_LH values ('HV02', 'TCB02','2023-07-10');
->>>>>>> 2f10f90a068e3466806d806ca09fb89609727ef0
-GO
 
 
 --TRIGGER
@@ -214,11 +218,11 @@ END;
 GO
 
 /*Trigger kiểm tra sau khi nhập học viên thì thông báo chỗ còn trống, hoặc thông báo chỗ đầy*/
-<<<<<<< HEAD
-ALTER TRIGGER TinhSoCho_ConDu
+
+
 =======
 CREATE TRIGGER TinhSoCho_ConDu
->>>>>>> 2f10f90a068e3466806d806ca09fb89609727ef0
+
 ON ChiTietDK_LH
 AFTER INSERT
 AS 
@@ -365,13 +369,13 @@ BEGIN
 	WHERE LopHoc.MaLH=@MaLH
 END
 GO
-<<<<<<< HEAD
-/* Trigger kiểm tra MaQl quản lý lớp học phải là MaQL của NhanVien*/
+
+
 
 =======
 
 /* Trigger kiểm tra MaQl tạo lớp học phải giống với MaQL NhanVien*/
->>>>>>> 2f10f90a068e3466806d806ca09fb89609727ef0
+
 CREATE TRIGGER KiemTra_TaoLH_MaQL
 ON TaoLopHoc
 AFTER INSERT
