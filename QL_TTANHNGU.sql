@@ -1,5 +1,4 @@
-﻿
-CREATE DATABASE QL_TTANHNGU
+﻿CREATE DATABASE QL_TTANHNGU
 GO
 
 USE QL_TTANHNGU
@@ -12,6 +11,9 @@ CREATE TABLE ChiNhanh(
 );
 GO
 
+insert into ChiNhanh values ('CN01','Chi Nhanh 1 PMP','34 Ho Thi Tu');
+go
+
 CREATE TABLE NhanVien(
 	MaNV nchar(10) CONSTRAINT PK_NhanVien PRIMARY KEY,
 	HoTenNV nvarchar(50) NOT NULL,
@@ -20,10 +22,14 @@ CREATE TABLE NhanVien(
 	Luong float    NOT NULL check (Luong>0),
 	MaCN nchar(10) CONSTRAINT FK_NhanVien_MaCN FOREIGN KEY REFERENCES ChiNhanh(MaCN) 
 	on delete set null 
-	on update cascade
+	on update cascade,
+	MaQL nchar(10) CONSTRAINT FK_NhanVien_MaQL FOREIGN KEY REFERENCES NhanVien(MaNV)
 );
 GO
-/**/
+
+INSERT INTO NhanVien VALUES ('NV01','Nguyen Thi A', '123456789101', '0123456789',300,'CN01');
+go
+
 CREATE TABLE CongViec(
 	MaCV nchar(10) CONSTRAINT PK_CongViec PRIMARY KEY,
 	TenCV nvarchar(50) NOT NULL,
@@ -39,11 +45,16 @@ CREATE TABLE ThiThu(
 	PhongThi nchar(10) NOT NULL,
 	NgayThi date NOT NULL check (DATEDIFF(day, NgayThi, GETDATE())<0),
 	GioThi time NOT NULL,
+	GioiHan int NOT NULL,
 	MaNV nchar(10) CONSTRAINT FK_ThiThu_MaNV FOREIGN KEY REFERENCES NhanVien(MaNV)
 	on delete set null 
 	on update cascade
 );
+
 GO
+
+INSERT INTO ThiThu VALUES ('TT02','P01','2023-10-15','08:30','NV01');
+go 
 
 CREATE TABLE HocVien(
 	MaHV nchar(10) CONSTRAINT PK_HocVien PRIMARY KEY,
@@ -54,8 +65,17 @@ CREATE TABLE HocVien(
 	DiaChiHV nvarchar(100)
 );
 GO
+CREATE TABLE ChiTietDK_TT(
+	MaHV nchar(10) CONSTRAINT FK_DKTT_MaHV FOREIGN KEY REFERENCES HocVien(MaHV),
+	MaTT nchar(10) CONSTRAINT FK_DKTT_MaTT FOREIGN KEY REFERENCES ThiThu(MaTT),
+	NgayDK date NOT NULL check (DATEDIFF(day, NgayDK, GETDATE())>=0),
+	CONSTRAINT PK_ChiTietDK_TT PRIMARY KEY (MaHV,MaTT)
+);
+GO
 
-insert into HocVien values('HV01','Minh Tai', '2003-10-21', 'Nam','0326344***','so 1 VVN');
+insert into HocVien values('HV02','Minh Tai', '2003-10-21', 'Nam','0326344***','so 1 VVN');
+
+GO
 
 CREATE TABLE GiangVien(
 	MaGV nchar(10) CONSTRAINT PK_GiangVien PRIMARY KEY,
@@ -67,6 +87,17 @@ CREATE TABLE GiangVien(
 GO
 
 insert into GiangVien values('GV01', 'Nguyen Van A', '07712345****','0123456789',1000);
+GO
+
+CREATE TABLE ChiTiet_CaDay(
+	MaLH nchar(10) CONSTRAINT FK_CaDay_MaLH FOREIGN KEY REFERENCES LopHoc(MaLH),
+	MaGV nchar(10) CONSTRAINT FK_CaDay_MaGV FOREIGN KEY REFERENCES GiangVien(MaGV),
+	NgayBatDau date NOT NULL,
+	NgayKetThuc date NOT NULL,
+	CaDay nchar(10) NOT NULL,
+	CONSTRAINT PK_ChiTietCaDay PRIMARY KEY (MaLH,MaGV)
+);
+GO
 
 CREATE TABLE LopHoc(
 	MaLH nchar(10) CONSTRAINT PK_LopHoc PRIMARY KEY,
@@ -75,29 +106,31 @@ CREATE TABLE LopHoc(
 	HocPhi float NOT NULL check (HocPhi>0),
 	SoBuoiHoc int NOT NULL check (SoBuoiHoc>0),
 	SoLuongHV int NOT NULL check (SoLuongHV>0),
-	MaGV nchar(10) CONSTRAINT FK_LopHoc_MaGV FOREIGN KEY REFERENCES GiangVien(MaGV)
-	/*on delete set null 
-	on update cascade*/
+	TrangThai nchar(10)
 );
 GO
-insert into LopHoc values ('TCB01','Nang cao','P01',200,42,30,'GV01');
 
+insert into LopHoc values ('TCB02','Nang Cao','P01',200,42,20,'');
+GO
 
-/*Dự định thêm 1 bảng ChiTietCaDay*/
-
-/*========================================================================================================*/
-/*
-CREATE TABLE ChiTiet_CaDay(
-	MaLH nchar(10) CONSTRAINT FK_CaDay_MaLH FOREIGN KEY REFERENCES LopHoc(MaLH),
-	MaGV nchar(10) CONSTRAINT FK_CaDay_MaGV FOREIGN KEY REFERENCES GiangVien(MaGV),
-	NgayBatDau date,
-	NgayKetThuc date,
-	CaDay nchar(5),
-	CONSTRAINT PK_ChiTietCaDay PRIMARY KEY (MaLH,MaGV)
+CREATE TABLE TaoLopHoc(
+	MaQL nchar(10) CONSTRAINT FK_TaoLopHoc_MaQL FOREIGN KEY REFERENCES NhanVien(MaNV),
+	MaLH nchar(10) CONSTRAINT FK_TaoLopHoc_MaLH FOREIGN KEY REFERENCES LopHoc(MaLH),
+	NgayTaoLH date,
+	CONSTRAINT PK_TaoLopHoc PRIMARY KEY (MaQL,MaLH)
 );
+GO
 
-===========================================================================================================
-*/
+INSERT INTO TaoLopHoc VALUES ('NV01', 'TCB01','2023-06-15')
+GO
+
+CREATE TABLE ChiTietDK_LH(
+	MaHV nchar(10) CONSTRAINT FK_DKLH_MaHV FOREIGN KEY REFERENCES HocVien(MaHV),
+	MaLH nchar(10) CONSTRAINT FK_DKLH_MaLH FOREIGN KEY REFERENCES LopHoc(MaLH),
+	NgayDK date NOT NULL check (DATEDIFF(day, NgayDK, GETDATE())>=0),
+	CONSTRAINT PK_ChiTietDK_LH PRIMARY KEY (MaHV,MaLH)
+);
+GO
 
 CREATE TABLE HoaDon(
 	MaHD nchar(10) CONSTRAINT PK_HoaDon PRIMARY KEY,
@@ -108,47 +141,19 @@ CREATE TABLE HoaDon(
 	on update cascade
 );
 GO
-/*
-alter table HoaDon drop constraint FK_HoaDon_MaHV
-alter table HoaDon add constraint FK_HoaDon_MaHV FOREIGN KEY (MaHV) REFERENCES  HocVien(MaHV) 
-	on delete set null 
-	on update cascade;
-*/
 
 insert into HoaDon values('HD01','2023-07-15',250,'HV01');
-
-CREATE TABLE ChiTietDK_TT(
-	MaHV nchar(10) CONSTRAINT FK_DKTT_MaHV FOREIGN KEY REFERENCES HocVien(MaHV),
-	MaTT nchar(10),
-	NgayDK date NOT NULL check (DATEDIFF(day, NgayDK, GETDATE())>=0),
-	CONSTRAINT PK_ChiTietDK_TT PRIMARY KEY (MaHV,MaTT)
-);
-/*Thêm khoá ngoại cho bảng ChiTietDK_TT*/
-/*
-ALTER TABLE ChiTietDK_TT 
-ADD CONSTRAINT FK_DKTT_MaHV FOREIGN KEY(MaHV)  REFERENCES HocVien(MaHV); 
-*/
-
 GO
 
-CREATE TABLE ChiTietDK_LH(
-	MaHV nchar(10) CONSTRAINT FK_DKLH_MaHV FOREIGN KEY REFERENCES HocVien(MaHV),
-	MaLH nchar(10) CONSTRAINT FK_DKLH_MaLH FOREIGN KEY REFERENCES LopHoc(MaLH),
-	NgayDK date NOT NULL check (DATEDIFF(day, NgayDK, GETDATE())>=0),
-	CONSTRAINT PK_ChiTietDK_LH PRIMARY KEY (MaHV,MaLH)
-);
-
-/*Thêm khoá ngoại cho bảng ChiTietDK_LH*/
-/*
-ALTER TABLE ChiTietDK_LH ADD CONSTRAINT FK_DKLH_MaHV FOREIGN KEY(MaHV)  REFERENCES HocVien(MaHV);
-ALTER TABLE ChiTietDK_LH ADD CONSTRAINT FK_DKLH_MaLH FOREIGN KEY(MaLH)  REFERENCES LopHoc(MaLH);
-*/
-
+insert into ChiTietDK_TT values ('HV02','TT02','2023-10-11');
 GO
-insert into ChiTietDK_LH values ('HV03', 'TCB01','2023-07-10');
 
+insert into ChiTietDK_LH values ('HV02', 'TCB02','2023-07-10');
+GO
+
+
+--TRIGGER
 /*Kiểm tra lúc nhân viên sai sót nhập tiền thiếu hoặc dư*/
-
 CREATE TRIGGER KiemTraTienHD
 ON HoaDon
 AFTER INSERT
@@ -172,7 +177,7 @@ BEGIN
         PRINT(@ErrorMessage);
         ROLLBACK TRANSACTION;
     END;
-	 IF (@SoTien >= @HocPhi)
+	 IF (@SoTien > @HocPhi)
     BEGIN
         DECLARE @ErrorMessage1 NVARCHAR(1000);
 		DECLARE @TienDu float;
@@ -184,8 +189,9 @@ BEGIN
     END;
 END;
  
-/*Trigger kiểm tra sau khi nhập học viên thì thông báo chỗ còn trống, hoặc thông báo chỗ đầy*/
+GO
 
+/*Trigger kiểm tra sau khi nhập học viên thì thông báo chỗ còn trống, hoặc thông báo chỗ đầy*/
 CREATE TRIGGER TinhSoCho_ConDu
 ON ChiTietDK_LH
 AFTER INSERT
@@ -196,30 +202,186 @@ BEGIN
 	DECLARE @SoChoDaDK int;
 	DECLARE @MaLH nchar(10);
 
-	SELECT @TongSoCho = Lh.SoLuongHV from LopHoc LH;
-	SELECT @MaLH=DKLH.MaLH,@SoChoDaDK=COUNT(DKLH.MaHV) from ChiTietDK_LH DKLH  group by DKLH.MaLH;
+	SELECT @MaLH = i.MaLH from inserted i;
+	SELECT @SoChoDaDK=COUNT(DKLH.MaHV) from ChiTietDK_LH DKLH  group by DKLH.MaLH 
+	having DKLH.MaLH=@MaLH;
+	SELECT @TongSoCho = Lh.SoLuongHV from LopHoc LH where LH.MaLH = @MaLH;
 
 	IF(@SoChoDaDK < @TongSoCho)
 		BEGIN 
 			DECLARE @SoChoDu int;
 			SET @SoChoDu = @TongSoCho - @SoChoDaDK;
 			DECLARE @ThongBao NVARCHAR(1000);
-			SET @ThongBao = 'Lớp '+ @MaLH +' còn dư '+CAST(@SoChoDu AS NVARCHAR)+' chỗ trống';
+			DECLARE @TrangThai NVARCHAR(1000);
+			SET @ThongBao = 'Lop '+ @MaLH +' con du '+CAST(@SoChoDu AS NVARCHAR)+' cho trong';
+			PRINT(@ThongBao);
+			SET @TrangThai = 'Du '+ CAST(@SoChoDu AS NVARCHAR);
+			UPDATE LopHoc SET TrangThai = @TrangThai where LopHoc.MaLH=@MaLH
+		END;
+	IF(@SoChoDaDK = @TongSoCho)
+		BEGIN 
+			DECLARE @ThongBao1 NVARCHAR(1000);
+			SET @ThongBao1 = 'Lop '+ @MaLH +' da du hoc vien';
+			PRINT(@ThongBao1);
+			UPDATE LopHoc SET TrangThai = 'Du' where LopHoc.MaLH=@MaLH
+		END;
+	IF(@SoChoDaDK > @TongSoCho)
+		BEGIN 
+			DECLARE @ThongBao2 NVARCHAR(1000);
+			SET @ThongBao2 = 'Lop '+ @MaLH +' da du hoc vien, vui long xep hoc vien vao lop khac.';
+			PRINT(@ThongBao2);
+			ROLLBACK;
+		END;
+END
+GO
+/*Trigger kiểm tra sau khi học viên đăng kí thi thử thì thông báo chỗ còn trống, hoặc thông báo chỗ đầy*/
+CREATE TRIGGER TinhSoChoDK_TT
+ON ChiTietDK_TT
+AFTER INSERT
+AS 
+BEGIN
+	
+	DECLARE @TongSoCho int;
+	DECLARE @SoChoDaDK int;
+	DECLARE @MaTT nchar(10);
+
+	SELECT @MaTT = i.MaTT from inserted i;
+	SELECT @SoChoDaDK=COUNT(DKTT.MaHV) FROM ChiTietDK_TT DKTT group by DKTT.MaTT
+	HAVING DKTT.MaTT=@MaTT
+
+	SELECT @TongSoCho = TT.GioiHan FROM ThiThu TT where TT.MaTT = @MaTT;
+
+	IF(@SoChoDaDK < @TongSoCho)
+		BEGIN 
+			DECLARE @SoChoDu int;
+			SET @SoChoDu = @TongSoCho - @SoChoDaDK;
+			DECLARE @ThongBao NVARCHAR(1000);
+			SET @ThongBao = 'Phong thi thu co ma '+ @MaTT +' con du '+ CAST(@SoChoDu AS NVARCHAR)+' cho trong';
 			PRINT(@ThongBao);
 		END;
 	IF(@SoChoDaDK = @TongSoCho)
 		BEGIN 
 			DECLARE @ThongBao1 NVARCHAR(1000);
-			SET @ThongBao1 = 'Lớp '+ @MaLH +' đã đủ học viên';
+			SET @ThongBao1 = 'Phong thi thu co ma '+ @MaTT +' da dang ki thu';
 			PRINT(@ThongBao1);
 		END;
 	IF(@SoChoDaDK > @TongSoCho)
 		BEGIN 
 			DECLARE @ThongBao2 NVARCHAR(1000);
-			SET @ThongBao2 = 'Lớp '+ @MaLH +' đã đủ học viên vui lòng xếp học viên vào lớp khác';
+			SET @ThongBao2 = 'Phong thi thu co ma '+ @MaTT +' da dang ki du hoc vien, vui long dang ki vao lop khac.';
 			PRINT(@ThongBao2);
+			ROLLBACK;
 		END;
 END
+GO
+
+/* Trigger kiểm tra tổng số lượng học viên đăng ký thi thử*/
+CREATE TRIGGER TinhTongSL_TT
+ON ChiTietDK_TT
+AFTER INSERT
+AS 
+BEGIN
+	DECLARE @TongHV_DKTT int;
+	DECLARE @MaTT nchar(10);
+	SELECT @MaTT = i.MaTT from inserted i;
+	SELECT @TongHV_DKTT = COUNT(MaHV) FROM ChiTietDK_TT GROUP BY MaTT HAVING MaTT = @MaTT;
+	DECLARE @ThongBao NVARCHAR(1000);
+	SET @ThongBao= 'Tong so hoc vien dang ky ca thi ma '+@MaTT+' la: '+ CAST(@TongHV_DKTT AS NVARCHAR);
+	PRINT(@ThongBao);
+END
+GO
+
+/* Trigger đặt trạng thái cho lớp học*/
+CREATE TRIGGER set_LopHoc_TrangThai
+ON LopHoc
+FOR INSERT
+AS
+BEGIN
+	DECLARE @TrangThai NVARCHAR(1000);
+	DECLARE @MaLH nchar(10);
+	DECLARE @TongSoCho int;
+
+	SELECT @MaLH = i.MaLH from inserted i;
+	SELECT @TongSoCho = LH.SoLuongHV from LopHoc LH where LH.MaLH = @MaLH;
+
+	SET @TrangThai = 'Du ' + CAST(@TongSoCho AS NVARCHAR);
+	UPDATE LopHoc
+	SET TrangThai = @TrangThai
+	WHERE LopHoc.MaLH=@MaLH
+END
+GO
+
+/* Trigger kiểm tra MaQl tạo lớp học phải giống với MaQL NhanVien*/
+CREATE TRIGGER KiemTra_TaoLH_MaQL
+ON TaoLopHoc
+AFTER INSERT
+AS
+BEGIN
+	DECLARE @MaQL_NV nchar(10);
+	DECLARE @MaQL_TaoLH nchar(10);
+
+	SELECT @MaQL_TaoLH = i.MaQL FROM inserted i;
+	SELECT @MaQL_NV = nv.MaQL FROM NhanVien nv ;
+	
+	IF (@MaQL_TaoLH =@MaQL_NV)
+		PRINT('Tao Lop Hoc Thanh Cong');
+	ELSE
+		BEGIN
+		PRINT ('Vui Long Nhap Dung Ma Quan Ly');
+		ROLLBACK;
+		END;
+END
+GO
+
+--VIEW
+--Xem danh sách học viên của các lớp học đã full
+CREATE VIEW DanhSachHocVienLopHocFull AS
+SELECT LH.MaLH, LH.TenLH, HV.MaHV, HV.HoTenHV, HV.NgaySinh, HV.GioiTinh, HV.SoDT, HV.DiaChiHV
+FROM LopHoc LH
+INNER JOIN ChiTietDK_LH DKLH ON LH.MaLH = DKLH.MaLH
+INNER JOIN HocVien HV ON DKLH.MaHV = HV.MaHV
+WHERE LH.TrangThai = 'Du'
+GO
+
+--Xem danh sách các lớp học còn trống
+CREATE VIEW LopHocConTrong AS
+SELECT MaLH, TenLH, TenPhongHoc, HocPhi, SoBuoiHoc, SoLuongHV
+FROM LopHoc
+WHERE TrangThai != 'Du'
+GO
+
+--Thống kê danh sách hóa đơn
+CREATE VIEW ThongKeHoaDon AS
+SELECT HV.MaHV, HV.HoTenHV, HV.NgaySinh, HV.GioiTinh, HV.SoDT, HV.DiaChiHV, HD.MaHD, HD.NgayGioGD, HD.SoTien
+FROM HocVien HV
+LEFT JOIN HoaDon HD ON HV.MaHV = HD.MaHV
+GO
+
+--Thống kê danh sách lớp học và số lượng HV đã đăng ký
+CREATE VIEW LopHoc_SoLuongHocVien AS
+SELECT LH.MaLH,LH.TenLH, COUNT(DKLH.MaHV) AS SoLuongHocVien
+FROM LopHoc LH
+LEFT JOIN ChiTietDK_LH DKLH ON LH.MaLH = DKLH.MaLH
+GROUP BY LH.MaLH, LH.TenLH
+GO
+
+--Thống kê ca dạy
+CREATE VIEW ViewThongKeCaDay AS
+SELECT GV.MaGV, GV.HoTen AS TenGiangVien, LH.TenLH, CD.NgayBatDau, CD.NgayKetThuc
+FROM GiangVien GV
+INNER JOIN ChiTiet_CaDay CD ON GV.MaGV = CD.MaGV
+INNER JOIN LopHoc LH ON CD.MaLH = LH.MaLH
+GO
+
+--Thống kê số lượng học viên đăng ký lớp học theo từng tháng
+CREATE VIEW SoLuongHocVienDangKyLopHocTheoThang AS
+SELECT 
+  YEAR(NgayDK) AS Nam, 
+  MONTH(NgayDK) AS Thang, 
+  COUNT(MaHV) AS SoLuongHocVienDangKy
+FROM ChiTietDK_LH
+GROUP BY YEAR(NgayDK), MONTH(NgayDK)
+GO
 --VIEW
 --Xem danh sách học viên của các lớp học đã full
 CREATE VIEW DanhSachHocVienLopHocFull AS
