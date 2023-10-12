@@ -107,8 +107,9 @@ GO
 
 GO
 
-insert into LopHoc values ('TCB04','Nang cao','P01',200,42,40,'');
-/*delete from LopHoc Where MaLH = 'TCB03';*/
+insert into LopHoc values ('TCB02','Nang Cao','P01',200,42,20,'');
+
+/*delete from LopHoc Where MaLH = 'TCB02';*/
 
 GO
 /* Khu vực thêm  bảng*/
@@ -121,6 +122,10 @@ CREATE TABLE TaoLopHoc(
 	CONSTRAINT PK_TaoLopHoc PRIMARY KEY (MaQL,MaLH)
 );
 
+GO
+INSERT INTO TaoLopHoc VALUES ('NV01', 'TCB01','2023-06-15')
+/*delete from TaoLopHoc where MaQL='NV01';*/
+GO
 
 CREATE TABLE ChiTiet_CaDay(
 	MaLH nchar(10) CONSTRAINT FK_CaDay_MaLH FOREIGN KEY REFERENCES LopHoc(MaLH),
@@ -251,8 +256,11 @@ BEGIN
 			DECLARE @SoChoDu int;
 			SET @SoChoDu = @TongSoCho - @SoChoDaDK;
 			DECLARE @ThongBao NVARCHAR(1000);
+			DECLARE @TrangThai NVARCHAR(1000);
 			SET @ThongBao = 'Lớp '+ @MaLH +' còn dư '+CAST(@SoChoDu AS NVARCHAR)+' chỗ trống';
 			PRINT(@ThongBao);
+			SET @TrangThai = 'Du '+ CAST(@SoChoDu AS NVARCHAR);
+			UPDATE LopHoc SET TrangThai = @TrangThai where LopHoc.MaLH=@MaLH
 		END;
 	IF(@SoChoDaDK = @TongSoCho)
 		BEGIN 
@@ -272,6 +280,7 @@ END
 
 
 
+GO
 
 /* Trigger kiểm tra tổng số lượng học viên đăng ký thi thử*/
 
@@ -293,19 +302,29 @@ END
 GO
 
 /* Trigger đặt trạng thái cho lớp học*/
-CREATE TRIGGER set_LopHoc_TrangThai
+ALTER TRIGGER set_LopHoc_TrangThai
 ON LopHoc
 FOR INSERT
 AS
 BEGIN
- UPDATE LopHoc
- SET TrangThai = 'Còn trống'
- WHERE MaLH IN (SELECT MaLH FROM INSERTED)
+	DECLARE @TrangThai NVARCHAR(1000);
+	DECLARE @MaLH nchar(10);
+	DECLARE @TongSoCho int;
+
+	SELECT @MaLH = i.MaLH from inserted i;
+	SELECT @TongSoCho = LH.SoLuongHV from LopHoc LH where LH.MaLH = @MaLH;
+
+	SET @TrangThai = 'Du ' + CAST(@TongSoCho AS NVARCHAR);
+	UPDATE LopHoc
+	SET TrangThai = @TrangThai
+	WHERE LopHoc.MaLH=@MaLH
 END
 
+
+GO
 /* Trigger kiểm tra MaQl tạo lớp học phải giống với MaQL NhanVien*/
 
-CREATE TRIGGER KiemTra_TaoLH_MaQL
+ALTER TRIGGER KiemTra_TaoLH_MaQL
 ON TaoLopHoc
 AFTER INSERT
 AS
@@ -313,5 +332,14 @@ BEGIN
 	DECLARE @MaQL_NV nchar(10);
 	DECLARE @MaQL_TaoLH nchar(10);
 
-	SELECT @MaQL_NV = FROM NhanVien WHERE 
+	SELECT @MaQL_TaoLH = i.MaQL FROM inserted i;
+	SELECT @MaQL_NV = nv.MaQL FROM NhanVien nv ;
+	
+	IF (@MaQL_TaoLH =@MaQL_NV)
+		PRINT('Tao Lop Hoc Thanh Cong');
+	ELSE
+		BEGIN
+		PRINT ('Vui Long Nhap Dung Ma Quan Ly');
+		ROLLBACK;
+		END;
 END
