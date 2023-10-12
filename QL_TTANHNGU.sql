@@ -192,8 +192,8 @@ ALTER TABLE ChiTietDK_LH ADD CONSTRAINT FK_DKLH_MaLH FOREIGN KEY(MaLH)  REFERENC
 */
 
 GO
-insert into ChiTietDK_LH values ('HV02', 'TCB02','2023-07-10');
-/*delete from ChiTietDK_LH where MaHV ='HV01'*/
+insert into ChiTietDK_LH values ('HV01', 'TCB01','2023-07-10');
+delete from ChiTietDK_LH where MaHV ='HV01' AND MaLH = 'TCB01'*/
 
 
 /*Kiểm tra lúc nhân viên sai sót nhập tiền thiếu hoặc dư*/
@@ -236,7 +236,7 @@ END;
 GO
 
 /*Trigger kiểm tra sau khi nhập học viên thì thông báo chỗ còn trống, hoặc thông báo chỗ đầy*/
-alter TRIGGER TinhSoCho_ConDu
+ALTER TRIGGER TinhSoCho_ConDu
 ON ChiTietDK_LH
 AFTER INSERT
 AS 
@@ -282,6 +282,35 @@ END
 
 GO
 
+
+/*Trigger tính lại số lượng chỗ còn trống khi xoá học viên đăng ký*/
+CREATE TRIGGER TinhSoCho_ConDu_SauXoa
+ON ChiTietDK_LH
+AFTER DELETE
+AS 
+BEGIN
+	
+	DECLARE @TongSoCho int;
+	DECLARE @SoChoDaDK int;
+	DECLARE @MaLH nchar(10);
+
+	SELECT @MaLH = d.MaLH from deleted d;
+	SELECT @SoChoDaDK=COUNT(DKLH.MaHV) from ChiTietDK_LH DKLH  group by DKLH.MaLH 
+	having DKLH.MaLH=@MaLH;
+	SELECT @TongSoCho = Lh.SoLuongHV from LopHoc LH where LH.MaLH = @MaLH;
+
+	IF(@SoChoDaDK < @TongSoCho)
+		BEGIN 
+			DECLARE @SoChoDu int;
+			SET @SoChoDu = @TongSoCho - @SoChoDaDK;
+			DECLARE @ThongBao NVARCHAR(1000);
+			DECLARE @TrangThai NVARCHAR(1000);
+			SET @ThongBao = 'Lớp '+ @MaLH +' còn dư '+CAST(@SoChoDu AS NVARCHAR)+' chỗ trống';
+			PRINT(@ThongBao);
+			SET @TrangThai = 'Du '+ CAST(@SoChoDu AS NVARCHAR);
+			UPDATE LopHoc SET TrangThai = @TrangThai where LopHoc.MaLH=@MaLH
+		END;
+END
 /* Trigger kiểm tra tổng số lượng học viên đăng ký thi thử*/
 
 
