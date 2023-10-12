@@ -27,6 +27,9 @@ CREATE TABLE NhanVien(
 	on update cascade
 );
 GO
+ALTER TABLE NhanVien ADD MaQL nchar(10);
+ALTER TABLE NhanVien ADD CONSTRAINT FK_NhanVien_MaQL FOREIGN KEY (MaQL) REFERENCES NhanVien(MaNV);
+
 
 INSERT INTO NhanVien VALUES ('NV01','Nguyen Thi A', '123456789101', '0123456789',300,'CN01');
 
@@ -99,6 +102,8 @@ CREATE TABLE LopHoc(
 GO
 /*Xoa cot GV*/
 /*alter table LopHoc drop column MaGV*/
+/*Them cot trang thai*/
+
 
 GO
 
@@ -106,9 +111,16 @@ insert into LopHoc values ('TCB04','Nang cao','P01',200,42,40,'');
 /*delete from LopHoc Where MaLH = 'TCB03';*/
 
 GO
-/*Dự định thêm 1 bảng ChiTietCaDay*/
+/* Khu vực thêm  bảng*/
 
 /*========================================================================================================*/
+CREATE TABLE TaoLopHoc(
+	MaQL nchar(10) CONSTRAINT FK_TaoLopHoc_MaQL FOREIGN KEY REFERENCES NhanVien(MaNV),
+	MaLH nchar(10) CONSTRAINT FK_TaoLopHoc_MaLH FOREIGN KEY REFERENCES LopHoc(MaLH),
+	NgayTaoLH date,
+	CONSTRAINT PK_TaoLopHoc PRIMARY KEY (MaQL,MaLH)
+);
+
 
 CREATE TABLE ChiTiet_CaDay(
 	MaLH nchar(10) CONSTRAINT FK_CaDay_MaLH FOREIGN KEY REFERENCES LopHoc(MaLH),
@@ -144,7 +156,7 @@ GO
 
 CREATE TABLE ChiTietDK_TT(
 	MaHV nchar(10) CONSTRAINT FK_DKTT_MaHV FOREIGN KEY REFERENCES HocVien(MaHV),
-	MaTT nchar(10),
+	MaTT nchar(10) CONSTRAINT FK_DKTT_MaTT FOREIGN KEY REFERENCES ThiThu(MaTT),
 	NgayDK date NOT NULL check (DATEDIFF(day, NgayDK, GETDATE())>=0),
 	CONSTRAINT PK_ChiTietDK_TT PRIMARY KEY (MaHV,MaTT)
 );
@@ -152,10 +164,11 @@ CREATE TABLE ChiTietDK_TT(
 GO
 
 insert into ChiTietDK_TT values ('HV02','TT02','2023-10-11');
+
 /*Thêm khoá ngoại cho bảng ChiTietDK_TT*/
 /*
 ALTER TABLE ChiTietDK_TT 
-ADD CONSTRAINT FK_DKTT_MaHV FOREIGN KEY(MaHV)  REFERENCES HocVien(MaHV); 
+ADD CONSTRAINT FK_DKTT_MaTT FOREIGN KEY(MaTT)  REFERENCES ThiThu(MaTT); 
 */
 
 GO
@@ -270,7 +283,8 @@ AS
 BEGIN
 	DECLARE @TongHV_DKTT int;
 	DECLARE @MaTT nchar(10);
-	SELECT @MaTT=MaTT, @TongHV_DKTT = COUNT(MaHV) FROM ChiTietDK_TT GROUP BY MaTT;
+	SELECT @MaTT = i.MaTT from inserted i;
+	SELECT @TongHV_DKTT = COUNT(MaHV) FROM ChiTietDK_TT GROUP BY MaTT HAVING MaTT = @MaTT;
 	DECLARE @ThongBao NVARCHAR(1000);
 	SET @ThongBao= 'Tong so hoc vien dang ky ca thi ma '+@MaTT+' la: '+ CAST(@TongHV_DKTT AS NVARCHAR);
 	PRINT(@ThongBao);
@@ -287,4 +301,17 @@ BEGIN
  UPDATE LopHoc
  SET TrangThai = 'Còn trống'
  WHERE MaLH IN (SELECT MaLH FROM INSERTED)
+END
+
+/* Trigger kiểm tra MaQl tạo lớp học phải giống với MaQL NhanVien*/
+
+CREATE TRIGGER KiemTra_TaoLH_MaQL
+ON TaoLopHoc
+AFTER INSERT
+AS
+BEGIN
+	DECLARE @MaQL_NV nchar(10);
+	DECLARE @MaQL_TaoLH nchar(10);
+
+	SELECT @MaQL_NV = FROM NhanVien WHERE 
 END
