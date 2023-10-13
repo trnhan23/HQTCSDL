@@ -240,7 +240,6 @@ ON ChiTietDK_TT
 AFTER INSERT
 AS 
 BEGIN
-	
 	DECLARE @TongSoCho int;
 	DECLARE @SoChoDaDK int;
 	DECLARE @MaTT nchar(10);
@@ -380,5 +379,25 @@ SELECT
   COUNT(MaHV) AS SoLuongHocVienDangKy
 FROM ChiTietDK_LH
 GROUP BY YEAR(NgayDK), MONTH(NgayDK)
+GO
+
+--Thống kê nhân viên theo từng chi nhánh
+CREATE VIEW NhanVienTungChiNhanh AS
+SELECT CN.TenCN, NV.HoTenNV, NV.SoDT, NV.Luong
+FROM ChiNhanh CN INNER JOIN NhanVien NV ON CN.MaCN = NV.MaCN
+GO
+
+--Thống kê điểm số của từng học viên trong từng lớp thi thử
+CREATE VIEW DiemTungHVTrongThiThu AS
+SELECT DKTT.MaTT, HV.HoTenHV, HV.NgaySinh, DKTT.NgayDK, KQ.SoCauNgheDung, KQ.SoCauDocDung, KQ.Diem
+FROM HocVien HV INNER JOIN ChiTietDK_TT DKTT ON HV.MaHV=DKTT.MaHV
+			INNER JOIN KetQua KQ ON DKTT.MaTT=KQ.MaTT
+GO
+
+--Danh sách học viên đã đăng kí thi thử
+CREATE VIEW DanhSachHV_DKThiThu AS
+SELECT TT.MaTT, HV.HoTenHV, HV.NgaySinh, TT.NgayThi
+FROM HocVien HV INNER JOIN ChiTietDK_TT DKTT ON HV.MaHV=DKTT.MaHV
+			INNER JOIN ThiThu TT ON DKTT.MaTT=TT.MaTT
 GO
 
