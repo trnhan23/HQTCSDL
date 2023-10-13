@@ -22,8 +22,16 @@ CREATE TABLE NhanVien(
 	MaCN nchar(10) CONSTRAINT FK_NhanVien_MaCN FOREIGN KEY REFERENCES ChiNhanh(MaCN) 
 	on delete set null 
 	on update cascade,
-	MaQL nchar(10) CONSTRAINT FK_NhanVien_MaQL FOREIGN KEY REFERENCES NhanVien(MaNV)
+	MaQL nchar(10) CONSTRAINT FK_NhanVien_MaQL FOREIGN KEY REFERENCES NhanVien(MaNV),
+	MaCV nchar(10) CONSTRAINT FK_NhanVien_MaCV FOREIGN KEY REFERENCES CongViec(MaCV)
+	on delete set null 
+	on update cascade
 );
+GO
+/*
+ALTER TABLE NhanVien ADD MaCV nchar(10)
+ALTER TABLE NhanVien ADD CONSTRAINT  FK_NhanVien_MaCV FOREIGN KEY(MaCV) REFERENCES CongViec(MaCV)
+*/
 GO
 INSERT INTO NhanVien VALUES ('NV01','Nguyen Thi A', '123456789101', '0123456789',300,'CN01');
 
@@ -31,12 +39,11 @@ GO
 CREATE TABLE CongViec(
 	MaCV nchar(10) CONSTRAINT PK_CongViec PRIMARY KEY,
 	TenCV nvarchar(50) NOT NULL,
-	MaNV nchar(10) CONSTRAINT FK_CongViec_MaNV FOREIGN KEY REFERENCES NhanVien(MaNV)
-	on delete set null 
-	on update cascade
+	
 );
 GO
 
+ALTER TABLE CongViec drop column  MaNV
 
 GO
 CREATE TABLE ThiThu(
@@ -125,8 +132,10 @@ CREATE TABLE ChiTiet_CaDay(
 	CONSTRAINT PK_ChiTietCaDay PRIMARY KEY (MaLH,MaGV)
 );
 GO
+insert into ChiTiet_CaDay values ('TCB02','GV01','2023-11-11','2024-01-10','357-ca3');
 
 
+GO
 CREATE TABLE TaoLopHoc(
 	MaQL nchar(10) CONSTRAINT FK_TaoLopHoc_MaQL FOREIGN KEY REFERENCES NhanVien(MaNV),
 	MaLH nchar(10) CONSTRAINT FK_TaoLopHoc_MaLH FOREIGN KEY REFERENCES LopHoc(MaLH),
@@ -185,7 +194,7 @@ delete from ChiTietDK_LH where MaHV ='HV01' AND MaLH = 'TCB01'*/
 
 
 
-
+GO
 =======
 >>>>>>> 0cb6c430346649b0ba3c4808d06686e1548880bf
 --TRIGGER
@@ -412,6 +421,25 @@ BEGIN
 END
 GO
 
+-- Trigger kiểm tra ca dạy của giảng viên có bị trùng không
+
+CREATE TRIGGER TrungCaDay
+ON ChiTiet_CaDay
+FOR INSERT
+AS
+BEGIN
+	
+	IF EXISTS (SELECT * FROM inserted i WHERE EXISTS ( 
+		SELECT * FROM ChiTiet_CaDay ctcd 
+		WHERE ctcd.CaDay = i.CaDay AND ctcd.MaLH <> i.MaLH AND ctcd.NgayKetThuc >= i.NgayBatDau) 
+	)
+	BEGIN 
+		PRINT('Trùng ca dạy');
+		ROLLBACK;
+	END;
+END
+
+GO
 --VIEW
 --Xem danh sách học viên của các lớp học đã full
 CREATE VIEW DanhSachHocVienLopHocFull AS
