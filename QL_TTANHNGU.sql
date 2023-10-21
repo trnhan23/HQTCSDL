@@ -10,10 +10,9 @@ CREATE TABLE ChiNhanh(
 	DiaChiCN nvarchar(100) NOT NULL
 );
 GO
-
 insert into ChiNhanh values ('CN01','Chi Nhanh 1 PMP','34 Ho Thi Tu');
-go
 
+GO
 CREATE TABLE NhanVien(
 	MaNV nchar(10) CONSTRAINT PK_NhanVien PRIMARY KEY,
 	HoTenNV nvarchar(50) NOT NULL,
@@ -26,10 +25,9 @@ CREATE TABLE NhanVien(
 	MaQL nchar(10) CONSTRAINT FK_NhanVien_MaQL FOREIGN KEY REFERENCES NhanVien(MaNV)
 );
 GO
-
 INSERT INTO NhanVien VALUES ('NV01','Nguyen Thi A', '123456789101', '0123456789',300,'CN01');
-go
 
+GO
 CREATE TABLE CongViec(
 	MaCV nchar(10) CONSTRAINT PK_CongViec PRIMARY KEY,
 	TenCV nvarchar(50) NOT NULL,
@@ -37,9 +35,10 @@ CREATE TABLE CongViec(
 	on delete set null 
 	on update cascade
 );
-
 GO
 
+
+GO
 CREATE TABLE ThiThu(
 	MaTT nchar(10) CONSTRAINT PK_ThiThu PRIMARY KEY,
 	PhongThi nchar(10) NOT NULL,
@@ -47,15 +46,12 @@ CREATE TABLE ThiThu(
 	GioThi time NOT NULL,
 	GioiHan int NOT NULL,
 	MaNV nchar(10) CONSTRAINT FK_ThiThu_MaNV FOREIGN KEY REFERENCES NhanVien(MaNV)
-	on delete set null 
+	on delete set null
 	on update cascade
 );
-
 GO
 
-INSERT INTO ThiThu VALUES ('TT02','P01','2023-10-15','08:30','NV01');
-go 
-
+GO
 CREATE TABLE HocVien(
 	MaHV nchar(10) CONSTRAINT PK_HocVien PRIMARY KEY,
 	HoTenHV nvarchar(50) NOT NULL,
@@ -65,6 +61,9 @@ CREATE TABLE HocVien(
 	DiaChiHV nvarchar(100)
 );
 GO
+insert into HocVien values('HV02','Minh Tai', '2003-10-21', 'Nam','0326344***','so 1 VVN');
+
+GO
 CREATE TABLE ChiTietDK_TT(
 	MaHV nchar(10) CONSTRAINT FK_DKTT_MaHV FOREIGN KEY REFERENCES HocVien(MaHV),
 	MaTT nchar(10) CONSTRAINT FK_DKTT_MaTT FOREIGN KEY REFERENCES ThiThu(MaTT),
@@ -72,9 +71,18 @@ CREATE TABLE ChiTietDK_TT(
 	CONSTRAINT PK_ChiTietDK_TT PRIMARY KEY (MaHV,MaTT)
 );
 GO
+insert into ChiTietDK_TT values ('HV02','TT02','2023-10-11');
 
-insert into HocVien values('HV02','Minh Tai', '2003-10-21', 'Nam','0326344***','so 1 VVN');
 
+GO
+CREATE TABLE KetQua (
+	MaHV nchar(10) CONSTRAINT FK_KetQua_MaHV FOREIGN KEY REFERENCES HocVien(MaHV),
+	MaTT nchar(10) CONSTRAINT FK_KetQua_MaTT FOREIGN KEY REFERENCES ThiThu(MaTT),
+	SoCauDocDung int,
+	SoCauNgheDung int,
+	Diem int,
+	CONSTRAINT PK_KetQua PRIMARY KEY (MaHV,MaTT)
+);
 GO
 
 CREATE TABLE GiangVien(
@@ -85,20 +93,9 @@ CREATE TABLE GiangVien(
 	Luong float NOT NULL check(Luong>0)
 );
 GO
-
 insert into GiangVien values('GV01', 'Nguyen Van A', '07712345****','0123456789',1000);
-GO
 
-CREATE TABLE ChiTiet_CaDay(
-	MaLH nchar(10) CONSTRAINT FK_CaDay_MaLH FOREIGN KEY REFERENCES LopHoc(MaLH),
-	MaGV nchar(10) CONSTRAINT FK_CaDay_MaGV FOREIGN KEY REFERENCES GiangVien(MaGV),
-	NgayBatDau date NOT NULL,
-	NgayKetThuc date NOT NULL,
-	CaDay nchar(10) NOT NULL,
-	CONSTRAINT PK_ChiTietCaDay PRIMARY KEY (MaLH,MaGV)
-);
 GO
-
 CREATE TABLE LopHoc(
 	MaLH nchar(10) CONSTRAINT PK_LopHoc PRIMARY KEY,
 	TenLH nvarchar(50) NOT NULL,
@@ -109,9 +106,19 @@ CREATE TABLE LopHoc(
 	TrangThai nchar(10)
 );
 GO
-
 insert into LopHoc values ('TCB02','Nang Cao','P01',200,42,20,'');
+
 GO
+CREATE TABLE ChiTiet_CaDay(
+	MaLH nchar(10) CONSTRAINT FK_CaDay_MaLH FOREIGN KEY REFERENCES LopHoc(MaLH),
+	MaGV nchar(10) CONSTRAINT FK_CaDay_MaGV FOREIGN KEY REFERENCES GiangVien(MaGV),
+	NgayBatDau date NOT NULL,
+	NgayKetThuc date NOT NULL,
+	CaDay nchar(10) NOT NULL,
+	CONSTRAINT PK_ChiTietCaDay PRIMARY KEY (MaLH,MaGV)
+);
+GO
+
 
 CREATE TABLE TaoLopHoc(
 	MaQL nchar(10) CONSTRAINT FK_TaoLopHoc_MaQL FOREIGN KEY REFERENCES NhanVien(MaNV),
@@ -120,10 +127,9 @@ CREATE TABLE TaoLopHoc(
 	CONSTRAINT PK_TaoLopHoc PRIMARY KEY (MaQL,MaLH)
 );
 GO
-
 INSERT INTO TaoLopHoc VALUES ('NV01', 'TCB01','2023-06-15')
-GO
 
+GO
 CREATE TABLE ChiTietDK_LH(
 	MaHV nchar(10) CONSTRAINT FK_DKLH_MaHV FOREIGN KEY REFERENCES HocVien(MaHV),
 	MaLH nchar(10) CONSTRAINT FK_DKLH_MaLH FOREIGN KEY REFERENCES LopHoc(MaLH),
@@ -131,10 +137,12 @@ CREATE TABLE ChiTietDK_LH(
 	CONSTRAINT PK_ChiTietDK_LH PRIMARY KEY (MaHV,MaLH)
 );
 GO
+insert into ChiTietDK_LH values ('HV02', 'TCB02','2023-07-10');
 
+GO
 CREATE TABLE HoaDon(
 	MaHD nchar(10) CONSTRAINT PK_HoaDon PRIMARY KEY,
-	NgayGioGD date NOT NULL check (DATEDIFF(day, NgayGioGD, GETDATE())>=0),
+	NgayGD date NOT NULL check (DATEDIFF(day, NgayGD, GETDATE())>=0),
 	SoTien float NOT NULL check (SoTien>0),
 	MaHV nchar(10) CONSTRAINT FK_HoaDon_MaHV FOREIGN KEY REFERENCES HocVien(MaHV)
 	on delete set null 
@@ -143,15 +151,9 @@ CREATE TABLE HoaDon(
 GO
 
 insert into HoaDon values('HD01','2023-07-15',250,'HV01');
+
+
 GO
-
-insert into ChiTietDK_TT values ('HV02','TT02','2023-10-11');
-GO
-
-insert into ChiTietDK_LH values ('HV02', 'TCB02','2023-07-10');
-GO
-
-
 --TRIGGER
 /*Kiểm tra lúc nhân viên sai sót nhập tiền thiếu hoặc dư*/
 CREATE TRIGGER KiemTraTienHD
@@ -188,24 +190,22 @@ BEGIN
         ROLLBACK TRANSACTION;
     END;
 END;
- 
 GO
 
-/*Trigger kiểm tra sau khi nhập học viên thì thông báo chỗ còn trống, hoặc thông báo chỗ đầy*/
+/*Trigger kiểm tra sau khi học viên đăng kí lớp học thì thông báo chỗ còn trống, hoặc thông báo chỗ đầy*/
 CREATE TRIGGER TinhSoCho_ConDu
 ON ChiTietDK_LH
 AFTER INSERT
 AS 
 BEGIN
-	
 	DECLARE @TongSoCho int;
 	DECLARE @SoChoDaDK int;
 	DECLARE @MaLH nchar(10);
 
-	SELECT @MaLH = i.MaLH from inserted i;
-	SELECT @SoChoDaDK=COUNT(DKLH.MaHV) from ChiTietDK_LH DKLH  group by DKLH.MaLH 
-	having DKLH.MaLH=@MaLH;
-	SELECT @TongSoCho = Lh.SoLuongHV from LopHoc LH where LH.MaLH = @MaLH;
+	SELECT @MaLH = i.MaLH FROM inserted i;
+	SELECT @SoChoDaDK=COUNT(DKLH.MaHV) FROM ChiTietDK_LH DKLH  GROUP BY DKLH.MaLH 
+	HAVING DKLH.MaLH=@MaLH;
+	SELECT @TongSoCho = Lh.SoLuongHV FROM LopHoc LH WHERE LH.MaLH = @MaLH;
 
 	IF(@SoChoDaDK < @TongSoCho)
 		BEGIN 
@@ -234,22 +234,21 @@ BEGIN
 		END;
 END
 GO
+
 /*Trigger kiểm tra sau khi học viên đăng kí thi thử thì thông báo chỗ còn trống, hoặc thông báo chỗ đầy*/
-CREATE TRIGGER TinhSoChoDK_TT
+CREATE TRIGGER TinhSoChoDuDK_TT
 ON ChiTietDK_TT
 AFTER INSERT
 AS 
 BEGIN
-	
 	DECLARE @TongSoCho int;
 	DECLARE @SoChoDaDK int;
 	DECLARE @MaTT nchar(10);
 
-	SELECT @MaTT = i.MaTT from inserted i;
-	SELECT @SoChoDaDK=COUNT(DKTT.MaHV) FROM ChiTietDK_TT DKTT group by DKTT.MaTT
+	SELECT @MaTT = i.MaTT FROM inserted i;
+	SELECT @SoChoDaDK=COUNT(DKTT.MaHV) FROM ChiTietDK_TT DKTT GROUP BY DKTT.MaTT
 	HAVING DKTT.MaTT=@MaTT
-
-	SELECT @TongSoCho = TT.GioiHan FROM ThiThu TT where TT.MaTT = @MaTT;
+	SELECT @TongSoCho = TT.GioiHan FROM ThiThu TT WHERE TT.MaTT = @MaTT;
 
 	IF(@SoChoDaDK < @TongSoCho)
 		BEGIN 
@@ -311,7 +310,7 @@ BEGIN
 END
 GO
 
-/* Trigger kiểm tra MaQl tạo lớp học phải giống với MaQL NhanVien*/
+/* Trigger kiểm tra MaQL tạo lớp học phải giống với MaQL NhanVien*/
 CREATE TRIGGER KiemTra_TaoLH_MaQL
 ON TaoLopHoc
 AFTER INSERT
@@ -323,7 +322,7 @@ BEGIN
 	SELECT @MaQL_TaoLH = i.MaQL FROM inserted i;
 	SELECT @MaQL_NV = nv.MaQL FROM NhanVien nv ;
 	
-	IF (@MaQL_TaoLH =@MaQL_NV)
+	IF (@MaQL_TaoLH = @MaQL_NV)
 		PRINT('Tao Lop Hoc Thanh Cong');
 	ELSE
 		BEGIN
@@ -352,7 +351,7 @@ GO
 
 --Thống kê danh sách hóa đơn
 CREATE VIEW ThongKeHoaDon AS
-SELECT HV.MaHV, HV.HoTenHV, HV.NgaySinh, HV.GioiTinh, HV.SoDT, HV.DiaChiHV, HD.MaHD, HD.NgayGioGD, HD.SoTien
+SELECT HV.MaHV, HV.HoTenHV, HV.NgaySinh, HV.GioiTinh, HV.SoDT, HV.DiaChiHV, HD.MaHD, HD.NgayGD, HD.SoTien
 FROM HocVien HV
 LEFT JOIN HoaDon HD ON HV.MaHV = HD.MaHV
 GO
@@ -382,29 +381,6 @@ SELECT
 FROM ChiTietDK_LH
 GROUP BY YEAR(NgayDK), MONTH(NgayDK)
 GO
---VIEW
---Xem danh sách học viên của các lớp học đã full
-CREATE VIEW DanhSachHocVienLopHocFull AS
-SELECT LH.MaLH, LH.TenLH, HV.MaHV, HV.HoTenHV, HV.NgaySinh, HV.GioiTinh, HV.SoDT, HV.DiaChiHV
-FROM LopHoc LH
-INNER JOIN ChiTietDK_LH DKLH ON LH.MaLH = DKLH.MaLH
-INNER JOIN HocVien HV ON DKLH.MaHV = HV.MaHV
-WHERE LH.TrangThai = 'Du'
-GO
-
---Xem danh sách các lớp học còn trống
-CREATE VIEW LopHocConTrong AS
-SELECT MaLH, TenLH, TenPhongHoc, HocPhi, SoBuoiHoc, SoLuongHV
-FROM LopHoc
-WHERE TrangThai != 'Du'
-GO
-
---Thống kê danh sách hóa đơn
-CREATE VIEW ThongKeHoaDon AS
-SELECT HV.MaHV, HV.HoTenHV, HV.NgaySinh, HV.GioiTinh, HV.SoDT, HV.DiaChiHV, HD.MaHD, HD.NgayGioGD, HD.SoTien
-FROM HocVien HV
-LEFT JOIN HoaDon HD ON HV.MaHV = HD.MaHV
-GO
 
 --Thống kê danh sách lớp học và số lượng HV đã đăng ký
 CREATE VIEW LopHoc_SoLuongHocVien AS
@@ -431,3 +407,24 @@ SELECT
 FROM ChiTietDK_LH
 GROUP BY YEAR(NgayDK), MONTH(NgayDK)
 GO
+
+--Thống kê nhân viên theo từng chi nhánh
+CREATE VIEW NhanVienTungChiNhanh AS
+SELECT CN.TenCN, NV.HoTenNV, NV.SoDT, NV.Luong
+FROM ChiNhanh CN INNER JOIN NhanVien NV ON CN.MaCN = NV.MaCN
+GO
+
+--Thống kê điểm số của từng học viên trong từng lớp thi thử
+CREATE VIEW DiemTungHVTrongThiThu AS
+SELECT DKTT.MaTT, HV.HoTenHV, HV.NgaySinh, DKTT.NgayDK, KQ.SoCauNgheDung, KQ.SoCauDocDung, KQ.Diem
+FROM HocVien HV INNER JOIN ChiTietDK_TT DKTT ON HV.MaHV=DKTT.MaHV
+			INNER JOIN KetQua KQ ON DKTT.MaTT=KQ.MaTT
+GO
+
+--Danh sách học viên đã đăng kí thi thử
+CREATE VIEW DanhSachHV_DKThiThu AS
+SELECT TT.MaTT, HV.HoTenHV, HV.NgaySinh, TT.NgayThi
+FROM HocVien HV INNER JOIN ChiTietDK_TT DKTT ON HV.MaHV=DKTT.MaHV
+			INNER JOIN ThiThu TT ON DKTT.MaTT=TT.MaTT
+GO
+
