@@ -1,0 +1,11 @@
+D:\DBSM\Project\TTQLAV\TTQLAV\obj\Debug\TTQLAV.csproj.AssemblyReference.cache
+D:\DBSM\Project\TTQLAV\TTQLAV\obj\Debug\TTQLAV.ChiNhanh.resources
+D:\DBSM\Project\TTQLAV\TTQLAV\obj\Debug\TTQLAV.Properties.Resources.resources
+D:\DBSM\Project\TTQLAV\TTQLAV\obj\Debug\TTQLAV.csproj.GenerateResource.cache
+D:\DBSM\Project\TTQLAV\TTQLAV\obj\Debug\TTQLAV.csproj.CoreCompileInputs.cache
+D:\DBSM\Project\TTQLAV\TTQLAV\bin\Debug\TTQLAV.exe.config
+D:\DBSM\Project\TTQLAV\TTQLAV\bin\Debug\TTQLAV.exe
+D:\DBSM\Project\TTQLAV\TTQLAV\bin\Debug\TTQLAV.pdb
+D:\DBSM\Project\TTQLAV\TTQLAV\obj\Debug\TTQLAV.exe
+D:\DBSM\Project\TTQLAV\TTQLAV\obj\Debug\TTQLAV.pdb
+D:\DBSM\Project\TTQLAV\TTQLAV\obj\Debug\TTQLAV.Home.resources
