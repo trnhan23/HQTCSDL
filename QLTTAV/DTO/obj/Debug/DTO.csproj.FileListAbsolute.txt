@@ -1,0 +1,6 @@
+D:\DBSM\Project\HQTCSDL\QLTTAV\DTO\bin\Debug\DTO.dll
+D:\DBSM\Project\HQTCSDL\QLTTAV\DTO\bin\Debug\DTO.pdb
+D:\DBSM\Project\HQTCSDL\QLTTAV\DTO\obj\Debug\DTO.csproj.AssemblyReference.cache
+D:\DBSM\Project\HQTCSDL\QLTTAV\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
+D:\DBSM\Project\HQTCSDL\QLTTAV\DTO\obj\Debug\DTO.dll
+D:\DBSM\Project\HQTCSDL\QLTTAV\DTO\obj\Debug\DTO.pdb
