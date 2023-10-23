@@ -107,6 +107,7 @@ CREATE TABLE GiangVien(
 	Luong float NOT NULL check(Luong>0)
 );
 GO
+alter table GiangVien alter column Luong float null
 insert into GiangVien values('GV01', 'Nguyen Van A', '07712345****','0123456789',1000);
 
 GO
@@ -129,9 +130,10 @@ CREATE TABLE ChiTiet_CaDay(
 	NgayBatDau date NOT NULL,
 	NgayKetThuc date NOT NULL,
 	CaDay nchar(10) NOT NULL,
-	CONSTRAINT PK_ChiTietCaDay PRIMARY KEY (MaLH,MaGV)
+	CONSTRAINT PK_ChiTietCaDay PRIMARY KEY (MaGV)
 );
 GO
+drop table ChiTiet_CaDay
 insert into ChiTiet_CaDay values ('TCB02','GV01','2023-11-11','2024-01-10','357-ca3');
 
 
@@ -140,8 +142,9 @@ CREATE TABLE TaoLopHoc(
 	MaQL nchar(10) CONSTRAINT FK_TaoLopHoc_MaQL FOREIGN KEY REFERENCES NhanVien(MaNV),
 	MaLH nchar(10) CONSTRAINT FK_TaoLopHoc_MaLH FOREIGN KEY REFERENCES LopHoc(MaLH),
 	NgayTaoLH date,
-	CONSTRAINT PK_TaoLopHoc PRIMARY KEY (MaQL,MaLH)
+	CONSTRAINT PK_TaoLopHoc PRIMARY KEY (MaQL)
 );
+drop table TaoLopHoc
 GO
 INSERT INTO TaoLopHoc VALUES ('NV01', 'TCB01','2023-06-15')
 
