@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QL_TTANHNGU" Class="QL_TTANHNGUDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=LAPTOP-NJI5KN3O;Initial Catalog=QL_TTANHNGU;User ID=sa" SettingsObjectName="TTQLAV.Properties.Settings" SettingsPropertyName="QL_TTANHNGUConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.ChiNhanh" Member="ChiNhanhs">
+    <Type Name="ChiNhanh">
+      <Column Name="MaCN" Type="System.String" DbType="NChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenCN" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="DiaChiCN" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Association Name="ChiNhanh_NhanVien" Member="NhanViens" ThisKey="MaCN" OtherKey="MaCN" Type="NhanVien" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ChiTiet_CaDay" Member="ChiTiet_CaDays">
+    <Type Name="ChiTiet_CaDay">
+      <Column Name="MaLH" Type="System.String" DbType="NChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaGV" Type="System.String" DbType="NChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NgayBatDau" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="NgayKetThuc" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="CaDay" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Association Name="GiangVien_ChiTiet_CaDay" Member="GiangVien" ThisKey="MaGV" OtherKey="MaGV" Type="GiangVien" IsForeignKey="true" />
+      <Association Name="LopHoc_ChiTiet_CaDay" Member="LopHoc" ThisKey="MaLH" OtherKey="MaLH" Type="LopHoc" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ChiTietDK_LH" Member="ChiTietDK_LHs">
+    <Type Name="ChiTietDK_LH">
+      <Column Name="MaHV" Type="System.String" DbType="NChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaLH" Type="System.String" DbType="NChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NgayDK" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Association Name="HocVien_ChiTietDK_LH" Member="HocVien" ThisKey="MaHV" OtherKey="MaHV" Type="HocVien" IsForeignKey="true" />
+      <Association Name="LopHoc_ChiTietDK_LH" Member="LopHoc" ThisKey="MaLH" OtherKey="MaLH" Type="LopHoc" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ChiTietDK_TT" Member="ChiTietDK_TTs">
+    <Type Name="ChiTietDK_TT">
+      <Column Name="MaHV" Type="System.String" DbType="NChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaTT" Type="System.String" DbType="NChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NgayDK" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Association Name="HocVien_ChiTietDK_TT" Member="HocVien" ThisKey="MaHV" OtherKey="MaHV" Type="HocVien" IsForeignKey="true" />
+      <Association Name="ThiThu_ChiTietDK_TT" Member="ThiThu" ThisKey="MaTT" OtherKey="MaTT" Type="ThiThu" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CongViec" Member="CongViecs">
+    <Type Name="CongViec">
+      <Column Name="MaCV" Type="System.String" DbType="NChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenCV" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="MaNV" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Association Name="NhanVien_CongViec" Member="NhanVien" ThisKey="MaNV" OtherKey="MaNV" Type="NhanVien" IsForeignKey="true" DeleteRule="SET NULL" />
+    </Type>
+  </Table>
+  <Table Name="dbo.GiangVien" Member="GiangViens">
+    <Type Name="GiangVien">
+      <Column Name="MaGV" Type="System.String" DbType="NChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="HoTen" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CCCD" Type="System.String" DbType="NChar(13) NOT NULL" CanBeNull="false" />
+      <Column Name="SoDT" Type="System.String" DbType="NChar(11) NOT NULL" CanBeNull="false" />
+      <Column Name="Luong" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="GiangVien_ChiTiet_CaDay" Member="ChiTiet_CaDays" ThisKey="MaGV" OtherKey="MaGV" Type="ChiTiet_CaDay" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HoaDon" Member="HoaDons">
+    <Type Name="HoaDon">
+      <Column Name="MaHD" Type="System.String" DbType="NChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NgayGD" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="SoTien" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="MaHV" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Association Name="HocVien_HoaDon" Member="HocVien" ThisKey="MaHV" OtherKey="MaHV" Type="HocVien" IsForeignKey="true" DeleteRule="SET NULL" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HocVien" Member="HocViens">
+    <Type Name="HocVien">
+      <Column Name="MaHV" Type="System.String" DbType="NChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="HoTenHV" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="NgaySinh" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="GioiTinh" Type="System.String" DbType="NVarChar(3)" CanBeNull="true" />
+      <Column Name="SoDT" Type="System.String" DbType="NChar(11)" CanBeNull="true" />
+      <Column Name="DiaChiHV" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Association Name="HocVien_ChiTietDK_LH" Member="ChiTietDK_LHs" ThisKey="MaHV" OtherKey="MaHV" Type="ChiTietDK_LH" />
+      <Association Name="HocVien_ChiTietDK_TT" Member="ChiTietDK_TTs" ThisKey="MaHV" OtherKey="MaHV" Type="ChiTietDK_TT" />
+      <Association Name="HocVien_HoaDon" Member="HoaDons" ThisKey="MaHV" OtherKey="MaHV" Type="HoaDon" />
+      <Association Name="HocVien_KetQua" Member="KetQuas" ThisKey="MaHV" OtherKey="MaHV" Type="KetQua" />
+    </Type>
+  </Table>
+  <Table Name="dbo.KetQua" Member="KetQuas">
+    <Type Name="KetQua">
+      <Column Name="MaHV" Type="System.String" DbType="NChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaTT" Type="System.String" DbType="NChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SoCauDocDung" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SoCauNgheDung" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Diem" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="HocVien_KetQua" Member="HocVien" ThisKey="MaHV" OtherKey="MaHV" Type="HocVien" IsForeignKey="true" />
+      <Association Name="ThiThu_KetQua" Member="ThiThu" ThisKey="MaTT" OtherKey="MaTT" Type="ThiThu" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LopHoc" Member="LopHocs">
+    <Type Name="LopHoc">
+      <Column Name="MaLH" Type="System.String" DbType="NChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenLH" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TenPhongHoc" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="HocPhi" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="SoBuoiHoc" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SoLuongHV" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TrangThai" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Association Name="LopHoc_ChiTiet_CaDay" Member="ChiTiet_CaDays" ThisKey="MaLH" OtherKey="MaLH" Type="ChiTiet_CaDay" />
+      <Association Name="LopHoc_ChiTietDK_LH" Member="ChiTietDK_LHs" ThisKey="MaLH" OtherKey="MaLH" Type="ChiTietDK_LH" />
+      <Association Name="LopHoc_TaoLopHoc" Member="TaoLopHocs" ThisKey="MaLH" OtherKey="MaLH" Type="TaoLopHoc" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NhanVien" Member="NhanViens">
+    <Type Name="NhanVien">
+      <Column Name="MaNV" Type="System.String" DbType="NChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="HoTenNV" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CCCD" Type="System.String" DbType="NChar(13) NOT NULL" CanBeNull="false" />
+      <Column Name="SoDT" Type="System.String" DbType="NChar(11) NOT NULL" CanBeNull="false" />
+      <Column Name="Luong" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="MaCN" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="MaQL" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Association Name="NhanVien_CongViec" Member="CongViecs" ThisKey="MaNV" OtherKey="MaNV" Type="CongViec" />
+      <Association Name="NhanVien_NhanVien" Member="NhanViens" ThisKey="MaNV" OtherKey="MaQL" Type="NhanVien" />
+      <Association Name="NhanVien_TaoLopHoc" Member="TaoLopHocs" ThisKey="MaNV" OtherKey="MaQL" Type="TaoLopHoc" />
+      <Association Name="NhanVien_ThiThu" Member="ThiThus" ThisKey="MaNV" OtherKey="MaNV" Type="ThiThu" />
+      <Association Name="ChiNhanh_NhanVien" Member="ChiNhanh" ThisKey="MaCN" OtherKey="MaCN" Type="ChiNhanh" IsForeignKey="true" DeleteRule="SET NULL" />
+      <Association Name="NhanVien_NhanVien" Member="NhanVien1" ThisKey="MaQL" OtherKey="MaNV" Type="NhanVien" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TaoLopHoc" Member="TaoLopHocs">
+    <Type Name="TaoLopHoc">
+      <Column Name="MaQL" Type="System.String" DbType="NChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaLH" Type="System.String" DbType="NChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NgayTaoLH" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Association Name="LopHoc_TaoLopHoc" Member="LopHoc" ThisKey="MaLH" OtherKey="MaLH" Type="LopHoc" IsForeignKey="true" />
+      <Association Name="NhanVien_TaoLopHoc" Member="NhanVien" ThisKey="MaQL" OtherKey="MaNV" Type="NhanVien" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ThiThu" Member="ThiThus">
+    <Type Name="ThiThu">
+      <Column Name="MaTT" Type="System.String" DbType="NChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="PhongThi" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="NgayThi" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="GioThi" Type="System.TimeSpan" DbType="Time NOT NULL" CanBeNull="false" />
+      <Column Name="GioiHan" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MaNV" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Association Name="ThiThu_ChiTietDK_TT" Member="ChiTietDK_TTs" ThisKey="MaTT" OtherKey="MaTT" Type="ChiTietDK_TT" />
+      <Association Name="ThiThu_KetQua" Member="KetQuas" ThisKey="MaTT" OtherKey="MaTT" Type="KetQua" />
+      <Association Name="NhanVien_ThiThu" Member="NhanVien" ThisKey="MaNV" OtherKey="MaNV" Type="NhanVien" IsForeignKey="true" DeleteRule="SET NULL" />
+    </Type>
+  </Table>
+  <Function Name="dbo.CapNhatNhanVien" Method="CapNhatNhanVien">
+    <Parameter Name="manv" Type="System.String" DbType="NChar(10)" />
+    <Parameter Name="hotennv" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="cccd" Type="System.String" DbType="NChar(13)" />
+    <Parameter Name="sodt" Type="System.String" DbType="NChar(11)" />
+    <Parameter Name="luong" Type="System.Double" DbType="Float" />
+    <Parameter Name="macn" Type="System.String" DbType="NChar(10)" />
+    <Parameter Name="maql" Type="System.String" DbType="NChar(10)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ThemNhanVien" Method="ThemNhanVien">
+    <Parameter Name="manv" Type="System.String" DbType="NChar(10)" />
+    <Parameter Name="hotennv" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="cccd" Type="System.String" DbType="NChar(13)" />
+    <Parameter Name="sodt" Type="System.String" DbType="NChar(11)" />
+    <Parameter Name="luong" Type="System.Double" DbType="Float" />
+    <Parameter Name="macn" Type="System.String" DbType="NChar(10)" />
+    <Parameter Name="maql" Type="System.String" DbType="NChar(10)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.XoaNhanVien" Method="XoaNhanVien">
+    <Parameter Name="manv" Type="System.String" DbType="NChar(10)" />
+    <Return Type="System.Int32" />
+  </Function>
+</Database>
