@@ -26,19 +26,22 @@ CREATE TABLE NhanVien(
 	MaQL nchar(10) CONSTRAINT FK_NhanVien_MaQL FOREIGN KEY REFERENCES NhanVien(MaNV)
 );
 GO
-INSERT INTO NhanVien VALUES ('NV01','Nguyen Thi A', '123456789101', '0123456789',300,'CN01', 'NV01');
+ALTER TABLE NhanVien ADD MaCV nchar(10)
+ALTER TABLE NhanVien ADD CONSTRAINT  FK_NhanVien_MaCV FOREIGN KEY(MaCV) REFERENCES CongViec(MaCV)
 
+
+INSERT INTO NhanVien VALUES ('NV01','Nguyen Thi A', '123456789101', '0123456789',300,'CN01', 'NV01', 'CV01');
+INSERT INTO NhanVien VALUES ('NV02','Nguyen Thi B', '123456789102', '0123456780',300,'CN01', 'NV01', 'CV01')
 GO
 CREATE TABLE CongViec(
 	MaCV nchar(10) CONSTRAINT PK_CongViec PRIMARY KEY,
 	TenCV nvarchar(50) NOT NULL,
-	MaNV nchar(10) CONSTRAINT FK_CongViec_MaNV FOREIGN KEY REFERENCES NhanVien(MaNV)
-	on delete set null 
-	on update cascade
 );
 GO
 
+insert into CongViec values ('CV01', 'Hoc Vu')
 
+GO
 
 CREATE TABLE ThiThu(
 	MaTT nchar(10) CONSTRAINT PK_ThiThu PRIMARY KEY,
@@ -110,7 +113,7 @@ CREATE TABLE LopHoc(
 );
 GO
 insert into LopHoc values ('TCB02','Nang Cao','P01',200,42,20,'');
-
+insert into LopHoc values ('TCB01','Co Ban','P02',200,42,20,'');
 GO
 CREATE TABLE ChiTiet_CaDay(
 	MaLH nchar(10) CONSTRAINT FK_CaDay_MaLH FOREIGN KEY REFERENCES LopHoc(MaLH),
@@ -134,8 +137,8 @@ CREATE TABLE TaoLopHoc(
 	CONSTRAINT PK_TaoLopHoc PRIMARY KEY (MaQL,MaLH)
 );
 GO
-INSERT INTO TaoLopHoc VALUES ('NV01', 'TCB01','2023-06-15')
-
+INSERT INTO TaoLopHoc VALUES ('NV01', 'TCB02','2023-06-15')
+INSERT INTO TaoLopHoc VALUES ('NV01', 'TCB01','2023-07-01')
 GO
 CREATE TABLE ChiTietDK_LH(
 	MaHV nchar(10) CONSTRAINT FK_DKLH_MaHV FOREIGN KEY REFERENCES HocVien(MaHV),
@@ -518,33 +521,131 @@ CREATE TABLE NhanVien(
 );
 GO
 */
-create procedure ThemNhanVien
-@manv nchar(10),
-@hotennv nvarchar(50),
-@cccd nchar(13),
-@sodt nchar(11),
-@luong float,
-@macn nchar(10),
-@maql nchar(10)
-AS
-	insert into NhanVien values (@manv, @hotennv, @cccd, @sodt, @luong, @macn, @maql)
 
+CREATE PROC HienThiTheoMaNV @manv nchar(10)
+AS
+	SELECT * FROM NhanVien WHERE MaNV = @manv
 GO
-create procedure CapNhatNhanVien
+
+CREATE PROC ThemNhanVien
 @manv nchar(10),
 @hotennv nvarchar(50),
 @cccd nchar(13),
 @sodt nchar(11),
 @luong float,
 @macn nchar(10),
-@maql nchar(10)
+@maql nchar(10),
+@macv nchar(10)
+AS
+	INSERT INTO NhanVien VALUES (@manv, @hotennv, @cccd, @sodt, @luong, @macn, @maql, @macv)
+GO
+
+CREATE PROC SuaNhanVien
+@manv nchar(10),
+@hotennv nvarchar(50),
+@cccd nchar(13),
+@sodt nchar(11),
+@luong float,
+@macn nchar(10),
+@maql nchar(10),
+@macv nchar(10)
 AS
 	UPDATE NhanVien
-	SET HoTenNV= @hotennv, CCCD = @cccd, SoDT = @sodt, Luong = @luong, MaCN = @macn, MaQL = @maql
-	Where MaNV =@manv
+	SET HoTenNV= @hotennv, CCCD = @cccd, SoDT = @sodt, Luong = @luong, MaCN = @macn, MaQL = @maql, MaCV = @macv
+	WHERE MaNV =@manv
 GO
-create proc XoaNhanVien @manv nchar(10)
+CREATE PROC XoaNhanVien @manv nchar(10)
 AS
 	DELETE FROM NhanVien
-	Where MaNV = @manv
+	WHERE MaNV = @manv
 GO
+
+CREATE PROC HienThiTheoMaCV @macv nchar(10)
+AS
+	SELECT * FROM CongViec WHERE MaCV = @macv
+go
+
+CREATE PROC ThemCongViec
+@macv nchar(10),
+@tencv nvarchar(50)
+AS
+	INSERT INTO CongViec VALUES (@macv, @tencv)
+GO
+
+CREATE PROC SuaCongViec
+@macv nchar(10),
+@tencv nvarchar(50)
+AS
+	UPDATE CongViec
+	SET TenCV = @tencv
+	WHERE MaCV = @macv
+GO
+CREATE PROC XoaCongViec @macv nchar(10)
+AS
+	DELETE FROM CongViec
+	WHERE MaCV = @macv
+GO
+
+CREATE PROC HienThiTheoMa
+@maql nchar(10),
+@malh nchar(10)
+AS
+	SELECT * FROM TaoLopHoc
+	WHERE MaQL = @maql AND MaLH = @malh
+GO
+
+CREATE PROC ThemTaoLopHoc 
+@maql nchar(10),
+@malh nchar(10),
+@ngaytao date
+AS
+	INSERT INTO TaoLopHoc VALUES (@maql, @malh, @ngaytao)
+GO
+CREATE PROC SuaTaoLopHoc
+@maql nchar(10),
+@malh nchar(10),
+@ngaytao date
+AS
+	UPDATE TaoLopHoc
+	SET  NgayTaoLH = @ngaytao
+	WHERE  MaQL = @maql AND MaLH = @malh
+GO
+CREATE PROC XoaTaoLopHoc
+@maql nchar(10),
+@malh nchar(10)
+AS
+	DELETE FROM TaoLopHoc WHERE MaQL = @maql AND MaLH = @malh
+go
+
+CREATE PROC HienThiTheoMaCTCaDay @malh nchar(10), @magv nchar(10)
+AS
+	SELECT * FROM ChiTiet_CaDay WHERE MaLH = @malh AND MaGV = @magv
+GO
+CREATE PROC ThemCTCaDay
+@malh nchar(10),
+@magv nchar(10),
+@ngaybatdau date,
+@ngayketthuc date,
+@caday nchar(10)
+AS
+	INSERT INTO ChiTiet_CaDay VALUES (@malh, @magv, @ngaybatdau, @ngayketthuc, @caday)
+GO
+CREATE PROC SuaCTCaDay
+@malh nchar(10),
+@magv nchar(10),
+@ngaybatdau date,
+@ngayketthuc date,
+@caday nchar(10)
+AS
+	UPDATE ChiTiet_CaDay
+	SET NgayBatDau = @ngaybatdau, NgayKetThuc = @ngayketthuc, CaDay = @caday
+	WHERE MaLH = @malH AND MaGV = @magv
+GO
+
+CREATE PROC XoaCTCaDay
+@malh nchar(10),
+@magv nchar(10)
+AS
+	DELETE FROM ChiTiet_CaDay WHERE MaLH = @malh AND MaGV = @magv
+GO
+

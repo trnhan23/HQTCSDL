@@ -26,10 +26,7 @@ namespace GUI
            
         }
 
-        private void lvChiNhanh_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+       
 
         private void ChiNhanh_Load(object sender, EventArgs e)
         {
