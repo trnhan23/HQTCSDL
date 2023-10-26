@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnXoa1 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnXoa = new System.Windows.Forms.Button();
+            this.btnSua = new System.Windows.Forms.Button();
             this.btnThem = new System.Windows.Forms.Button();
             this.txtDiaChi = new System.Windows.Forms.TextBox();
             this.txtTenCN = new System.Windows.Forms.TextBox();
@@ -43,23 +43,25 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
-            // btnXoa1
+            // btnXoa
             // 
-            this.btnXoa1.Location = new System.Drawing.Point(720, 412);
-            this.btnXoa1.Name = "btnXoa1";
-            this.btnXoa1.Size = new System.Drawing.Size(156, 42);
-            this.btnXoa1.TabIndex = 11;
-            this.btnXoa1.Text = "Xoá";
-            this.btnXoa1.UseVisualStyleBackColor = true;
+            this.btnXoa.Location = new System.Drawing.Point(720, 412);
+            this.btnXoa.Name = "btnXoa";
+            this.btnXoa.Size = new System.Drawing.Size(156, 42);
+            this.btnXoa.TabIndex = 11;
+            this.btnXoa.Text = "Xoá";
+            this.btnXoa.UseVisualStyleBackColor = true;
+            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
             // 
-            // button1
+            // btnSua
             // 
-            this.button1.Location = new System.Drawing.Point(720, 338);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(156, 42);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "Sửa";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnSua.Location = new System.Drawing.Point(720, 338);
+            this.btnSua.Name = "btnSua";
+            this.btnSua.Size = new System.Drawing.Size(156, 42);
+            this.btnSua.TabIndex = 12;
+            this.btnSua.Text = "Sửa";
+            this.btnSua.UseVisualStyleBackColor = true;
+            this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
             // 
             // btnThem
             // 
@@ -125,6 +127,7 @@
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3});
+            this.lvChiNhanh.FullRowSelect = true;
             this.lvChiNhanh.GridLines = true;
             this.lvChiNhanh.HideSelection = false;
             this.lvChiNhanh.Location = new System.Drawing.Point(17, 18);
@@ -155,8 +158,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1076, 524);
-            this.Controls.Add(this.btnXoa1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnXoa);
+            this.Controls.Add(this.btnSua);
             this.Controls.Add(this.btnThem);
             this.Controls.Add(this.txtDiaChi);
             this.Controls.Add(this.txtTenCN);
@@ -175,8 +178,8 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnXoa1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnXoa;
+        private System.Windows.Forms.Button btnSua;
         private System.Windows.Forms.Button btnThem;
         private System.Windows.Forms.TextBox txtDiaChi;
         private System.Windows.Forms.TextBox txtTenCN;

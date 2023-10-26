@@ -15,3 +15,6 @@ D:\DBSM\Project\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.ChiNhanh.resources
 D:\DBSM\Project\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.csproj.CopyComplete
 D:\DBSM\Project\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.exe
 D:\DBSM\Project\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.pdb
+D:\DBSM\Project\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.LopHoc.resources
+D:\DBSM\Project\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.KetQua.resources
+D:\DBSM\Project\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.Home.resources
