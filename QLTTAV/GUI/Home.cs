@@ -69,5 +69,10 @@ namespace GUI
             OpenChildForm(new KetQua());
             label_nameButton.Text = btnKetQuaTT.Text;
         }
+
+        private void Home_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

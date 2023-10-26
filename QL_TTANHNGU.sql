@@ -376,7 +376,7 @@ GO
 /* Trigger đặt trạng thái cho lớp học*/
 CREATE OR ALTER TRIGGER set_LopHoc_TrangThai
 ON LopHoc
-FOR INSERT,UPDATE
+FOR INSERT
 AS
 BEGIN
 	DECLARE @TrangThai NVARCHAR(1000);
@@ -728,3 +728,36 @@ create or alter procedure UpdateTrangThai
 @MaLH nchar(10)
 as 
 select TrangThai from v_LopHoc where MaLH =@MaLH
+
+-- Tạo trigger  cập nhật trạng thái
+CREATE OR ALTER TRIGGER trg_UpdateTrangThai
+ON LopHoc
+AFTER UPDATE
+AS 
+BEGIN
+	DECLARE @TongSoCho int;
+	DECLARE @SoChoDaDK int;
+	DECLARE @MaLH nchar(10);
+
+	SELECT @MaLH = i.MaLH FROM inserted i;
+	SELECT @SoChoDaDK=COUNT(DKLH.MaHV) FROM ChiTietDK_LH DKLH  GROUP BY DKLH.MaLH 
+	HAVING DKLH.MaLH=@MaLH;
+	SELECT @TongSoCho = Lh.SoLuongHV FROM LopHoc LH WHERE LH.MaLH = @MaLH;
+
+	IF(@TongSoCho - @SoChoDaDK >= 0)
+		BEGIN 
+			DECLARE @SoChoDu int;
+			SET @SoChoDu = @TongSoCho - @SoChoDaDK;
+			DECLARE @TrangThai NVARCHAR(100);
+			SET @TrangThai = 'Du '+ CAST(@SoChoDu AS NVARCHAR);
+			UPDATE LopHoc SET TrangThai = @TrangThai where LopHoc.MaLH=@MaLH
+		END;
+	ELSE
+		BEGIN
+			RAISERROR('Vui lòng nhập đủ SL HV với SL HV đã đăng ký!!',16,0);
+			ROLLBACK;
+		END
+END
+
+update LopHoc set SoLuongHV = 34 where MaLH = 'TCB01'
+insert into ChiTietDK_LH values ('HV01','TCB01','')
