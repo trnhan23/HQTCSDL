@@ -21,7 +21,7 @@ namespace GUI
 
         private void OpenChildForm(Form childForm)
         {
-            if (currentFormChild != null)
+            if(currentFormChild != null)
             {
                 currentFormChild.Close();
             }
@@ -42,7 +42,7 @@ namespace GUI
         }
         private void label1_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void btnLopHoc_Click(object sender, EventArgs e)
@@ -75,9 +75,7 @@ namespace GUI
 
         }
 
-        
-
-        private void btnChiNhanh_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
             OpenChildForm(new ChiNhanh());
             label_nameButton.Text = btnChiNhanh.Text;

@@ -141,7 +141,7 @@
             this.btnChiNhanh.TabIndex = 2;
             this.btnChiNhanh.Text = "Chi Nhánh";
             this.btnChiNhanh.UseVisualStyleBackColor = true;
-            this.btnChiNhanh.Click += new System.EventHandler(this.btnChiNhanh_Click);
+            this.btnChiNhanh.Click += new System.EventHandler(this.button1_Click);
             // 
             // pictureBox1
             // 

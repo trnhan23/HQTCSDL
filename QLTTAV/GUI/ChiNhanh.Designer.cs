@@ -65,12 +65,13 @@
             // 
             // btnThem
             // 
+            this.btnThem.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btnThem.Location = new System.Drawing.Point(720, 265);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(156, 42);
             this.btnThem.TabIndex = 13;
             this.btnThem.Text = "Thêm";
-            this.btnThem.UseVisualStyleBackColor = true;
+            this.btnThem.UseVisualStyleBackColor = false;
             this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
             // 
             // txtDiaChi

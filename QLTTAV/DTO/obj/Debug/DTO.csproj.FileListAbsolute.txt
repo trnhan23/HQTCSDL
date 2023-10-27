@@ -4,9 +4,9 @@ D:\DBSM\Project\HQTCSDL\QLTTAV\DTO\obj\Debug\DTO.csproj.AssemblyReference.cache
 D:\DBSM\Project\HQTCSDL\QLTTAV\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
 D:\DBSM\Project\HQTCSDL\QLTTAV\DTO\obj\Debug\DTO.dll
 D:\DBSM\Project\HQTCSDL\QLTTAV\DTO\obj\Debug\DTO.pdb
-D:\DBSM\test\HQTCSDL\QLTTAV\DTO\bin\Debug\DTO.dll
-D:\DBSM\test\HQTCSDL\QLTTAV\DTO\bin\Debug\DTO.pdb
-D:\DBSM\test\HQTCSDL\QLTTAV\DTO\obj\Debug\DTO.csproj.AssemblyReference.cache
-D:\DBSM\test\HQTCSDL\QLTTAV\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
-D:\DBSM\test\HQTCSDL\QLTTAV\DTO\obj\Debug\DTO.dll
-D:\DBSM\test\HQTCSDL\QLTTAV\DTO\obj\Debug\DTO.pdb
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\DTO\bin\Debug\DTO.dll
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\DTO\bin\Debug\DTO.pdb
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\DTO\obj\Debug\DTO.csproj.AssemblyReference.cache
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\DTO\obj\Debug\DTO.dll
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\DTO\obj\Debug\DTO.pdb
