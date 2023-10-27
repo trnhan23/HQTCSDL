@@ -74,5 +74,11 @@ namespace GUI
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new ChiNhanh());
+            label_nameButton.Text = btnChiNhanh.Text;
+        }
     }
 }
