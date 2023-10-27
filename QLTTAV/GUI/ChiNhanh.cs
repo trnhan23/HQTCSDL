@@ -90,7 +90,7 @@ namespace GUI
 
         private void ChiNhanh_Load(object sender, EventArgs e)
         {
-            ThongTinChiNhanh();
+             ThongTinChiNhanh();
         }
 
         private void ThongTinChiNhanh()
