@@ -761,3 +761,27 @@ END
 
 update LopHoc set SoLuongHV = 34 where MaLH = 'TCB01'
 insert into ChiTietDK_LH values ('HV01','TCB01','')
+
+	IF(@TongSoCho - @SoChoDaDK >= 0)
+		BEGIN 
+			DECLARE @SoChoDu int;
+			SET @SoChoDu = @TongSoCho - @SoChoDaDK;
+			DECLARE @TrangThai NVARCHAR(100);
+			SET @TrangThai = 'Du '+ CAST(@SoChoDu AS NVARCHAR);
+			UPDATE LopHoc SET TrangThai = @TrangThai where LopHoc.MaLH=@MaLH;
+			insert into triggerLog(messageLog) values(@TrangThai)
+		END;
+	ELSE
+		BEGIN
+			RAISERROR('Vui lòng nhập đủ SL HV với SL HV đã đăng ký!!',16,0);
+			ROLLBACK;
+		END
+END
+update LopHoc set SoLuongHV = 34 where MaLH = 'TCB01'
+insert into ChiTietDK_LH values ('HV01','TCB01','')
+create table triggerLog(
+	ID int IDENTITY(1,1) primary key,
+	messageLog nvarchar(1000)
+);
+select messageLog from triggerLog
+delete from triggerLog
