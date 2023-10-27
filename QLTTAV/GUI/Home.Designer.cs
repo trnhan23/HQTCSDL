@@ -36,7 +36,7 @@
             this.button4 = new System.Windows.Forms.Button();
             this.btnLopHoc = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnChiNhanh = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel_Top = new System.Windows.Forms.Panel();
             this.label_nameButton = new System.Windows.Forms.Label();
@@ -55,7 +55,7 @@
             this.panel_Left.Controls.Add(this.button4);
             this.panel_Left.Controls.Add(this.btnLopHoc);
             this.panel_Left.Controls.Add(this.button2);
-            this.panel_Left.Controls.Add(this.button1);
+            this.panel_Left.Controls.Add(this.btnChiNhanh);
             this.panel_Left.Controls.Add(this.pictureBox1);
             this.panel_Left.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel_Left.Location = new System.Drawing.Point(0, 0);
@@ -131,16 +131,17 @@
             this.button2.Text = "Nhân Viên";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btnChiNhanh
             // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button1.Font = new System.Drawing.Font("Arial Narrow", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(0, 126);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(272, 64);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Chi Nhánh";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnChiNhanh.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnChiNhanh.Font = new System.Drawing.Font("Arial Narrow", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChiNhanh.Location = new System.Drawing.Point(0, 126);
+            this.btnChiNhanh.Name = "btnChiNhanh";
+            this.btnChiNhanh.Size = new System.Drawing.Size(272, 64);
+            this.btnChiNhanh.TabIndex = 2;
+            this.btnChiNhanh.Text = "Chi Nhánh";
+            this.btnChiNhanh.UseVisualStyleBackColor = true;
+            this.btnChiNhanh.Click += new System.EventHandler(this.btnChiNhanh_Click);
             // 
             // pictureBox1
             // 
@@ -219,7 +220,7 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button btnLopHoc;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnChiNhanh;
         private System.Windows.Forms.Button btnKetQuaTT;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button7;
