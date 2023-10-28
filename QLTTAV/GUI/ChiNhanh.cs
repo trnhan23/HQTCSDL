@@ -64,7 +64,36 @@ namespace GUI
             }
             ListViewItem liv = lvChiNhanh.SelectedItems[0];
             string MaCN = liv.SubItems[0].Text;
+            string TenCN = liv.SubItems[1].Text;
+            lb_CN.Text = TenCN;
             HienThiChiNhanhTheoMa(MaCN);
+            HienThiThongTinLienQuan(MaCN);
+        }
+
+        private void HienThiThongTinLienQuan(string maCN)
+        {
+            SqlConnection conn = SQLConnectionData.Connect();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "DemThongTinTheoMaCN";
+            cmd.Connection = conn;
+
+            cmd.Parameters.Add("@MaCN", SqlDbType.NChar).Value = maCN;
+            SqlDataReader reader = cmd.ExecuteReader();
+            lv_ThongTin.Items.Clear();
+            while (reader.Read())
+            {
+                ListViewItem item = new ListViewItem(reader.GetString(2));
+                item.SubItems.Add(reader.GetString(3));
+                item.SubItems.Add(reader.GetInt32(1)+"");
+                item.SubItems.Add(reader.GetInt32(4) + "");
+                lv_ThongTin.Items.Add(item);
+            }
+
+            reader.Close();
+
         }
 
         private void HienThiChiNhanhTheoMa(string MaCN)
@@ -182,6 +211,11 @@ namespace GUI
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

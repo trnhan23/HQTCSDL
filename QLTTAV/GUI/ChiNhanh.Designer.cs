@@ -41,16 +41,24 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lv_ThongTin = new System.Windows.Forms.ListView();
+            this.label4 = new System.Windows.Forms.Label();
+            this.lb_CN = new System.Windows.Forms.Label();
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // btnXoa
             // 
+            this.btnXoa.BackColor = System.Drawing.Color.Red;
             this.btnXoa.Location = new System.Drawing.Point(720, 412);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(156, 42);
             this.btnXoa.TabIndex = 11;
             this.btnXoa.Text = "Xoá";
-            this.btnXoa.UseVisualStyleBackColor = true;
+            this.btnXoa.UseVisualStyleBackColor = false;
             this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
             // 
             // btnSua
@@ -131,9 +139,9 @@
             this.lvChiNhanh.FullRowSelect = true;
             this.lvChiNhanh.GridLines = true;
             this.lvChiNhanh.HideSelection = false;
-            this.lvChiNhanh.Location = new System.Drawing.Point(17, 18);
+            this.lvChiNhanh.Location = new System.Drawing.Point(12, 12);
             this.lvChiNhanh.Name = "lvChiNhanh";
-            this.lvChiNhanh.Size = new System.Drawing.Size(517, 594);
+            this.lvChiNhanh.Size = new System.Drawing.Size(517, 224);
             this.lvChiNhanh.TabIndex = 4;
             this.lvChiNhanh.UseCompatibleStateImageBehavior = false;
             this.lvChiNhanh.View = System.Windows.Forms.View.Details;
@@ -154,11 +162,69 @@
             this.columnHeader3.Text = "Địa chỉ";
             this.columnHeader3.Width = 150;
             // 
+            // lv_ThongTin
+            // 
+            this.lv_ThongTin.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader4,
+            this.columnHeader5,
+            this.columnHeader6,
+            this.columnHeader7});
+            this.lv_ThongTin.FullRowSelect = true;
+            this.lv_ThongTin.GridLines = true;
+            this.lv_ThongTin.HideSelection = false;
+            this.lv_ThongTin.Location = new System.Drawing.Point(12, 293);
+            this.lv_ThongTin.Name = "lv_ThongTin";
+            this.lv_ThongTin.Size = new System.Drawing.Size(517, 219);
+            this.lv_ThongTin.TabIndex = 14;
+            this.lv_ThongTin.UseCompatibleStateImageBehavior = false;
+            this.lv_ThongTin.View = System.Windows.Forms.View.Details;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(12, 252);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(0, 20);
+            this.label4.TabIndex = 15;
+            // 
+            // lb_CN
+            // 
+            this.lb_CN.AutoSize = true;
+            this.lb_CN.Location = new System.Drawing.Point(18, 254);
+            this.lb_CN.Name = "lb_CN";
+            this.lb_CN.Size = new System.Drawing.Size(109, 20);
+            this.lb_CN.TabIndex = 16;
+            this.lb_CN.Text = "Tên chi nhánh";
+            this.lb_CN.Click += new System.EventHandler(this.label5_Click);
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Mã quản lý";
+            this.columnHeader4.Width = 90;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "Tên quản lý";
+            this.columnHeader5.Width = 95;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "Số lượng nhân viên";
+            this.columnHeader6.Width = 130;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "Số lượng lớp học";
+            this.columnHeader7.Width = 130;
+            // 
             // ChiNhanh
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1076, 524);
+            this.Controls.Add(this.lb_CN);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.lv_ThongTin);
             this.Controls.Add(this.btnXoa);
             this.Controls.Add(this.btnSua);
             this.Controls.Add(this.btnThem);
@@ -192,5 +258,12 @@
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ListView lv_ThongTin;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lb_CN;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
     }
 }

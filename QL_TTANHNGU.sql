@@ -549,9 +549,7 @@ go
 	@Diem int
 	AS
 	begin
-
 		update KetQua set MaTT = @MaTT, SoCauNgheDung = @SoCauNgheDung, SoCauDocDung = @SoCauDocDung, Diem=@Diem where MaHV = @MaHV;
-
 	end
 exec SuaKetQuaTT 'HV02', 'TT02',55,63
 
@@ -654,6 +652,34 @@ as
 delete from ChiNhanh where MaCN = @MaCN
 go
 
+-- Tạo procedure hiển thị thông tin liên quan đến chi nhánh
+create or alter view v_ThongTinLienQuanTheoMaCN
+as
+select cn.MaCN, nv.MaNV, nv.HoTenNV, nv.MaQL, TaoLopHoc.MaLH from ChiNhanh cn inner join NhanVien nv on cn.MaCN = nv.MaCN
+		inner join TaoLopHoc on nv.MaNV = TaoLopHoc.MaQL 
+
+select * from v_ThongTinLienQuanTheoMaCN
+go
+========================================================
+-- tạo procedure lấy dữ liệu liên quan
+
+create or alter procedure DemThongTinTheoMaCN
+@MaCN nchar(10)
+as
+begin
+    select
+        @MaCN as MaCN,
+        count(nv.MaNV) as SoLuongNhanVien,
+        max(nv.MaQL) as MaQL,
+        max(nv.HoTenNV) as HoTenNV,
+        count(MaLH) as SoLuongLopHoc
+    from v_ThongTinLienQuanTheoMaCN nv
+    where nv.MaCN = @MaCN
+end
+
+
+
+================================================================
 -- Tạo view lấy thông tin lớp học
 
 create or alter view v_LopHoc
@@ -678,9 +704,8 @@ create or alter procedure ThemLopHoc
 @HocPhi float,
 @SoBuoiHoc int,
 @SoLuongHV int
-
 as
-insert into LopHoc values (@MaLH, @TenLH, @TenPhongHoc,@HocPhi, @SoBuoiHoc, @SoLuongHV,'')\
+insert into LopHoc values (@MaLH, @TenLH, @TenPhongHoc,@HocPhi, @SoBuoiHoc, @SoLuongHV,'')
 
 --Tạo procedure sửa lớp học
 
