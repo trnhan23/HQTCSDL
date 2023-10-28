@@ -9,3 +9,14 @@ D:\DBSM\Project\HQTCSDL\QLTTAV\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
 D:\DBSM\Project\HQTCSDL\QLTTAV\BLL\obj\Debug\BLL.csproj.CopyComplete
 D:\DBSM\Project\HQTCSDL\QLTTAV\BLL\obj\Debug\BLL.dll
 D:\DBSM\Project\HQTCSDL\QLTTAV\BLL\obj\Debug\BLL.pdb
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\BLL\bin\Debug\BLL.dll
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\BLL\bin\Debug\BLL.pdb
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\BLL\bin\Debug\DAL.dll
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\BLL\bin\Debug\DTO.dll
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\BLL\bin\Debug\DAL.pdb
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\BLL\bin\Debug\DTO.pdb
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\BLL\obj\Debug\BLL.csproj.AssemblyReference.cache
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\BLL\obj\Debug\BLL.csproj.CopyComplete
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\BLL\obj\Debug\BLL.dll
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\BLL\obj\Debug\BLL.pdb
