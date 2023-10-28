@@ -668,16 +668,15 @@ create or alter procedure DemThongTinTheoMaCN
 as
 begin
     select
-        @MaCN as MaCN,
-        count(nv.MaNV) as SoLuongNhanVien,
-        max(nv.MaQL) as MaQL,
+		max(nv.MaQL) as MaQL,
         max(nv.HoTenNV) as HoTenNV,
+        count(nv.MaNV) as SoLuongNhanVien,
         count(MaLH) as SoLuongLopHoc
     from v_ThongTinLienQuanTheoMaCN nv
     where nv.MaCN = @MaCN
 end
 
-
+exec DemThongTinTheoMaCN 'CN02'
 
 ================================================================
 -- Tạo view lấy thông tin lớp học
