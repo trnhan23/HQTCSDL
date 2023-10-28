@@ -59,6 +59,55 @@ namespace GUI
             String malh = liv.SubItems[0].Text;
             String magv = liv.SubItems[1].Text;
             HienThiTheoMa(malh, magv);
+            HienThiLopHoc(malh);
+            HienThiGiangVien(magv);
+        }
+
+        private void HienThiGiangVien(string magv)
+        {
+            SqlConnection conn = SQLConnectionData.Connect();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "ThongTinGiangVienTuChiTietCaDay";
+            cmd.Connection = conn;
+
+            cmd.Parameters.Add("@magv", SqlDbType.Char).Value = magv;
+            SqlDataReader reader = cmd.ExecuteReader();
+            lvGiangVien.Items.Clear();
+            while (reader.Read())
+            {
+                ListViewItem item = new ListViewItem(reader.GetString(0));
+                item.SubItems.Add(reader.GetString(1));
+               
+                lvGiangVien.Items.Add(item);
+            }
+            reader.Close();
+        }
+
+
+        private void HienThiLopHoc(string malh)
+        {
+            SqlConnection conn = SQLConnectionData.Connect();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "ThongTinLopHocTuChiTietCaDay";
+            cmd.Connection = conn;
+
+            cmd.Parameters.Add("@malh", SqlDbType.Char).Value = malh;
+            SqlDataReader reader = cmd.ExecuteReader();
+            lvLopHoc.Items.Clear();
+            while (reader.Read())
+            {
+                ListViewItem item = new ListViewItem(reader.GetString(0));
+                item.SubItems.Add(reader.GetString(1));
+                item.SubItems.Add(reader.GetString(2));
+                lvLopHoc.Items.Add(item);
+            }
+            reader.Close();
         }
 
         private void HienThiTheoMa(string malh, string magv)
