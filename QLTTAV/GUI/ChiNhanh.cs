@@ -85,11 +85,20 @@ namespace GUI
             lv_ThongTin.Items.Clear();
             while (reader.Read())
             {
-                ListViewItem item = new ListViewItem(reader.GetString(2));
-                item.SubItems.Add(reader.GetString(3));
-                item.SubItems.Add(reader.GetInt32(1)+"");
-                item.SubItems.Add(reader.GetInt32(4) + "");
-                lv_ThongTin.Items.Add(item);
+                if (!reader.IsDBNull(1))
+                {
+                    ListViewItem item = new ListViewItem(reader.GetString(0));
+
+                    // item.SubItems.Add(reader.GetString(0))
+                    item.SubItems.Add(reader.GetString(1));
+                    item.SubItems.Add(reader.GetInt32(2) + "");
+                    item.SubItems.Add(reader.GetInt32(3) + "");
+                    lv_ThongTin.Items.Add(item);
+                }
+                else
+                {
+                    //MessageBox.Show("Chưa thêm dữ liệu");
+                }
             }
 
             reader.Close();

@@ -42,12 +42,12 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lv_ThongTin = new System.Windows.Forms.ListView();
-            this.label4 = new System.Windows.Forms.Label();
-            this.lb_CN = new System.Windows.Forms.Label();
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label4 = new System.Windows.Forms.Label();
+            this.lb_CN = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnXoa
@@ -179,24 +179,6 @@
             this.lv_ThongTin.UseCompatibleStateImageBehavior = false;
             this.lv_ThongTin.View = System.Windows.Forms.View.Details;
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 252);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(0, 20);
-            this.label4.TabIndex = 15;
-            // 
-            // lb_CN
-            // 
-            this.lb_CN.AutoSize = true;
-            this.lb_CN.Location = new System.Drawing.Point(18, 254);
-            this.lb_CN.Name = "lb_CN";
-            this.lb_CN.Size = new System.Drawing.Size(109, 20);
-            this.lb_CN.TabIndex = 16;
-            this.lb_CN.Text = "Tên chi nhánh";
-            this.lb_CN.Click += new System.EventHandler(this.label5_Click);
-            // 
             // columnHeader4
             // 
             this.columnHeader4.Text = "Mã quản lý";
@@ -216,6 +198,24 @@
             // 
             this.columnHeader7.Text = "Số lượng lớp học";
             this.columnHeader7.Width = 130;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(12, 252);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(0, 20);
+            this.label4.TabIndex = 15;
+            // 
+            // lb_CN
+            // 
+            this.lb_CN.AutoSize = true;
+            this.lb_CN.Location = new System.Drawing.Point(18, 254);
+            this.lb_CN.Name = "lb_CN";
+            this.lb_CN.Size = new System.Drawing.Size(109, 20);
+            this.lb_CN.TabIndex = 16;
+            this.lb_CN.Text = "Tên chi nhánh";
+            this.lb_CN.Click += new System.EventHandler(this.label5_Click);
             // 
             // ChiNhanh
             // 
