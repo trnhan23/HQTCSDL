@@ -63,12 +63,13 @@
             // 
             // btnSua
             // 
+            this.btnSua.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(227)))), ((int)(((byte)(206)))));
             this.btnSua.Location = new System.Drawing.Point(720, 338);
             this.btnSua.Name = "btnSua";
             this.btnSua.Size = new System.Drawing.Size(156, 42);
             this.btnSua.TabIndex = 12;
             this.btnSua.Text = "Sửa";
-            this.btnSua.UseVisualStyleBackColor = true;
+            this.btnSua.UseVisualStyleBackColor = false;
             this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
             // 
             // btnThem
@@ -235,6 +236,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lvChiNhanh);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ChiNhanh";
             this.Text = "ChiNhanh";
             this.Load += new System.EventHandler(this.ChiNhanh_Load);
