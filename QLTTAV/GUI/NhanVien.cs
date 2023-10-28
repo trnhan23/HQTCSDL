@@ -41,7 +41,14 @@ namespace GUI
                 item.SubItems.Add(reader.GetString(3));
                 item.SubItems.Add(reader.GetDouble(4).ToString());
                 item.SubItems.Add(reader.GetString(5));
-                item.SubItems.Add(reader.GetString(6));
+                if(!reader.IsDBNull(6))
+                {
+                    item.SubItems.Add(reader.GetString(6));
+                }
+                else
+                {
+                    item.SubItems.Add("");
+                }
                 item.SubItems.Add(reader.GetString(7));
                 lvNhanVien.Items.Add(item);
             }
@@ -79,8 +86,15 @@ namespace GUI
                 txtCCCD.Text = reader.GetString(2);
                 txtSoDT.Text = reader.GetString(3);
                 txtLuong.Text = reader.GetDouble(4).ToString();
-                txtMaCN.Text = reader.GetString(5);
-                txtMaQL.Text = reader.GetString(6);
+                txtMaCN.Text = reader.GetString(5);              
+                if (!reader.IsDBNull(6))
+                {
+                    txtMaQL.Text = reader.GetString(6);
+                }
+                else
+                {
+                    txtMaQL.Text = "";
+                }
                 txtMaCV.Text = reader.GetString(7);
             }
             reader.Close();
@@ -88,82 +102,119 @@ namespace GUI
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            SqlConnection conn = SQLConnectionData.Connect();
-            conn.Open();
-
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandText = "ThemNhanVien";
-            cmd.Connection = conn;
-
-            cmd.Parameters.Add("@manv", SqlDbType.NChar).Value = txtMaNV.Text;
-            cmd.Parameters.Add("@hotennv", SqlDbType.NVarChar).Value = txtHoTen.Text;
-            cmd.Parameters.Add("@cccd", SqlDbType.NChar).Value = txtCCCD.Text;
-            cmd.Parameters.Add("@sodt", SqlDbType.NChar).Value = txtSoDT.Text;
-            cmd.Parameters.Add("@luong", SqlDbType.Float).Value = float.Parse(txtLuong.Text);
-            cmd.Parameters.Add("macn", SqlDbType.NChar).Value = txtMaCN.Text;
-            cmd.Parameters.Add("maql", SqlDbType.NChar).Value = txtMaQL.Text;
-            cmd.Parameters.Add("macv", SqlDbType.NChar).Value = txtMaCV.Text;
-
-            int n = cmd.ExecuteNonQuery();
-            
-            if (n > 0)
+            try
             {
-                HienThiThongTinNhanVien();
-                MessageBox.Show("Thêm thành công");
+                SqlConnection conn = SQLConnectionData.Connect();
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "ThemNhanVien";
+                cmd.Connection = conn;
+
+                cmd.Parameters.Add("@manv", SqlDbType.NChar).Value = txtMaNV.Text;
+                cmd.Parameters.Add("@hotennv", SqlDbType.NVarChar).Value = txtHoTen.Text;
+                cmd.Parameters.Add("@cccd", SqlDbType.NChar).Value = txtCCCD.Text;
+                cmd.Parameters.Add("@sodt", SqlDbType.NChar).Value = txtSoDT.Text;
+                cmd.Parameters.Add("@luong", SqlDbType.Float).Value = float.Parse(txtLuong.Text);
+                cmd.Parameters.Add("macn", SqlDbType.NChar).Value = txtMaCN.Text;
+                if (txtMaQL.Text == "")
+                {
+                    cmd.Parameters.Add("maql", SqlDbType.NChar).Value = DBNull.Value;
+                }
+                else
+                {
+                    cmd.Parameters.Add("maql", SqlDbType.NChar).Value = txtMaQL.Text;
+                }
+                cmd.Parameters.Add("macv", SqlDbType.NChar).Value = txtMaCV.Text;
+
+
+                int n = cmd.ExecuteNonQuery();
+
+                if (n > 0)
+                {
+                    HienThiThongTinNhanVien();
+                    MessageBox.Show("Thêm thành công");
+                }
+                else
+                {
+                    MessageBox.Show("Thêm không thành công");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Thêm không thành công");
+                MessageBox.Show(ex.Message);
             }
 
         }
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            SqlConnection conn = SQLConnectionData.Connect();
-            conn.Open();
-
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandText = "XoaNhanVien";
-            cmd.Connection = conn;
-            cmd.Parameters.Add("@manv", SqlDbType.NChar).Value = txtMaNV.Text;
-            int n = cmd.ExecuteNonQuery();
-            if (n > 0)
+            try
             {
-                HienThiThongTinNhanVien();
-                MessageBox.Show("Xóa thành công");
+                SqlConnection conn = SQLConnectionData.Connect();
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "XoaNhanVien";
+                cmd.Connection = conn;
+                cmd.Parameters.Add("@manv", SqlDbType.NChar).Value = txtMaNV.Text;
+                int n = cmd.ExecuteNonQuery();
+                if (n > 0)
+                {
+                    HienThiThongTinNhanVien();
+                    MessageBox.Show("Xóa thành công");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-            SqlConnection conn = SQLConnectionData.Connect();
-            conn.Open();
-
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandText = "SuaNhanVien";
-            cmd.Connection = conn;
-
-            cmd.Parameters.Add("@manv", SqlDbType.NChar).Value = txtMaNV.Text;
-            cmd.Parameters.Add("@hotennv", SqlDbType.NVarChar).Value = txtHoTen.Text;
-            cmd.Parameters.Add("@cccd", SqlDbType.NChar).Value = txtCCCD.Text;
-            cmd.Parameters.Add("@sodt", SqlDbType.NChar).Value = txtSoDT.Text;
-            cmd.Parameters.Add("@luong", SqlDbType.Float).Value = float.Parse(txtLuong.Text);
-            cmd.Parameters.Add("macn", SqlDbType.NChar).Value = txtMaCN.Text;
-            cmd.Parameters.Add("maql", SqlDbType.NChar).Value = txtMaQL.Text;
-            cmd.Parameters.Add("macv", SqlDbType.NChar).Value = txtMaCV.Text;
-            int n = cmd.ExecuteNonQuery();
-            if (n > 0)
+            try
             {
-                HienThiThongTinNhanVien();
-                MessageBox.Show("Sửa thành công");
+                SqlConnection conn = SQLConnectionData.Connect();
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "SuaNhanVien";
+                cmd.Connection = conn;
+
+                cmd.Parameters.Add("@manv", SqlDbType.NChar).Value = txtMaNV.Text;
+                cmd.Parameters.Add("@hotennv", SqlDbType.NVarChar).Value = txtHoTen.Text;
+                cmd.Parameters.Add("@cccd", SqlDbType.NChar).Value = txtCCCD.Text;
+                cmd.Parameters.Add("@sodt", SqlDbType.NChar).Value = txtSoDT.Text;
+                cmd.Parameters.Add("@luong", SqlDbType.Float).Value = float.Parse(txtLuong.Text);
+                cmd.Parameters.Add("macn", SqlDbType.NChar).Value = txtMaCN.Text;
+                if (txtMaQL.Text == "")
+                {
+                    cmd.Parameters.Add("maql", SqlDbType.NChar).Value = DBNull.Value;
+                }
+                else
+                {
+                    cmd.Parameters.Add("maql", SqlDbType.NChar).Value = txtMaQL.Text;
+                }
+                cmd.Parameters.Add("macv", SqlDbType.NChar).Value = txtMaCV.Text;
+                int n = cmd.ExecuteNonQuery();
+                if (n > 0)
+                {
+                    HienThiThongTinNhanVien();
+                    MessageBox.Show("Sửa thành công");
+                }
+                else
+                {
+                    MessageBox.Show("Sửa không thành công");
+                }
+                
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Sửa không thành công");
+                MessageBox.Show(ex.Message);
             }
         }
     }
