@@ -4,9 +4,9 @@ D:\DBSM\Project\HQTCSDL\QLTTAV\DTO\obj\Debug\DTO.csproj.AssemblyReference.cache
 D:\DBSM\Project\HQTCSDL\QLTTAV\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
 D:\DBSM\Project\HQTCSDL\QLTTAV\DTO\obj\Debug\DTO.dll
 D:\DBSM\Project\HQTCSDL\QLTTAV\DTO\obj\Debug\DTO.pdb
-E:\SPKT\NAM3_HK1\HQTCSDL\CuoiKy\C#\QLTTAV\DTO\bin\Debug\DTO.dll
-E:\SPKT\NAM3_HK1\HQTCSDL\CuoiKy\C#\QLTTAV\DTO\bin\Debug\DTO.pdb
-E:\SPKT\NAM3_HK1\HQTCSDL\CuoiKy\C#\QLTTAV\DTO\obj\Debug\DTO.csproj.AssemblyReference.cache
-E:\SPKT\NAM3_HK1\HQTCSDL\CuoiKy\C#\QLTTAV\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
-E:\SPKT\NAM3_HK1\HQTCSDL\CuoiKy\C#\QLTTAV\DTO\obj\Debug\DTO.dll
-E:\SPKT\NAM3_HK1\HQTCSDL\CuoiKy\C#\QLTTAV\DTO\obj\Debug\DTO.pdb
+E:\SPKT\NAM3_HK1\HQTCSDL\Test\QLTTAV\DTO\bin\Debug\DTO.dll
+E:\SPKT\NAM3_HK1\HQTCSDL\Test\QLTTAV\DTO\bin\Debug\DTO.pdb
+E:\SPKT\NAM3_HK1\HQTCSDL\Test\QLTTAV\DTO\obj\Debug\DTO.csproj.AssemblyReference.cache
+E:\SPKT\NAM3_HK1\HQTCSDL\Test\QLTTAV\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
+E:\SPKT\NAM3_HK1\HQTCSDL\Test\QLTTAV\DTO\obj\Debug\DTO.dll
+E:\SPKT\NAM3_HK1\HQTCSDL\Test\QLTTAV\DTO\obj\Debug\DTO.pdb

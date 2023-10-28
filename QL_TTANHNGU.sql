@@ -1,8 +1,5 @@
 ﻿CREATE DATABASE QL_TTANHNGU
 GO
-DROP Database QL_TTANHNGU
-
-
 USE QL_TTANHNGU
 GO
 
@@ -92,42 +89,8 @@ insert into ChiTietDK_TT values ('HV01','TT01','2023-10-23');
 insert into ChiTietDK_TT values ('HV01','TT02','2023-10-15');
 insert into ChiTietDK_TT values ('HV03','TT01','2023-09-17');
 insert into ChiTietDK_TT values ('HV03','TT02','2023-10-20');
-GO
---Giảng viên
---Hien thi thong tin Giang Vien
-CREATE PROC HienThiTheoMaHV_TT @MaHV nchar(10), @MaTT nchar(10)
-AS
-	SELECT *
-	FROM ChiTietDK_TT
-	WHERE @MaHV = MaHV and @MaTT = MaTT
-GO
-EXEC HienThiTheoMaHV_TT 'HV02', 'TT02'
-GO
---Them thong tin ChiTietDK_TT
-CREATE PROC ThemChiTietDK_TT
-@MaHV nchar(10),
-@MaTT nchar(10),
-@NgayDK date
-AS
-	INSERT INTO dbo.ChiTietDK_TT VALUES(@MaHV, @MaTT, @NgayDK)
-GO
---Cap nhat thong tin ChiTietDK_TT
-CREATE PROC CapNhatChiTietDK_TT
-@MaHV nchar(10),
-@MaTT nchar(10),
-@NgayDK date
-AS
-	UPDATE dbo.ChiTietDK_TT
-	SET NgayDK = @NgayDK
-	WHERE @MaHV = MaHV and @MaTT = MaTT
-GO
---Xoa thong tin ChiTietDK_TT
-CREATE PROC XoaChiTietDK_TT @MaHV nchar(10), @MaTT nchar(10)
-AS
-	DELETE FROM ChiTietDK_TT
-	WHERE @MaHV = MaHV and @MaTT = MaTT
-GO
 
+GO
 GO
 CREATE TABLE KetQua (
 	MaHV nchar(10) CONSTRAINT FK_KetQua_MaHV FOREIGN KEY REFERENCES HocVien(MaHV),
@@ -144,11 +107,13 @@ CREATE TABLE GiangVien(
 	MaGV nchar(10) CONSTRAINT PK_GiangVien PRIMARY KEY,
 	HoTen nvarchar(50) NOT NULL,
 	CCCD nchar(13) NOT NULL check (len(CCCD)=12),
-	SoDT nchar(11) NOT NULL check (len(SoDT)=10)
+	SoDT nchar(11) NOT NULL check (len(SoDT)=10),
+	Luong float
 );
+
 GO
-insert into GiangVien values('GV01', 'Nguyen Van A', '07712345****','0123456789');
-insert into GiangVien values('GV02', 'Nguyen Quoc B','08724166****','0987654321');
+insert into GiangVien values('GV01', 'Nguyen Van A', '07712345****','0123456789', 15000);
+insert into GiangVien values('GV02', 'Nguyen Quoc B','08724166****','0987654321', 20000);
 
 GO
 CREATE TABLE LopHoc(
@@ -205,6 +170,12 @@ CREATE TABLE HoaDon(
 	on update cascade
 );
 GO
+CREATE TABLE TriggerLog(
+	ID int IDENTITY(1,1) PRIMARY KEY,
+	messageLog nvarchar(1000)
+);
+GO
+
 --PROCEDURE
 --Giảng viên
 --Hien thi thong tin Giang Vien
@@ -213,8 +184,6 @@ AS
 	SELECT *
 	FROM GiangVien
 	WHERE @MaGV = MaGV
-GO
-EXEC HienThiTheoMaGV 'GV01'
 GO
 --Them thong tin Giang Vien
 CREATE PROC ThemGiangVien
@@ -231,12 +200,14 @@ CREATE PROC CapNhatGiangVien
 @MaGV nchar(10),
 @HoTen nvarchar(50),
 @CCCD nchar(13),
-@SoDT nchar(11)
+@SoDT nchar(11),
+@Luong float
 AS
 	UPDATE dbo.GiangVien
-	SET HoTen = @HoTen, CCCD = @CCCD, SoDT = @SoDT
+	SET HoTen = @HoTen, CCCD = @CCCD, SoDT = @SoDT, Luong = @Luong
 	WHERE MaGV = @MaGV
 GO
+
 --Xoa thong tin Giang Vien
 CREATE PROC XoaGiangVien @MaGV nchar(10)
 AS
@@ -252,8 +223,6 @@ AS
 	FROM ThiThu
 	WHERE @MaTT = MaTT
 GO
-
-GO
 --Them thong tin Thi Thu
 CREATE PROC ThemThiThu
 @MaTT nchar(10),
@@ -265,6 +234,7 @@ CREATE PROC ThemThiThu
 AS
 	INSERT INTO dbo.ThiThu VALUES(@MaTT, @PhongThi, @NgayThi, @GioThi, @GioiHan, @MaNV)
 GO
+DROP PROC ThemThiThu
 --Cap nhat thong tin Thi Thu
 CREATE PROC CapNhatThiThu
 @MaTT nchar(10),
@@ -288,6 +258,41 @@ AS
 	DELETE FROM ThiThu
 	WHERE @MaTT = MaTT
 GO
+
+--ChiTietDK_TT
+--Hien thi thong tin ChiTietDK_TT
+CREATE PROC HienThiTheoMaHV_TT @MaHV nchar(10), @MaTT nchar(10)
+AS
+	SELECT *
+	FROM ChiTietDK_TT
+	WHERE @MaHV = MaHV and @MaTT = MaTT
+GO
+--Them thong tin ChiTietDK_TT
+CREATE PROC ThemChiTietDK_TT
+@MaHV nchar(10),
+@MaTT nchar(10),
+@NgayDK date
+AS
+	INSERT INTO dbo.ChiTietDK_TT VALUES(@MaHV, @MaTT, @NgayDK)
+GO
+
+--Cap nhat thong tin ChiTietDK_TT
+CREATE PROC CapNhatChiTietDK_TT
+@MaHV nchar(10),
+@MaTT nchar(10),
+@NgayDK date
+AS
+	UPDATE dbo.ChiTietDK_TT
+	SET NgayDK = @NgayDK
+	WHERE @MaHV = MaHV and @MaTT = MaTT
+GO
+--Xoa thong tin ChiTietDK_TT
+CREATE PROC XoaChiTietDK_TT @MaHV nchar(10), @MaTT nchar(10)
+AS
+	DELETE FROM ChiTietDK_TT
+	WHERE @MaHV = MaHV and @MaTT = MaTT
+GO
+
 
 GO
 --TRIGGER
@@ -392,19 +397,19 @@ BEGIN
 			SET @SoChoDu = @TongSoCho - @SoChoDaDK;
 			DECLARE @ThongBao NVARCHAR(1000);
 			SET @ThongBao = 'Phong thi thu co ma '+ @MaTT +' con du '+ CAST(@SoChoDu AS NVARCHAR)+' cho trong';
-			PRINT(@ThongBao);
+			INSERT INTO TriggerLog(messageLog) values(@ThongBao)
 		END;
 	IF(@SoChoDaDK = @TongSoCho)
 		BEGIN 
 			DECLARE @ThongBao1 NVARCHAR(1000);
 			SET @ThongBao1 = 'Phong thi thu co ma '+ @MaTT +' da dang ki thu';
-			PRINT(@ThongBao1);
+			INSERT INTO TriggerLog(messageLog) values(@ThongBao1)
 		END;
 	IF(@SoChoDaDK > @TongSoCho)
 		BEGIN 
 			DECLARE @ThongBao2 NVARCHAR(1000);
 			SET @ThongBao2 = 'Phong thi thu co ma '+ @MaTT +' da dang ki du hoc vien, vui long dang ki vao lop khac.';
-			PRINT(@ThongBao2);
+			INSERT INTO TriggerLog(messageLog) values(@ThongBao2)
 			ROLLBACK;
 		END;
 END
@@ -439,7 +444,7 @@ BEGIN
 		END;
 END
 GO
-
+GO
 --5. Trigger kiểm tra tổng số lượng học viên đăng ký thi thử
 CREATE TRIGGER TinhTongSL_TT
 ON ChiTietDK_TT
@@ -451,10 +456,11 @@ BEGIN
 	SELECT @MaTT = i.MaTT from inserted i;
 	SELECT @TongHV_DKTT = COUNT(MaHV) FROM ChiTietDK_TT GROUP BY MaTT HAVING MaTT = @MaTT;
 	DECLARE @ThongBao NVARCHAR(1000);
-	SET @ThongBao = 'Tong so hoc vien dang ky ca thi ma '+@MaTT+' la: '+ CAST(@TongHV_DKTT AS NVARCHAR);
-	PRINT(@ThongBao);
+	SET @ThongBao = 'Tong so hoc vien dang ky ca thi ma '+@MaTT+'la: '+ CAST(@TongHV_DKTT AS NVARCHAR);
+	INSERT INTO TriggerLog(messageLog) values(@ThongBao)
 END
 GO
+Drop trigger TinhTongSL_TT
 GO
 --6. Trigger đặt trạng thái cho lớp học
 CREATE TRIGGER set_LopHoc_TrangThai
@@ -586,18 +592,19 @@ FROM HocVien HV INNER JOIN ChiTietDK_TT DKTT ON HV.MaHV=DKTT.MaHV
 GO
 
 --Xem thông tin thi thử
-CREATE VIEW ThongTinThiThu AS
+CREATE VIEW vThiThu AS
 SELECT *
 FROM ThiThu
 GO
+
 --Xem thông tin giảng viên
-CREATE VIEW ThongTinGiangVien AS
+CREATE VIEW vGiangVien AS
 SELECT *
 FROM GiangVien
 
 GO
---Xem thông tin giảng viên
-CREATE VIEW ThongTinChiTietDK_TT AS
+--Xem thông tin Chi Tiết DK_TT
+CREATE VIEW vChiTietDK_TT AS
 SELECT *
 FROM ChiTietDK_TT
 GO

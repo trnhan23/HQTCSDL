@@ -29,6 +29,11 @@
         private void InitializeComponent()
         {
             this.livGiangVien = new System.Windows.Forms.ListView();
+            this.MaGV = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.HoTen = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.CCCD = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.SoDT = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Luong = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -42,11 +47,6 @@
             this.btnThemGV = new System.Windows.Forms.Button();
             this.btnCapNhatGV = new System.Windows.Forms.Button();
             this.btnXoaGV = new System.Windows.Forms.Button();
-            this.MaGV = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.HoTen = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.CCCD = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.SoDT = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Luong = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // livGiangVien
@@ -67,6 +67,31 @@
             this.livGiangVien.UseCompatibleStateImageBehavior = false;
             this.livGiangVien.View = System.Windows.Forms.View.Details;
             this.livGiangVien.SelectedIndexChanged += new System.EventHandler(this.livGiangVien_SelectedIndexChanged);
+            // 
+            // MaGV
+            // 
+            this.MaGV.Text = "Mã GV";
+            this.MaGV.Width = 80;
+            // 
+            // HoTen
+            // 
+            this.HoTen.Text = "Họ Tên";
+            this.HoTen.Width = 150;
+            // 
+            // CCCD
+            // 
+            this.CCCD.Text = "CCCD";
+            this.CCCD.Width = 100;
+            // 
+            // SoDT
+            // 
+            this.SoDT.Text = "Số ĐT";
+            this.SoDT.Width = 100;
+            // 
+            // Luong
+            // 
+            this.Luong.Text = "Lương";
+            this.Luong.Width = 100;
             // 
             // label1
             // 
@@ -187,31 +212,6 @@
             this.btnXoaGV.Text = "Xoá";
             this.btnXoaGV.UseVisualStyleBackColor = true;
             this.btnXoaGV.Click += new System.EventHandler(this.btnXoaGV_Click);
-            // 
-            // MaGV
-            // 
-            this.MaGV.Text = "Mã GV";
-            this.MaGV.Width = 80;
-            // 
-            // HoTen
-            // 
-            this.HoTen.Text = "Họ Tên";
-            this.HoTen.Width = 150;
-            // 
-            // CCCD
-            // 
-            this.CCCD.Text = "CCCD";
-            this.CCCD.Width = 100;
-            // 
-            // SoDT
-            // 
-            this.SoDT.Text = "Số ĐT";
-            this.SoDT.Width = 100;
-            // 
-            // Luong
-            // 
-            this.Luong.Text = "Luong";
-            this.Luong.Width = 100;
             // 
             // GiangVien
             // 

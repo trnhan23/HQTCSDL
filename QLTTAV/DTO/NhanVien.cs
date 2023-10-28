@@ -6,14 +6,16 @@ using System.Threading.Tasks;
 
 namespace DTO
 {
-    internal class GiangVien
+    public class NhanVien
     {
-        public string MaGV { get; set; }
-        public string HoTen { get; set; }
+        public string MaNV {  get; set; }
+        public string HoTenNV {  get; set; }
         public string CCCD { get; set; }
         public string SoDT { get; set; }
         public float Luong { get; set; }
-
+        public string MaCN { get; set; }
+        public string MaQL { get; set; }
+        public string MaCV { get; set; }
 
     }
 }

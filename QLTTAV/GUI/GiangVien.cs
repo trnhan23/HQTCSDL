@@ -31,7 +31,7 @@ namespace GUI
                 SqlConnection conn = SQLConnectionData.Connect();
                 conn.Open();
 
-                SqlCommand cmd = new SqlCommand("Select * From ThongTinGiangVien", conn);
+                SqlCommand cmd = new SqlCommand("Select * From vGiangVien", conn);
                 SqlDataReader reader = cmd.ExecuteReader();
                 livGiangVien.Items.Clear();
                 while (reader.Read())
@@ -40,6 +40,10 @@ namespace GUI
                     lvi.SubItems.Add(reader.GetString(1));
                     lvi.SubItems.Add(reader.GetString(2));
                     lvi.SubItems.Add(reader.GetString(3));
+                    
+                    Double Luong = reader.GetDouble(4);
+                    lvi.SubItems.Add(Luong + "");
+                    
                     livGiangVien.Items.Add(lvi);
                 }
                 reader.Close();
@@ -83,6 +87,8 @@ namespace GUI
                     txtHoTen.Text = reader.GetString(1);
                     txtCCCD.Text = reader.GetString(2);
                     txtSoDT.Text = reader.GetString(3);
+                    Double Luong = reader.GetDouble(4);
+                    txtLuong.Text = Luong+"";
                 }
                 conn.Close();
             }
@@ -108,6 +114,7 @@ namespace GUI
                 cmd.Parameters.Add("@HoTen", SqlDbType.NVarChar).Value = txtHoTen.Text;
                 cmd.Parameters.Add("@CCCD", SqlDbType.NChar).Value = txtCCCD.Text;
                 cmd.Parameters.Add("@SoDT", SqlDbType.NChar).Value = txtSoDT.Text;
+                cmd.Parameters.Add("@Luong", SqlDbType.Float).Value = txtLuong.Text;
 
                 int n = cmd.ExecuteNonQuery();
                 if (n > 0)
@@ -144,6 +151,7 @@ namespace GUI
                 cmd.Parameters.Add("@HoTen", SqlDbType.NVarChar).Value = txtHoTen.Text;
                 cmd.Parameters.Add("@CCCD", SqlDbType.NChar).Value = txtCCCD.Text;
                 cmd.Parameters.Add("@SoDT", SqlDbType.NChar).Value = txtSoDT.Text;
+                cmd.Parameters.Add("@Luong", SqlDbType.Float).Value = txtLuong.Text;
 
                 int n = cmd.ExecuteNonQuery();
                 if (n > 0)

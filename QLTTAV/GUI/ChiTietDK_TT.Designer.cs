@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.livChiTietDK_TT = new System.Windows.Forms.ListView();
+            this.MaHV = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.MaTT = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.NgayDK = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -38,9 +41,6 @@
             this.btnThemChiTietDK_TT = new System.Windows.Forms.Button();
             this.btnSuaChiTietDK_TT = new System.Windows.Forms.Button();
             this.btnXoaChiTietDK_TT = new System.Windows.Forms.Button();
-            this.MaHV = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.MaTT = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.NgayDK = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // livChiTietDK_TT
@@ -54,11 +54,26 @@
             this.livChiTietDK_TT.HideSelection = false;
             this.livChiTietDK_TT.Location = new System.Drawing.Point(15, 13);
             this.livChiTietDK_TT.Name = "livChiTietDK_TT";
-            this.livChiTietDK_TT.Size = new System.Drawing.Size(707, 659);
+            this.livChiTietDK_TT.Size = new System.Drawing.Size(707, 265);
             this.livChiTietDK_TT.TabIndex = 0;
             this.livChiTietDK_TT.UseCompatibleStateImageBehavior = false;
             this.livChiTietDK_TT.View = System.Windows.Forms.View.Details;
             this.livChiTietDK_TT.SelectedIndexChanged += new System.EventHandler(this.livChiTietDK_TT_SelectedIndexChanged);
+            // 
+            // MaHV
+            // 
+            this.MaHV.Text = "Mã HV";
+            this.MaHV.Width = 80;
+            // 
+            // MaTT
+            // 
+            this.MaTT.Text = "Mã TT";
+            this.MaTT.Width = 80;
+            // 
+            // NgayDK
+            // 
+            this.NgayDK.Text = "Ngày Đăng Kí";
+            this.NgayDK.Width = 130;
             // 
             // label1
             // 
@@ -116,7 +131,7 @@
             // 
             // btnThemChiTietDK_TT
             // 
-            this.btnThemChiTietDK_TT.Location = new System.Drawing.Point(857, 251);
+            this.btnThemChiTietDK_TT.Location = new System.Drawing.Point(860, 239);
             this.btnThemChiTietDK_TT.Name = "btnThemChiTietDK_TT";
             this.btnThemChiTietDK_TT.Size = new System.Drawing.Size(143, 43);
             this.btnThemChiTietDK_TT.TabIndex = 3;
@@ -126,7 +141,7 @@
             // 
             // btnSuaChiTietDK_TT
             // 
-            this.btnSuaChiTietDK_TT.Location = new System.Drawing.Point(857, 332);
+            this.btnSuaChiTietDK_TT.Location = new System.Drawing.Point(860, 320);
             this.btnSuaChiTietDK_TT.Name = "btnSuaChiTietDK_TT";
             this.btnSuaChiTietDK_TT.Size = new System.Drawing.Size(143, 43);
             this.btnSuaChiTietDK_TT.TabIndex = 4;
@@ -136,28 +151,13 @@
             // 
             // btnXoaChiTietDK_TT
             // 
-            this.btnXoaChiTietDK_TT.Location = new System.Drawing.Point(857, 413);
+            this.btnXoaChiTietDK_TT.Location = new System.Drawing.Point(860, 401);
             this.btnXoaChiTietDK_TT.Name = "btnXoaChiTietDK_TT";
             this.btnXoaChiTietDK_TT.Size = new System.Drawing.Size(143, 43);
             this.btnXoaChiTietDK_TT.TabIndex = 5;
             this.btnXoaChiTietDK_TT.Text = "Xoá";
             this.btnXoaChiTietDK_TT.UseVisualStyleBackColor = true;
             this.btnXoaChiTietDK_TT.Click += new System.EventHandler(this.btnXoaChiTietDK_TT_Click);
-            // 
-            // MaHV
-            // 
-            this.MaHV.Text = "Mã HV";
-            this.MaHV.Width = 80;
-            // 
-            // MaTT
-            // 
-            this.MaTT.Text = "Mã TT";
-            this.MaTT.Width = 80;
-            // 
-            // NgayDK
-            // 
-            this.NgayDK.Text = "Ngày Đăng Kí";
-            this.NgayDK.Width = 130;
             // 
             // ChiTietDK_TT
             // 

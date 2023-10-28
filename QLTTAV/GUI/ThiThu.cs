@@ -32,7 +32,7 @@ namespace GUI
                 SqlConnection conn = SQLConnectionData.Connect();
                 conn.Open();
 
-                SqlCommand cmd = new SqlCommand("Select * From ThongTinThiThu", conn);
+                SqlCommand cmd = new SqlCommand("Select * From vThiThu", conn);
                 SqlDataReader reader = cmd.ExecuteReader();
                 livThiThu.Items.Clear();
                 while (reader.Read())

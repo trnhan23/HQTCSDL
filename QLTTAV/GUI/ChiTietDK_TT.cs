@@ -1,4 +1,5 @@
 ﻿using DAL;
+using Microsoft.SqlServer.Server;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -32,7 +33,7 @@ namespace GUI
                 SqlConnection conn = SQLConnectionData.Connect();
                 conn.Open();
 
-                SqlCommand cmd = new SqlCommand("Select * From ThongTinChiTietDK_TT", conn);
+                SqlCommand cmd = new SqlCommand("Select * From vChiTietDK_TT", conn);
                 SqlDataReader reader = cmd.ExecuteReader();
                 livChiTietDK_TT.Items.Clear();
                 while (reader.Read())
@@ -127,16 +128,17 @@ namespace GUI
                     MessageBox.Show("Ngày thi không hợp lệ.");
                     return;
                 }
-
+                
                 int n = cmd.ExecuteNonQuery();
                 if (n > 0)
                 {
                     HienThiThongTinChiTietDK_TT();
-                    MessageBox.Show("Thêm thành công!\n", "Add", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ThongBaoTuTrigger();
+                    MessageBox.Show("Thêm thành công!\n");
                 }
                 else
                 {
-                    MessageBox.Show("Thêm thất bại!", "Add", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Thêm thất bại!");
                 }
 
                 conn.Close();
@@ -145,6 +147,24 @@ namespace GUI
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void ThongBaoTuTrigger()
+        {
+            SqlConnection conn = SQLConnectionData.Connect();
+            conn.Open();
+            SqlCommand cmd = new SqlCommand("Select messageLog From triggerLog", conn);
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                string message = reader.GetString(0);
+                MessageBox.Show(message);
+            }
+            reader.Close();
+            cmd = new SqlCommand("delete From triggerLog", conn);
+            cmd.ExecuteNonQuery();
+
+            conn.Close();
         }
 
         private void btnSuaChiTietDK_TT_Click(object sender, EventArgs e)
