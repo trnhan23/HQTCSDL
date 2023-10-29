@@ -74,16 +74,6 @@ CREATE TABLE HocVien(
 );
 GO
 
-
-CREATE PROC pr_HienThiHocVienDK_TT @MaTT nchar(10)
-AS
-	SELECT hv.MaHV, hv.HoTenHV, hv.GioiTinh, hv.NgaySinh, hv.SoDT
-	FROM HocVien hv inner join (SELECT distinct MaHV, MaTT FROM ChiTietDK_TT) Q on hv.MaHV=Q.MaHV
-	WHERE @MaTT = Q.MaTT
-GO
-
-
-
 insert into HocVien values('HV01','Trong Nhan', '2003-06-06', 'Nam','0789147***','Tien Giang');
 insert into HocVien values('HV02','Minh Tai', '2003-10-21', 'Nam','0326344***','so 1 VVN');
 insert into HocVien values('HV03','Thu Lai', '2003-12-12', 'Nữ','1456283***','Bến Tre');
@@ -187,17 +177,18 @@ CREATE TABLE TriggerLog(
 );
 GO
 
---PROCEDURE
+--PROCEDURE--NHÂN
 --Giảng viên
 --Hien thi thong tin Giang Vien
-CREATE PROC HienThiTheoMaGV @MaGV nchar(10)
+CREATE PROC pr_HienThiTheoMaGV @MaGV nchar(10)
 AS
 	SELECT *
 	FROM GiangVien
 	WHERE @MaGV = MaGV
 GO
+
 --Them thong tin Giang Vien
-CREATE PROC ThemGiangVien
+CREATE PROC pr_ThemGiangVien
 @MaGV nchar(10),
 @HoTen nvarchar(50),
 @CCCD nchar(13),
@@ -206,8 +197,9 @@ CREATE PROC ThemGiangVien
 AS
 	INSERT INTO dbo.GiangVien VALUES(@MaGV, @HoTen, @CCCD, @SoDT, @Luong)
 GO
+
 --Cap nhat thong tin Giang Vien
-CREATE PROC CapNhatGiangVien
+CREATE PROC pr_CapNhatGiangVien
 @MaGV nchar(10),
 @HoTen nvarchar(50),
 @CCCD nchar(13),
@@ -220,7 +212,7 @@ AS
 GO
 
 --Xoa thong tin Giang Vien
-CREATE PROC XoaGiangVien @MaGV nchar(10)
+CREATE PROC pr_XoaGiangVien @MaGV nchar(10)
 AS
 	DELETE FROM GiangVien
 	WHERE @MaGV = MaGV
@@ -228,14 +220,15 @@ GO
 
 --Thi Thử
 --Hien thi thong tin Thi Thu
-CREATE PROC HienThiTheoMaTT @MaTT nchar(10)
+CREATE PROC pr_HienThiTheoMaTT @MaTT nchar(10)
 AS
 	SELECT *
 	FROM ThiThu
 	WHERE @MaTT = MaTT
 GO
+
 --Them thong tin Thi Thu
-CREATE PROC ThemThiThu
+CREATE PROC pr_ThemThiThu
 @MaTT nchar(10),
 @PhongThi nchar(10),
 @NgayThi date,
@@ -245,9 +238,9 @@ CREATE PROC ThemThiThu
 AS
 	INSERT INTO dbo.ThiThu VALUES(@MaTT, @PhongThi, @NgayThi, @GioThi, @GioiHan, @MaNV)
 GO
-DROP PROC ThemThiThu
+
 --Cap nhat thong tin Thi Thu
-CREATE PROC CapNhatThiThu
+CREATE PROC pr_CapNhatThiThu
 @MaTT nchar(10),
 @PhongThi nchar(10),
 @NgayThi date,
@@ -263,8 +256,9 @@ AS
 	MaNV = @MaNV
 	WHERE MaTT = @MaTT
 GO
+
 --Xoa thong tin Thi Thu
-CREATE PROC XoaThiThu @MaTT nchar(10)
+CREATE PROC pr_XoaThiThu @MaTT nchar(10)
 AS
 	DELETE FROM ThiThu
 	WHERE @MaTT = MaTT
@@ -272,14 +266,15 @@ GO
 
 --ChiTietDK_TT
 --Hien thi thong tin ChiTietDK_TT
-CREATE PROC HienThiTheoMaHV_TT @MaHV nchar(10), @MaTT nchar(10)
+CREATE PROC pr_HienThiTheoMaHV_TT @MaHV nchar(10), @MaTT nchar(10)
 AS
 	SELECT *
 	FROM ChiTietDK_TT
 	WHERE @MaHV = MaHV and @MaTT = MaTT
 GO
+
 --Them thong tin ChiTietDK_TT
-CREATE PROC ThemChiTietDK_TT
+CREATE PROC pr_ThemChiTietDK_TT
 @MaHV nchar(10),
 @MaTT nchar(10),
 @NgayDK date
@@ -288,7 +283,7 @@ AS
 GO
 
 --Cap nhat thong tin ChiTietDK_TT
-CREATE PROC CapNhatChiTietDK_TT
+CREATE PROC pr_CapNhatChiTietDK_TT
 @MaHV nchar(10),
 @MaTT nchar(10),
 @NgayDK date
@@ -297,13 +292,40 @@ AS
 	SET NgayDK = @NgayDK
 	WHERE @MaHV = MaHV and @MaTT = MaTT
 GO
+
 --Xoa thong tin ChiTietDK_TT
-CREATE PROC XoaChiTietDK_TT @MaHV nchar(10), @MaTT nchar(10)
+CREATE PROC pr_XoaChiTietDK_TT @MaHV nchar(10), @MaTT nchar(10)
 AS
 	DELETE FROM ChiTietDK_TT
 	WHERE @MaHV = MaHV and @MaTT = MaTT
 GO
 
+--Hien Thi Hoc Vien da DK_TT Theo MaTT
+CREATE PROC pr_HienThiHocVienDK_TT @MaTT nchar(10)
+AS
+	SELECT hv.MaHV, hv.HoTenHV, hv.GioiTinh, hv.NgaySinh, hv.SoDT
+	FROM HocVien hv inner join (SELECT distinct MaHV, MaTT FROM ChiTietDK_TT) Q on hv.MaHV=Q.MaHV
+	WHERE @MaTT = Q.MaTT
+GO
+
+--VIEW--NHÂN
+--Xem thông tin giảng viên
+CREATE VIEW v_GiangVien AS
+SELECT *
+FROM GiangVien
+GO
+
+--Xem thông tin thi thử
+CREATE VIEW v_ThiThu AS
+SELECT *
+FROM ThiThu
+GO
+
+--Xem thông tin Chi Tiết DK_TT
+CREATE VIEW v_ChiTietDK_TT AS
+SELECT *
+FROM ChiTietDK_TT
+GO
 
 GO
 --TRIGGER
@@ -455,7 +477,7 @@ BEGIN
 		END;
 END
 GO
-GO
+
 --5. Trigger kiểm tra tổng số lượng học viên đăng ký thi thử
 CREATE TRIGGER TinhTongSL_TT
 ON ChiTietDK_TT
@@ -471,8 +493,10 @@ BEGIN
 	INSERT INTO TriggerLog(messageLog) values(@ThongBao)
 END
 GO
+
 Drop trigger TinhTongSL_TT
 GO
+
 --6. Trigger đặt trạng thái cho lớp học
 CREATE TRIGGER set_LopHoc_TrangThai
 ON LopHoc
@@ -533,7 +557,7 @@ END
 GO
 
 --VIEW
---Xem danh sách học viên của các lớp học đã full
+--1. Xem danh sách học viên của các lớp học đã full
 CREATE VIEW DanhSachHocVienLopHocFull AS
 SELECT LH.MaLH, LH.TenLH, HV.MaHV, HV.HoTenHV, HV.NgaySinh, HV.GioiTinh, HV.SoDT, HV.DiaChiHV
 FROM LopHoc LH
@@ -542,21 +566,21 @@ INNER JOIN HocVien HV ON DKLH.MaHV = HV.MaHV
 WHERE LH.TrangThai = 'Du'
 GO
 
---Xem danh sách các lớp học còn trống
+--2. Xem danh sách các lớp học còn trống
 CREATE VIEW LopHocConTrong AS
 SELECT MaLH, TenLH, TenPhongHoc, HocPhi, SoBuoiHoc, SoLuongHV
 FROM LopHoc
 WHERE TrangThai != 'Du'
 GO
 
---Thống kê danh sách hóa đơn
+--3. Thống kê danh sách hóa đơn
 CREATE VIEW ThongKeHoaDon AS
 SELECT HV.MaHV, HV.HoTenHV, HV.NgaySinh, HV.GioiTinh, HV.SoDT, HV.DiaChiHV, HD.MaHD, HD.NgayGD, HD.SoTien
 FROM HocVien HV
 LEFT JOIN HoaDon HD ON HV.MaHV = HD.MaHV
 GO
 
---Thống kê danh sách lớp học và số lượng HV đã đăng ký
+--4. Thống kê danh sách lớp học và số lượng HV đã đăng ký
 CREATE VIEW LopHoc_SoLuongHocVien AS
 SELECT LH.MaLH,LH.TenLH, COUNT(DKLH.MaHV) AS SoLuongHocVien
 FROM LopHoc LH
@@ -564,7 +588,7 @@ LEFT JOIN ChiTietDK_LH DKLH ON LH.MaLH = DKLH.MaLH
 GROUP BY LH.MaLH, LH.TenLH
 GO
 
---Thống kê ca dạy
+--5. Thống kê ca dạy
 CREATE VIEW ViewThongKeCaDay AS
 SELECT GV.MaGV, GV.HoTen AS TenGiangVien, LH.TenLH, CD.NgayBatDau, CD.NgayKetThuc
 FROM GiangVien GV
@@ -572,7 +596,7 @@ INNER JOIN ChiTiet_CaDay CD ON GV.MaGV = CD.MaGV
 INNER JOIN LopHoc LH ON CD.MaLH = LH.MaLH
 GO
 
---Thống kê số lượng học viên đăng ký lớp học theo từng tháng
+--6. Thống kê số lượng học viên đăng ký lớp học theo từng tháng
 CREATE VIEW SoLuongHocVienDangKyLopHocTheoThang AS
 SELECT 
   YEAR(NgayDK) AS Nam, 
@@ -582,43 +606,30 @@ FROM ChiTietDK_LH
 GROUP BY YEAR(NgayDK), MONTH(NgayDK)
 GO
 
---Thống kê nhân viên theo từng chi nhánh
+--7. Thống kê nhân viên theo từng chi nhánh
 CREATE VIEW NhanVienTungChiNhanh AS
 SELECT CN.TenCN, NV.HoTenNV, NV.SoDT, NV.Luong
 FROM ChiNhanh CN INNER JOIN NhanVien NV ON CN.MaCN = NV.MaCN
 GO
 
---Thống kê điểm số của từng học viên trong từng lớp thi thử
+--8. Thống kê điểm số của từng học viên trong từng lớp thi thử
 CREATE VIEW DiemTungHVTrongThiThu AS
 SELECT DKTT.MaTT, HV.HoTenHV, HV.NgaySinh, DKTT.NgayDK, KQ.SoCauNgheDung, KQ.SoCauDocDung, KQ.Diem
 FROM HocVien HV INNER JOIN ChiTietDK_TT DKTT ON HV.MaHV=DKTT.MaHV
 			INNER JOIN KetQua KQ ON DKTT.MaTT=KQ.MaTT
 GO
 
---Danh sách học viên đã đăng kí thi thử
+--9. Danh sách học viên đã đăng kí thi thử
 CREATE VIEW DanhSachHV_DKThiThu AS
 SELECT TT.MaTT, HV.HoTenHV, HV.NgaySinh, TT.NgayThi
 FROM HocVien HV INNER JOIN ChiTietDK_TT DKTT ON HV.MaHV=DKTT.MaHV
 			INNER JOIN ThiThu TT ON DKTT.MaTT=TT.MaTT
 GO
 
---Xem thông tin thi thử
-CREATE VIEW vThiThu AS
-SELECT *
-FROM ThiThu
-GO
 
---Xem thông tin giảng viên
-CREATE VIEW vGiangVien AS
-SELECT *
-FROM GiangVien
 
-GO
---Xem thông tin Chi Tiết DK_TT
-CREATE VIEW vChiTietDK_TT AS
-SELECT *
-FROM ChiTietDK_TT
-GO
+
+
 
 
 --Hàm tính số buổi dạy của 1 giảng viên đối với 1 lớp trong nửa đầu tháng
@@ -652,6 +663,7 @@ begin
 end
 go
 go
+
 --Hàm tính số buổi dạy của 1 giảng viên đối với 1 lớp trong nửa cuối tháng
 create function TinhSoBuoiDay2 (@ngayKetThuc DATE, @caday nchar(10))
 returns int
@@ -683,6 +695,7 @@ begin
 end
 go
 go
+
 --Hàm tính số buổi dạy của giảng viên theo tháng
 create function TinhSoBuoiDayGiangVienTheoThang (@magv nchar(10), @thang date)
 returns int

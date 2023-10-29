@@ -32,7 +32,7 @@ namespace GUI
                 SqlConnection conn = SQLConnectionData.Connect();
                 conn.Open();
 
-                SqlCommand cmd = new SqlCommand("Select * From vThiThu", conn);
+                SqlCommand cmd = new SqlCommand("Select * From v_ThiThu", conn);
                 SqlDataReader reader = cmd.ExecuteReader();
                 livThiThu.Items.Clear();
                 while (reader.Read())
@@ -80,7 +80,7 @@ namespace GUI
 
                 SqlCommand cmd = new SqlCommand(MaTT, conn);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "HienThiTheoMaTT";
+                cmd.CommandText = "pr_HienThiTheoMaTT";
                 cmd.Connection = conn;
 
                 SqlParameter para = new SqlParameter("@MaTT", SqlDbType.NChar);
@@ -114,7 +114,7 @@ namespace GUI
 
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "ThemThiThu";
+                cmd.CommandText = "pr_ThemThiThu";
                 cmd.Connection = conn;
 
                 cmd.Parameters.Add("@MaTT", SqlDbType.NChar).Value = txtMaTT.Text;
@@ -163,7 +163,7 @@ namespace GUI
 
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "CapNhatThiThu";
+                cmd.CommandText = "pr_CapNhatThiThu";
                 cmd.Connection = conn;
 
                 cmd.Parameters.Add("@MaTT", SqlDbType.NChar).Value = txtMaTT.Text;
@@ -211,7 +211,7 @@ namespace GUI
 
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "XoaThiThu";
+                cmd.CommandText = "pr_XoaThiThu";
                 cmd.Connection = conn;
                 cmd.Parameters.Add("@MaTT", SqlDbType.NChar).Value = txtMaTT.Text;
 

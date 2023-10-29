@@ -16,8 +16,7 @@ namespace GUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ThiThu());
-            //Application.Run(new GiangVien());
+            Application.Run(new ChiTietDK_TT());
         }
     }
 }

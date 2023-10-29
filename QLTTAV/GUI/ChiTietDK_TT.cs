@@ -33,7 +33,7 @@ namespace GUI
                 SqlConnection conn = SQLConnectionData.Connect();
                 conn.Open();
 
-                SqlCommand cmd = new SqlCommand("Select * From vChiTietDK_TT", conn);
+                SqlCommand cmd = new SqlCommand("Select * From v_ChiTietDK_TT", conn);
                 SqlDataReader reader = cmd.ExecuteReader();
                 livChiTietDK_TT.Items.Clear();
                 while (reader.Read())
@@ -78,7 +78,7 @@ namespace GUI
 
                 SqlCommand cmd = new SqlCommand(maTT, conn);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "pr_HienThiHocVIenDK_TT";
+                cmd.CommandText = "pr_HienThiHocVienDK_TT";
                 cmd.Connection = conn;
 
                 SqlParameter para = new SqlParameter("@MaTT", SqlDbType.Char);
@@ -112,9 +112,9 @@ namespace GUI
                 SqlConnection conn = SQLConnectionData.Connect();
                 conn.Open();
 
-                SqlCommand cmd = new SqlCommand("HienThiTheoMaHV_TT", conn);
+                SqlCommand cmd = new SqlCommand("pr_HienThiTheoMaHV_TT", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "HienThiTheoMaHV_TT";
+                cmd.CommandText = "pr_HienThiTheoMaHV_TT";
                 cmd.Connection = conn;
 
                 SqlParameter paraMaHV = new SqlParameter("@MaHV", SqlDbType.NChar);
@@ -150,7 +150,7 @@ namespace GUI
 
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "ThemChiTietDK_TT";
+                cmd.CommandText = "pr_ThemChiTietDK_TT";
                 cmd.Connection = conn;
 
                 cmd.Parameters.Add("@MaHV", SqlDbType.NChar).Value = txtMaHV.Text;
@@ -214,7 +214,7 @@ namespace GUI
 
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "CapNhatChiTietDK_TT";
+                cmd.CommandText = "pr_CapNhatChiTietDK_TT";
                 cmd.Connection = conn;
 
                 cmd.Parameters.Add("@MaHV", SqlDbType.NChar).Value = txtMaHV.Text;
@@ -259,7 +259,7 @@ namespace GUI
 
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "XoaChiTietDK_TT";
+                cmd.CommandText = "pr_XoaChiTietDK_TT";
                 cmd.Connection = conn;
                 cmd.Parameters.Add("@MaHV", SqlDbType.NChar).Value = txtMaHV.Text;
                 cmd.Parameters.Add("@MaTT", SqlDbType.NChar).Value = txtMaTT.Text;
