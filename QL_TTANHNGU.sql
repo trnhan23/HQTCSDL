@@ -73,6 +73,17 @@ CREATE TABLE HocVien(
 	DiaChiHV nvarchar(100)
 );
 GO
+
+
+CREATE PROC pr_HienThiHocVienDK_TT @MaTT nchar(10)
+AS
+	SELECT hv.MaHV, hv.HoTenHV, hv.GioiTinh, hv.NgaySinh, hv.SoDT
+	FROM HocVien hv inner join (SELECT distinct MaHV, MaTT FROM ChiTietDK_TT) Q on hv.MaHV=Q.MaHV
+	WHERE @MaTT = Q.MaTT
+GO
+
+
+
 insert into HocVien values('HV01','Trong Nhan', '2003-06-06', 'Nam','0789147***','Tien Giang');
 insert into HocVien values('HV02','Minh Tai', '2003-10-21', 'Nam','0326344***','so 1 VVN');
 insert into HocVien values('HV03','Thu Lai', '2003-12-12', 'Nữ','1456283***','Bến Tre');

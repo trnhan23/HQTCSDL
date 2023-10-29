@@ -63,8 +63,46 @@ namespace GUI
             ListViewItem lvi = livChiTietDK_TT.SelectedItems[0];
             String MaHV = lvi.SubItems[0].Text;
             String MaTT = lvi.SubItems[1].Text;
+            lbMaThiThu.Text = MaTT;
 
             HienThiTheoMaHV_TT(MaHV,MaTT);
+            HienThiDanhSachHocVienDK_TT(MaTT);
+        }
+
+        private void HienThiDanhSachHocVienDK_TT(string maTT)
+        {
+            try
+            {
+                SqlConnection conn = SQLConnectionData.Connect();
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand(maTT, conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "pr_HienThiHocVIenDK_TT";
+                cmd.Connection = conn;
+
+                SqlParameter para = new SqlParameter("@MaTT", SqlDbType.Char);
+                para.Value = maTT;
+                cmd.Parameters.Add(para);
+                SqlDataReader reader = cmd.ExecuteReader();
+                livHocVien.Items.Clear();
+                while (reader.Read())
+                {
+                    ListViewItem lvi = new ListViewItem(reader.GetString(0));
+                    lvi.SubItems.Add(reader.GetString(1));
+                    lvi.SubItems.Add(reader.GetString(2));
+                    DateTime NgaySinh = reader.GetDateTime(3);
+                    lvi.SubItems.Add(NgaySinh.ToString("dd-MM-yyyy"));
+                    lvi.SubItems.Add(reader.GetString(4));
+                    livHocVien.Items.Add(lvi);
+                }
+                reader.Close();
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void HienThiTheoMaHV_TT(string MaHV, string MaTT)
@@ -248,7 +286,5 @@ namespace GUI
                 MessageBox.Show(ex.Message);
             }
         }
-
-        
     }
 }
