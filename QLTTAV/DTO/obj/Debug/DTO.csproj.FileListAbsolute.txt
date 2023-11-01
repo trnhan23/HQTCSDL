@@ -1,0 +1,18 @@
+D:\DBSM\Project\HQTCSDL\QLTTAV\DTO\bin\Debug\DTO.dll
+D:\DBSM\Project\HQTCSDL\QLTTAV\DTO\bin\Debug\DTO.pdb
+D:\DBSM\Project\HQTCSDL\QLTTAV\DTO\obj\Debug\DTO.csproj.AssemblyReference.cache
+D:\DBSM\Project\HQTCSDL\QLTTAV\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
+D:\DBSM\Project\HQTCSDL\QLTTAV\DTO\obj\Debug\DTO.dll
+D:\DBSM\Project\HQTCSDL\QLTTAV\DTO\obj\Debug\DTO.pdb
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\DTO\bin\Debug\DTO.dll
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\DTO\bin\Debug\DTO.pdb
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\DTO\obj\Debug\DTO.csproj.AssemblyReference.cache
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\DTO\obj\Debug\DTO.dll
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\DTO\obj\Debug\DTO.pdb
+C:\Users\daong\OneDrive\Documents\Hệ QTCSDL\Project\QLTTAV\DTO\bin\Debug\DTO.dll
+C:\Users\daong\OneDrive\Documents\Hệ QTCSDL\Project\QLTTAV\DTO\bin\Debug\DTO.pdb
+C:\Users\daong\OneDrive\Documents\Hệ QTCSDL\Project\QLTTAV\DTO\obj\Debug\DTO.csproj.AssemblyReference.cache
+C:\Users\daong\OneDrive\Documents\Hệ QTCSDL\Project\QLTTAV\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
+C:\Users\daong\OneDrive\Documents\Hệ QTCSDL\Project\QLTTAV\DTO\obj\Debug\DTO.dll
+C:\Users\daong\OneDrive\Documents\Hệ QTCSDL\Project\QLTTAV\DTO\obj\Debug\DTO.pdb

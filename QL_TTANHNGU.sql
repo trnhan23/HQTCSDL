@@ -147,7 +147,6 @@ ALTER TABLE ChiTietDK_LH ADD CONSTRAINT FK_DKLH_MaLH FOREIGN KEY(MaLH)  REFERENC
 GO
 insert into ChiTietDK_LH values ('HV03', 'TCB01','2023-07-10');
 
-/*Kiểm tra lúc nhân viên sai sót nhập tiền thiếu hoặc dư*/
 
 CREATE TRIGGER KiemTraTienHD
 ON HoaDon
@@ -184,7 +183,6 @@ BEGIN
     END;
 END;
  
-/*Trigger kiểm tra sau khi nhập học viên thì thông báo chỗ còn trống, hoặc thông báo chỗ đầy*/
 
 CREATE TRIGGER TinhSoCho_ConDu
 ON ChiTietDK_LH
