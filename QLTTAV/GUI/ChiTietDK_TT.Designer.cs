@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.livChiTietDK_TT = new System.Windows.Forms.ListView();
+            this.MaHV = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.MaTT = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.NgayDK = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -38,9 +41,14 @@
             this.btnThemChiTietDK_TT = new System.Windows.Forms.Button();
             this.btnSuaChiTietDK_TT = new System.Windows.Forms.Button();
             this.btnXoaChiTietDK_TT = new System.Windows.Forms.Button();
-            this.MaHV = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.MaTT = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.NgayDK = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.livHocVien = new System.Windows.Forms.ListView();
+            this.hvMaHV = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.hvHoTenHV = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.hvGioiTinh = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.hvNgaySinh = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.hvSoDT = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label4 = new System.Windows.Forms.Label();
+            this.lbMaThiThu = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // livChiTietDK_TT
@@ -54,11 +62,26 @@
             this.livChiTietDK_TT.HideSelection = false;
             this.livChiTietDK_TT.Location = new System.Drawing.Point(15, 13);
             this.livChiTietDK_TT.Name = "livChiTietDK_TT";
-            this.livChiTietDK_TT.Size = new System.Drawing.Size(707, 659);
+            this.livChiTietDK_TT.Size = new System.Drawing.Size(707, 265);
             this.livChiTietDK_TT.TabIndex = 0;
             this.livChiTietDK_TT.UseCompatibleStateImageBehavior = false;
             this.livChiTietDK_TT.View = System.Windows.Forms.View.Details;
             this.livChiTietDK_TT.SelectedIndexChanged += new System.EventHandler(this.livChiTietDK_TT_SelectedIndexChanged);
+            // 
+            // MaHV
+            // 
+            this.MaHV.Text = "Mã HV";
+            this.MaHV.Width = 80;
+            // 
+            // MaTT
+            // 
+            this.MaTT.Text = "Mã TT";
+            this.MaTT.Width = 80;
+            // 
+            // NgayDK
+            // 
+            this.NgayDK.Text = "Ngày Đăng Kí";
+            this.NgayDK.Width = 130;
             // 
             // label1
             // 
@@ -116,7 +139,7 @@
             // 
             // btnThemChiTietDK_TT
             // 
-            this.btnThemChiTietDK_TT.Location = new System.Drawing.Point(857, 251);
+            this.btnThemChiTietDK_TT.Location = new System.Drawing.Point(860, 239);
             this.btnThemChiTietDK_TT.Name = "btnThemChiTietDK_TT";
             this.btnThemChiTietDK_TT.Size = new System.Drawing.Size(143, 43);
             this.btnThemChiTietDK_TT.TabIndex = 3;
@@ -126,7 +149,7 @@
             // 
             // btnSuaChiTietDK_TT
             // 
-            this.btnSuaChiTietDK_TT.Location = new System.Drawing.Point(857, 332);
+            this.btnSuaChiTietDK_TT.Location = new System.Drawing.Point(860, 320);
             this.btnSuaChiTietDK_TT.Name = "btnSuaChiTietDK_TT";
             this.btnSuaChiTietDK_TT.Size = new System.Drawing.Size(143, 43);
             this.btnSuaChiTietDK_TT.TabIndex = 4;
@@ -136,7 +159,7 @@
             // 
             // btnXoaChiTietDK_TT
             // 
-            this.btnXoaChiTietDK_TT.Location = new System.Drawing.Point(857, 413);
+            this.btnXoaChiTietDK_TT.Location = new System.Drawing.Point(860, 401);
             this.btnXoaChiTietDK_TT.Name = "btnXoaChiTietDK_TT";
             this.btnXoaChiTietDK_TT.Size = new System.Drawing.Size(143, 43);
             this.btnXoaChiTietDK_TT.TabIndex = 5;
@@ -144,26 +167,74 @@
             this.btnXoaChiTietDK_TT.UseVisualStyleBackColor = true;
             this.btnXoaChiTietDK_TT.Click += new System.EventHandler(this.btnXoaChiTietDK_TT_Click);
             // 
-            // MaHV
+            // livHocVien
             // 
-            this.MaHV.Text = "Mã HV";
-            this.MaHV.Width = 80;
+            this.livHocVien.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.hvMaHV,
+            this.hvHoTenHV,
+            this.hvGioiTinh,
+            this.hvNgaySinh,
+            this.hvSoDT});
+            this.livHocVien.GridLines = true;
+            this.livHocVien.HideSelection = false;
+            this.livHocVien.Location = new System.Drawing.Point(15, 350);
+            this.livHocVien.Name = "livHocVien";
+            this.livHocVien.Size = new System.Drawing.Size(707, 330);
+            this.livHocVien.TabIndex = 6;
+            this.livHocVien.UseCompatibleStateImageBehavior = false;
+            this.livHocVien.View = System.Windows.Forms.View.Details;
             // 
-            // MaTT
+            // hvMaHV
             // 
-            this.MaTT.Text = "Mã TT";
-            this.MaTT.Width = 80;
+            this.hvMaHV.Text = "Mã HV";
+            this.hvMaHV.Width = 80;
             // 
-            // NgayDK
+            // hvHoTenHV
             // 
-            this.NgayDK.Text = "Ngày Đăng Kí";
-            this.NgayDK.Width = 130;
+            this.hvHoTenHV.Text = "Họ Tên HV";
+            this.hvHoTenHV.Width = 150;
+            // 
+            // hvGioiTinh
+            // 
+            this.hvGioiTinh.Text = "Giới Tính";
+            this.hvGioiTinh.Width = 80;
+            // 
+            // hvNgaySinh
+            // 
+            this.hvNgaySinh.Text = "Ngày Sinh";
+            this.hvNgaySinh.Width = 100;
+            // 
+            // hvSoDT
+            // 
+            this.hvSoDT.Text = "Số ĐT";
+            this.hvSoDT.Width = 100;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(12, 320);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(275, 16);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Danh sách học viên đăng kí lớp thi thử có mã: ";
+            // 
+            // lbMaThiThu
+            // 
+            this.lbMaThiThu.AutoSize = true;
+            this.lbMaThiThu.Location = new System.Drawing.Point(311, 320);
+            this.lbMaThiThu.Name = "lbMaThiThu";
+            this.lbMaThiThu.Size = new System.Drawing.Size(47, 16);
+            this.lbMaThiThu.TabIndex = 8;
+            this.lbMaThiThu.Text = "Mã TT";
             // 
             // ChiTietDK_TT
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1173, 692);
+            this.Controls.Add(this.lbMaThiThu);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.livHocVien);
             this.Controls.Add(this.btnXoaChiTietDK_TT);
             this.Controls.Add(this.btnSuaChiTietDK_TT);
             this.Controls.Add(this.btnThemChiTietDK_TT);
@@ -197,5 +268,13 @@
         private System.Windows.Forms.ColumnHeader MaHV;
         private System.Windows.Forms.ColumnHeader MaTT;
         private System.Windows.Forms.ColumnHeader NgayDK;
+        private System.Windows.Forms.ListView livHocVien;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lbMaThiThu;
+        private System.Windows.Forms.ColumnHeader hvMaHV;
+        private System.Windows.Forms.ColumnHeader hvHoTenHV;
+        private System.Windows.Forms.ColumnHeader hvGioiTinh;
+        private System.Windows.Forms.ColumnHeader hvNgaySinh;
+        private System.Windows.Forms.ColumnHeader hvSoDT;
     }
 }

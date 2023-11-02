@@ -1,4 +1,5 @@
 ﻿using DAL;
+using Microsoft.SqlServer.Server;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -32,7 +33,7 @@ namespace GUI
                 SqlConnection conn = SQLConnectionData.Connect();
                 conn.Open();
 
-                SqlCommand cmd = new SqlCommand("Select * From ThongTinChiTietDK_TT", conn);
+                SqlCommand cmd = new SqlCommand("Select * From v_ChiTietDK_TT", conn);
                 SqlDataReader reader = cmd.ExecuteReader();
                 livChiTietDK_TT.Items.Clear();
                 while (reader.Read())
@@ -62,8 +63,46 @@ namespace GUI
             ListViewItem lvi = livChiTietDK_TT.SelectedItems[0];
             String MaHV = lvi.SubItems[0].Text;
             String MaTT = lvi.SubItems[1].Text;
+            lbMaThiThu.Text = MaTT;
 
             HienThiTheoMaHV_TT(MaHV,MaTT);
+            HienThiDanhSachHocVienDK_TT(MaTT);
+        }
+
+        private void HienThiDanhSachHocVienDK_TT(string maTT)
+        {
+            try
+            {
+                SqlConnection conn = SQLConnectionData.Connect();
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand(maTT, conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "pr_HienThiHocVienDK_TT";
+                cmd.Connection = conn;
+
+                SqlParameter para = new SqlParameter("@MaTT", SqlDbType.Char);
+                para.Value = maTT;
+                cmd.Parameters.Add(para);
+                SqlDataReader reader = cmd.ExecuteReader();
+                livHocVien.Items.Clear();
+                while (reader.Read())
+                {
+                    ListViewItem lvi = new ListViewItem(reader.GetString(0));
+                    lvi.SubItems.Add(reader.GetString(1));
+                    lvi.SubItems.Add(reader.GetString(2));
+                    DateTime NgaySinh = reader.GetDateTime(3);
+                    lvi.SubItems.Add(NgaySinh.ToString("dd-MM-yyyy"));
+                    lvi.SubItems.Add(reader.GetString(4));
+                    livHocVien.Items.Add(lvi);
+                }
+                reader.Close();
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void HienThiTheoMaHV_TT(string MaHV, string MaTT)
@@ -73,9 +112,9 @@ namespace GUI
                 SqlConnection conn = SQLConnectionData.Connect();
                 conn.Open();
 
-                SqlCommand cmd = new SqlCommand("HienThiTheoMaHV_TT", conn);
+                SqlCommand cmd = new SqlCommand("pr_HienThiTheoMaHV_TT", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "HienThiTheoMaHV_TT";
+                cmd.CommandText = "pr_HienThiTheoMaHV_TT";
                 cmd.Connection = conn;
 
                 SqlParameter paraMaHV = new SqlParameter("@MaHV", SqlDbType.NChar);
@@ -111,7 +150,7 @@ namespace GUI
 
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "ThemChiTietDK_TT";
+                cmd.CommandText = "pr_ThemChiTietDK_TT";
                 cmd.Connection = conn;
 
                 cmd.Parameters.Add("@MaHV", SqlDbType.NChar).Value = txtMaHV.Text;
@@ -127,16 +166,17 @@ namespace GUI
                     MessageBox.Show("Ngày thi không hợp lệ.");
                     return;
                 }
-
+                
                 int n = cmd.ExecuteNonQuery();
                 if (n > 0)
                 {
                     HienThiThongTinChiTietDK_TT();
-                    MessageBox.Show("Thêm thành công!\n", "Add", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ThongBaoTuTrigger();
+                    MessageBox.Show("Thêm thành công!\n");
                 }
                 else
                 {
-                    MessageBox.Show("Thêm thất bại!", "Add", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Thêm thất bại!");
                 }
 
                 conn.Close();
@@ -145,6 +185,24 @@ namespace GUI
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void ThongBaoTuTrigger()
+        {
+            SqlConnection conn = SQLConnectionData.Connect();
+            conn.Open();
+            SqlCommand cmd = new SqlCommand("Select messageLog From triggerLog", conn);
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                string message = reader.GetString(0);
+                MessageBox.Show(message);
+            }
+            reader.Close();
+            cmd = new SqlCommand("delete From triggerLog", conn);
+            cmd.ExecuteNonQuery();
+
+            conn.Close();
         }
 
         private void btnSuaChiTietDK_TT_Click(object sender, EventArgs e)
@@ -156,7 +214,7 @@ namespace GUI
 
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "CapNhatChiTietDK_TT";
+                cmd.CommandText = "pr_CapNhatChiTietDK_TT";
                 cmd.Connection = conn;
 
                 cmd.Parameters.Add("@MaHV", SqlDbType.NChar).Value = txtMaHV.Text;
@@ -201,7 +259,7 @@ namespace GUI
 
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "XoaChiTietDK_TT";
+                cmd.CommandText = "pr_XoaChiTietDK_TT";
                 cmd.Connection = conn;
                 cmd.Parameters.Add("@MaHV", SqlDbType.NChar).Value = txtMaHV.Text;
                 cmd.Parameters.Add("@MaTT", SqlDbType.NChar).Value = txtMaTT.Text;
@@ -228,7 +286,5 @@ namespace GUI
                 MessageBox.Show(ex.Message);
             }
         }
-
-        
     }
 }
