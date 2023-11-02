@@ -48,6 +48,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtDiem = new System.Windows.Forms.TextBox();
             this.btnTinhDiem = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lvKetQua
@@ -61,9 +62,9 @@
             this.lvKetQua.FullRowSelect = true;
             this.lvKetQua.GridLines = true;
             this.lvKetQua.HideSelection = false;
-            this.lvKetQua.Location = new System.Drawing.Point(12, 12);
+            this.lvKetQua.Location = new System.Drawing.Point(12, 73);
             this.lvKetQua.Name = "lvKetQua";
-            this.lvKetQua.Size = new System.Drawing.Size(679, 519);
+            this.lvKetQua.Size = new System.Drawing.Size(571, 539);
             this.lvKetQua.TabIndex = 0;
             this.lvKetQua.UseCompatibleStateImageBehavior = false;
             this.lvKetQua.View = System.Windows.Forms.View.Details;
@@ -95,44 +96,47 @@
             // 
             // btnXoaKQ
             // 
-            this.btnXoaKQ.Location = new System.Drawing.Point(761, 464);
+            this.btnXoaKQ.BackColor = System.Drawing.Color.Red;
+            this.btnXoaKQ.Location = new System.Drawing.Point(758, 570);
             this.btnXoaKQ.Name = "btnXoaKQ";
             this.btnXoaKQ.Size = new System.Drawing.Size(194, 42);
             this.btnXoaKQ.TabIndex = 20;
             this.btnXoaKQ.Text = "Xoá";
-            this.btnXoaKQ.UseVisualStyleBackColor = true;
+            this.btnXoaKQ.UseVisualStyleBackColor = false;
             this.btnXoaKQ.Click += new System.EventHandler(this.btnXoaKQ_Click);
             // 
             // btnSuaKQ
             // 
-            this.btnSuaKQ.Location = new System.Drawing.Point(761, 416);
+            this.btnSuaKQ.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(227)))), ((int)(((byte)(206)))));
+            this.btnSuaKQ.Location = new System.Drawing.Point(758, 522);
             this.btnSuaKQ.Name = "btnSuaKQ";
             this.btnSuaKQ.Size = new System.Drawing.Size(194, 42);
             this.btnSuaKQ.TabIndex = 21;
             this.btnSuaKQ.Text = "Sửa";
-            this.btnSuaKQ.UseVisualStyleBackColor = true;
+            this.btnSuaKQ.UseVisualStyleBackColor = false;
             this.btnSuaKQ.Click += new System.EventHandler(this.btnSuaKQ_Click);
             // 
             // btnThem
             // 
-            this.btnThem.Location = new System.Drawing.Point(761, 368);
+            this.btnThem.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnThem.Location = new System.Drawing.Point(758, 474);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(194, 42);
             this.btnThem.TabIndex = 22;
             this.btnThem.Text = "Thêm";
-            this.btnThem.UseVisualStyleBackColor = true;
+            this.btnThem.UseVisualStyleBackColor = false;
             this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
             // 
             // txtMaTT
             // 
-            this.txtMaTT.Location = new System.Drawing.Point(926, 108);
+            this.txtMaTT.Location = new System.Drawing.Point(816, 169);
             this.txtMaTT.Name = "txtMaTT";
             this.txtMaTT.Size = new System.Drawing.Size(208, 26);
             this.txtMaTT.TabIndex = 18;
             // 
             // txtMaHV
             // 
-            this.txtMaHV.Location = new System.Drawing.Point(926, 38);
+            this.txtMaHV.Location = new System.Drawing.Point(816, 99);
             this.txtMaHV.Name = "txtMaHV";
             this.txtMaHV.Size = new System.Drawing.Size(208, 26);
             this.txtMaHV.TabIndex = 19;
@@ -140,7 +144,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(757, 178);
+            this.label3.Location = new System.Drawing.Point(647, 239);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(129, 20);
             this.label3.TabIndex = 14;
@@ -149,7 +153,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(757, 103);
+            this.label2.Location = new System.Drawing.Point(647, 164);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(79, 20);
             this.label2.TabIndex = 15;
@@ -158,7 +162,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(757, 38);
+            this.label1.Location = new System.Drawing.Point(647, 99);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(93, 20);
             this.label1.TabIndex = 16;
@@ -166,7 +170,7 @@
             // 
             // txtSoCauDocDung
             // 
-            this.txtSoCauDocDung.Location = new System.Drawing.Point(926, 172);
+            this.txtSoCauDocDung.Location = new System.Drawing.Point(816, 233);
             this.txtSoCauDocDung.Name = "txtSoCauDocDung";
             this.txtSoCauDocDung.Size = new System.Drawing.Size(208, 26);
             this.txtSoCauDocDung.TabIndex = 18;
@@ -174,7 +178,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(757, 250);
+            this.label4.Location = new System.Drawing.Point(647, 311);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(139, 20);
             this.label4.TabIndex = 14;
@@ -182,7 +186,7 @@
             // 
             // txtSoCauNgheDung
             // 
-            this.txtSoCauNgheDung.Location = new System.Drawing.Point(926, 244);
+            this.txtSoCauNgheDung.Location = new System.Drawing.Point(816, 305);
             this.txtSoCauNgheDung.Name = "txtSoCauNgheDung";
             this.txtSoCauNgheDung.Size = new System.Drawing.Size(208, 26);
             this.txtSoCauNgheDung.TabIndex = 18;
@@ -190,7 +194,8 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(757, 308);
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(647, 369);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(46, 20);
             this.label5.TabIndex = 14;
@@ -198,26 +203,40 @@
             // 
             // txtDiem
             // 
-            this.txtDiem.Location = new System.Drawing.Point(926, 308);
+            this.txtDiem.Location = new System.Drawing.Point(816, 369);
             this.txtDiem.Name = "txtDiem";
             this.txtDiem.Size = new System.Drawing.Size(208, 26);
             this.txtDiem.TabIndex = 18;
             // 
             // btnTinhDiem
             // 
-            this.btnTinhDiem.Location = new System.Drawing.Point(1015, 416);
+            this.btnTinhDiem.Location = new System.Drawing.Point(758, 426);
             this.btnTinhDiem.Name = "btnTinhDiem";
-            this.btnTinhDiem.Size = new System.Drawing.Size(150, 42);
+            this.btnTinhDiem.Size = new System.Drawing.Size(194, 42);
             this.btnTinhDiem.TabIndex = 23;
             this.btnTinhDiem.Text = "Tính điểm";
             this.btnTinhDiem.UseVisualStyleBackColor = true;
             this.btnTinhDiem.Click += new System.EventHandler(this.btnTinhDiem_Click);
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.label6.Location = new System.Drawing.Point(461, 9);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(232, 36);
+            this.label6.TabIndex = 24;
+            this.label6.Text = "Kết Quả Thi Thử";
+            // 
             // KetQua
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1177, 591);
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this.ClientSize = new System.Drawing.Size(1083, 635);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.btnTinhDiem);
             this.Controls.Add(this.btnXoaKQ);
             this.Controls.Add(this.btnSuaKQ);
@@ -233,6 +252,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lvKetQua);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "KetQua";
             this.Text = "KetQua";
             this.Load += new System.EventHandler(this.KetQua_Load);
@@ -263,5 +283,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtDiem;
         private System.Windows.Forms.Button btnTinhDiem;
+        private System.Windows.Forms.Label label6;
     }
 }

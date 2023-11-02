@@ -133,5 +133,38 @@
   <ItemGroup>
     <None Include="Resources\reject.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\buildings-regular-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\buildings-solid-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\group-regular-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\door-open-regular-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\male-female-regular-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\registered-regular-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notepad-regular-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user-regular-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\log-out-regular-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\98c17eb653ed65ac1b2e588f8e9f00bd.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
