@@ -183,7 +183,7 @@ namespace GUI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Ngày đăng ký thi thử không hợp lệ!!!");
             }
         }
 

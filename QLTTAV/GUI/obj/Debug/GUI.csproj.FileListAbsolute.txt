@@ -60,3 +60,8 @@ D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.csproj.CoreCompil
 D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.csproj.CopyComplete
 D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.exe
 D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.pdb
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.ChiTiet_CaDay.resources
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.CongViec.resources
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.GiangVien.resources
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.TaoLopHoc.resources
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.ThiThu.resources

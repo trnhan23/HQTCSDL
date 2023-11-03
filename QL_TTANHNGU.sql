@@ -84,6 +84,7 @@ CREATE TABLE ChiTietDK_TT(
 	NgayDK date check (DATEDIFF(day, NgayDK, GETDATE())>=0),
 	CONSTRAINT PK_ChiTietDK_TT PRIMARY KEY (MaHV,MaTT)
 );
+
 GO
 insert into ChiTietDK_TT values ('HV02','TT02','2023-10-11');
 insert into ChiTietDK_TT values ('HV01','TT01','2023-10-23');
@@ -326,7 +327,7 @@ CREATE VIEW v_ChiTietDK_TT AS
 SELECT *
 FROM ChiTietDK_TT
 GO
-
+select * from v_ChiTietDK_TT
 GO
 --TRIGGER
 --1. Kiểm tra lúc nhân viên sai sót nhập tiền thiếu hoặc dư

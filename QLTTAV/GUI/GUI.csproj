@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -58,6 +61,24 @@
     <Compile Include="ChiTietDK_TT.Designer.cs">
       <DependentUpon>ChiTietDK_TT.cs</DependentUpon>
     </Compile>
+    <Compile Include="ChiTiet_CaDay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChiTiet_CaDay.designer.cs">
+      <DependentUpon>ChiTiet_CaDay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CongViec.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CongViec.designer.cs">
+      <DependentUpon>CongViec.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GiangVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GiangVien.Designer.cs">
+      <DependentUpon>GiangVien.cs</DependentUpon>
+    </Compile>
     <Compile Include="Home.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,11 +99,32 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TaoLopHoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TaoLopHoc.designer.cs">
+      <DependentUpon>TaoLopHoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ThiThu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ThiThu.Designer.cs">
+      <DependentUpon>ThiThu.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="ChiNhanh.resx">
       <DependentUpon>ChiNhanh.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ChiTietDK_TT.resx">
       <DependentUpon>ChiTietDK_TT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChiTiet_CaDay.resx">
+      <DependentUpon>ChiTiet_CaDay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CongViec.resx">
+      <DependentUpon>CongViec.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GiangVien.resx">
+      <DependentUpon>GiangVien.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
@@ -103,6 +145,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="TaoLopHoc.resx">
+      <DependentUpon>TaoLopHoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ThiThu.resx">
+      <DependentUpon>ThiThu.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -165,6 +213,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\98c17eb653ed65ac1b2e588f8e9f00bd.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chevron-down-regular-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\up.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
