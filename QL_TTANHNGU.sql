@@ -11,7 +11,7 @@ CREATE TABLE ChiNhanh(
 );
 GO
 insert into ChiNhanh values ('CN01','Chi Nhanh 1 PMP','34 Ho Thi Tu');
-
+INSERT INTO ChiNhanh VALUES('CN02', 'Chi Nhanh 2', 'Dan Chu')
 GO
 CREATE TABLE NhanVien(
 	MaNV nchar(10) CONSTRAINT PK_NhanVien PRIMARY KEY,
@@ -70,6 +70,8 @@ CREATE TABLE ThiThu(
 	on update cascade
 );
 GO
+INSERT INTO ThiThu VALUES('TT01', 'A101', '2023-11-29', '13:00', 50, 'NV01')
+INSERT INTO ThiThu VALUES('TT02', 'B303', '2023-11-27', '7:00', 50, 'NV03')
 
 GO
 CREATE TABLE HocVien(
@@ -82,7 +84,8 @@ CREATE TABLE HocVien(
 );
 GO
 insert into HocVien values('HV02','Minh Tai', '2003-10-21', 'Nam','0326344***','so 1 VVN');
-
+insert into HocVien values('HV01','Trong Nhan', '2003-06-06', 'Nam','0789147***','Tien Giang');
+insert into HocVien values('HV03','Thu Lai', '2003-12-12', 'Nữ','1456283***','Bến Tre');
 GO
 CREATE TABLE ChiTietDK_TT(
 	MaHV nchar(10) CONSTRAINT FK_DKTT_MaHV FOREIGN KEY REFERENCES HocVien(MaHV),
@@ -92,7 +95,10 @@ CREATE TABLE ChiTietDK_TT(
 );
 GO
 insert into ChiTietDK_TT values ('HV02','TT02','2023-10-11');
-
+insert into ChiTietDK_TT values ('HV01','TT01','2023-10-23');
+insert into ChiTietDK_TT values ('HV01','TT02','2023-10-15');
+insert into ChiTietDK_TT values ('HV03','TT01','2023-09-17');
+insert into ChiTietDK_TT values ('HV03','TT02','2023-10-20');
 
 GO
 
@@ -112,13 +118,13 @@ CREATE TABLE GiangVien(
 	HoTen nvarchar(50) NOT NULL,
 	CCCD nchar(13) NOT NULL check (len(CCCD)=12),
 	SoDT nchar(11) NOT NULL check (len(SoDT)=10),
-	Luong float NOT NULL check(Luong>0)
+	Luong float
 );
 GO
-alter table GiangVien alter column Luong float null
-insert into GiangVien values('GV01', 'Nguyen Van A', '07712345****','0123456789',1000);
 
+insert into GiangVien values('GV01', 'Nguyen Van A', '07712345****','0123456789',1000);
 GO
+
 CREATE TABLE LopHoc(
 	MaLH nchar(10) CONSTRAINT PK_LopHoc PRIMARY KEY,
 	TenLH nvarchar(50) NOT NULL,
@@ -204,7 +210,7 @@ ALTER TABLE ChiTietDK_LH ADD CONSTRAINT FK_DKLH_MaLH FOREIGN KEY(MaLH)  REFERENC
 
 GO
 insert into ChiTietDK_LH values ('HV01', 'TCB01','2023-07-10');
-delete from ChiTietDK_LH where MaHV ='HV01' AND MaLH = 'TCB01'*/
+
 
 
 
@@ -250,7 +256,6 @@ END;
 GO
 
 /*Trigger kiểm tra sau khi học viên đăng kí lớp học thì thông báo chỗ còn trống, hoặc thông báo chỗ đầy*/
->>>>>>> 0cb6c430346649b0ba3c4808d06686e1548880bf
 CREATE TRIGGER TinhSoCho_ConDu
 
 ON ChiTietDK_LH
@@ -615,8 +620,28 @@ create or alter procedure ThongTinChiNhanhTheoMa
 @MaCN nchar(10)
 as 
 select * from ChiNhanh where MaCN = @MaCN
+go
 
+create view v_ThongTinLienQuanTheoMaCN
+as
+SELECT cn.MaCN, nv.MaNV, nv.HoTenNV, nv.MaQL, dbo.TaoLopHoc.MaLH
+FROM   dbo.ChiNhanh AS cn INNER JOIN
+             dbo.NhanVien AS nv ON cn.MaCN = nv.MaCN INNER JOIN
+             dbo.TaoLopHoc ON nv.MaNV = dbo.TaoLopHoc.MaQL
+go
 
+create procedure DemThongTinTheoMaCN
+@MaCN nchar(10)
+as
+begin
+    select
+		max(nv.MaQL) as MaQL,
+        max(nv.HoTenNV) as HoTenNV,
+        count(nv.MaNV) as SoLuongNhanVien,
+        count(MaLH) as SoLuongLopHoc
+    from v_ThongTinLienQuanTheoMaCN nv
+    where nv.MaCN = @MaCN
+end
 
 -- Tạo procedure thêm chi nhánh
 
@@ -721,6 +746,8 @@ as
 select TrangThai from v_LopHoc where MaLH =@MaLH
 go
 
+
+--LAI
 --tạo view hiển thị danh sách nhân viên
 CREATE VIEW vNhanVien
 AS
@@ -913,4 +940,153 @@ AS
 	SELECT MaGV, HoTen FROM GiangVien WHERE MaGV = @magv
 GO
 
-select * from triggerLog
+--PROCEDURE--NHÂN
+--Giảng viên
+--Hien thi thong tin Giang Vien
+CREATE PROC pr_HienThiTheoMaGV @MaGV nchar(10)
+AS
+	SELECT *
+	FROM GiangVien
+	WHERE @MaGV = MaGV
+GO
+
+--Them thong tin Giang Vien
+CREATE PROC pr_ThemGiangVien
+@MaGV nchar(10),
+@HoTen nvarchar(50),
+@CCCD nchar(13),
+@SoDT nchar(11),
+@Luong float
+AS
+	INSERT INTO dbo.GiangVien VALUES(@MaGV, @HoTen, @CCCD, @SoDT, @Luong)
+GO
+
+--Cap nhat thong tin Giang Vien
+CREATE PROC pr_CapNhatGiangVien
+@MaGV nchar(10),
+@HoTen nvarchar(50),
+@CCCD nchar(13),
+@SoDT nchar(11),
+@Luong float
+AS
+	UPDATE dbo.GiangVien
+	SET HoTen = @HoTen, CCCD = @CCCD, SoDT = @SoDT, Luong = @Luong
+	WHERE MaGV = @MaGV
+GO
+
+--Xoa thong tin Giang Vien
+CREATE PROC pr_XoaGiangVien @MaGV nchar(10)
+AS
+	DELETE FROM GiangVien
+	WHERE @MaGV = MaGV
+GO
+
+--Thi Thử
+--Hien thi thong tin Thi Thu
+CREATE PROC pr_HienThiTheoMaTT @MaTT nchar(10)
+AS
+	SELECT *
+	FROM ThiThu
+	WHERE @MaTT = MaTT
+GO
+
+--Them thong tin Thi Thu
+CREATE PROC pr_ThemThiThu
+@MaTT nchar(10),
+@PhongThi nchar(10),
+@NgayThi date,
+@GioThi time,
+@GioiHan int,
+@MaNV nchar(10)
+AS
+	INSERT INTO dbo.ThiThu VALUES(@MaTT, @PhongThi, @NgayThi, @GioThi, @GioiHan, @MaNV)
+GO
+
+--Cap nhat thong tin Thi Thu
+CREATE PROC pr_CapNhatThiThu
+@MaTT nchar(10),
+@PhongThi nchar(10),
+@NgayThi date,
+@GioThi time,
+@GioiHan int,
+@MaNV nchar(10)
+AS
+	UPDATE dbo.ThiThu
+	SET PhongThi = @PhongThi,
+	NgayThi = @NgayThi,
+	GioThi = @GioThi,
+	GioiHan = @GioiHan,
+	MaNV = @MaNV
+	WHERE MaTT = @MaTT
+GO
+
+--Xoa thong tin Thi Thu
+CREATE PROC pr_XoaThiThu @MaTT nchar(10)
+AS
+	DELETE FROM ThiThu
+	WHERE @MaTT = MaTT
+GO
+
+--ChiTietDK_TT
+--Hien thi thong tin ChiTietDK_TT
+CREATE PROC pr_HienThiTheoMaHV_TT @MaHV nchar(10), @MaTT nchar(10)
+AS
+	SELECT *
+	FROM ChiTietDK_TT
+	WHERE @MaHV = MaHV and @MaTT = MaTT
+GO
+
+--Them thong tin ChiTietDK_TT
+CREATE PROC pr_ThemChiTietDK_TT
+@MaHV nchar(10),
+@MaTT nchar(10),
+@NgayDK date
+AS
+	INSERT INTO dbo.ChiTietDK_TT VALUES(@MaHV, @MaTT, @NgayDK)
+GO
+
+--Cap nhat thong tin ChiTietDK_TT
+CREATE PROC pr_CapNhatChiTietDK_TT
+@MaHV nchar(10),
+@MaTT nchar(10),
+@NgayDK date
+AS
+	UPDATE dbo.ChiTietDK_TT
+	SET NgayDK = @NgayDK
+	WHERE @MaHV = MaHV and @MaTT = MaTT
+GO
+
+--Xoa thong tin ChiTietDK_TT
+CREATE PROC pr_XoaChiTietDK_TT @MaHV nchar(10), @MaTT nchar(10)
+AS
+	DELETE FROM ChiTietDK_TT
+	WHERE @MaHV = MaHV and @MaTT = MaTT
+GO
+
+--Hien Thi Hoc Vien da DK_TT Theo MaTT
+CREATE PROC pr_HienThiHocVienDK_TT @MaTT nchar(10)
+AS
+	SELECT hv.MaHV, hv.HoTenHV, hv.GioiTinh, hv.NgaySinh, hv.SoDT
+	FROM HocVien hv inner join (SELECT distinct MaHV, MaTT FROM ChiTietDK_TT) Q on hv.MaHV=Q.MaHV
+	WHERE @MaTT = Q.MaTT
+GO
+
+--VIEW--NHÂN
+--Xem thông tin giảng viên
+CREATE VIEW v_GiangVien AS
+SELECT *
+FROM GiangVien
+GO
+
+--Xem thông tin thi thử
+CREATE VIEW v_ThiThu AS
+SELECT *
+FROM ThiThu
+GO
+
+--Xem thông tin Chi Tiết DK_TT
+CREATE VIEW v_ChiTietDK_TT AS
+SELECT *
+FROM ChiTietDK_TT
+GO
+

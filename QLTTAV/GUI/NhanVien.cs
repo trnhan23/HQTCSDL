@@ -29,7 +29,7 @@ namespace GUI
         {
             SqlConnection conn = SQLConnectionData.Connect();
             conn.Open();
-            SqlCommand cmd = new SqlCommand("select * from NhanVien", conn);
+            SqlCommand cmd = new SqlCommand("select * from vNhanVien", conn);
 
             SqlDataReader reader = cmd.ExecuteReader();
             lvNhanVien.Items.Clear();
@@ -216,6 +216,49 @@ namespace GUI
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void btnTimKiem_Click(object sender, EventArgs e)
+        {
+            SqlConnection conn = SQLConnectionData.Connect();
+            conn.Open();
+
+            if (txtTimKiem.Text == "")
+            {
+                HienThiThongTinNhanVien();
+            }
+            else
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "HienThiTheoMaNV";
+                cmd.Connection = conn;
+                SqlParameter para = new SqlParameter("@manv", SqlDbType.Char);
+                para.Value = txtTimKiem.Text;
+                cmd.Parameters.Add(para);
+                SqlDataReader reader = cmd.ExecuteReader();
+                lvNhanVien.Items.Clear();
+                while (reader.Read())
+                {
+                    ListViewItem item = new ListViewItem(reader.GetString(0));
+                    item.SubItems.Add(reader.GetString(1));
+                    item.SubItems.Add(reader.GetString(2));
+                    item.SubItems.Add(reader.GetString(3));
+                    item.SubItems.Add(reader.GetDouble(4).ToString());
+                    item.SubItems.Add(reader.GetString(5));
+                    if (!reader.IsDBNull(6))
+                    {
+                        item.SubItems.Add(reader.GetString(6));
+                    }
+                    else
+                    {
+                        item.SubItems.Add("");
+                    }
+                    item.SubItems.Add(reader.GetString(7));
+                    lvNhanVien.Items.Add(item);
+                }
+                reader.Close();
+            } 
         }
     }
 }
