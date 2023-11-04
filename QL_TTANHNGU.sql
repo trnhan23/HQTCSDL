@@ -232,32 +232,32 @@ AS
 GO
 
 --Them thong tin Thi Thu
-CREATE PROC pr_ThemThiThu
+CREATE or alter PROC pr_ThemThiThu
 @MaTT nchar(10),
 @PhongThi nchar(10),
 @NgayThi date,
 @GioThi time,
-@GioiHan int,
-@MaNV nchar(10)
+@MaNV nchar(10),
+@GioiHan int
 AS
-	INSERT INTO dbo.ThiThu VALUES(@MaTT, @PhongThi, @NgayThi, @GioThi, @GioiHan, @MaNV)
+	INSERT INTO dbo.ThiThu VALUES(@MaTT, @PhongThi, @NgayThi, @GioThi, @MaNV,@GioiHan)
 GO
 
 --Cap nhat thong tin Thi Thu
-CREATE PROC pr_CapNhatThiThu
+CREATE or alter PROC pr_CapNhatThiThu
 @MaTT nchar(10),
 @PhongThi nchar(10),
 @NgayThi date,
 @GioThi time,
-@GioiHan int,
-@MaNV nchar(10)
+@MaNV nchar(10),
+@GioiHan int
 AS
 	UPDATE dbo.ThiThu
 	SET PhongThi = @PhongThi,
 	NgayThi = @NgayThi,
 	GioThi = @GioThi,
-	GioiHan = @GioiHan,
-	MaNV = @MaNV
+	MaNV = @MaNV,
+	GioiHan = @GioiHan
 	WHERE MaTT = @MaTT
 GO
 
@@ -320,7 +320,7 @@ FROM GiangVien
 GO
 
 --Xem thông tin thi thử
-CREATE VIEW v_ThiThu AS
+CREATE or alter VIEW v_ThiThu AS
 SELECT *
 FROM ThiThu
 GO
