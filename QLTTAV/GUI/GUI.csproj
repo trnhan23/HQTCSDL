@@ -55,12 +55,6 @@
     <Compile Include="ChiNhanh.Designer.cs">
       <DependentUpon>ChiNhanh.cs</DependentUpon>
     </Compile>
-    <Compile Include="ChiTietDK_TT.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ChiTietDK_TT.Designer.cs">
-      <DependentUpon>ChiTietDK_TT.cs</DependentUpon>
-    </Compile>
     <Compile Include="ChiTiet_CaDay.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,6 +66,12 @@
     </Compile>
     <Compile Include="CongViec.designer.cs">
       <DependentUpon>CongViec.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FChiTietDK_TT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FChiTietDK_TT.Designer.cs">
+      <DependentUpon>FChiTietDK_TT.cs</DependentUpon>
     </Compile>
     <Compile Include="GiangVien.cs">
       <SubType>Form</SubType>
@@ -114,14 +114,14 @@
     <EmbeddedResource Include="ChiNhanh.resx">
       <DependentUpon>ChiNhanh.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ChiTietDK_TT.resx">
-      <DependentUpon>ChiTietDK_TT.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="ChiTiet_CaDay.resx">
       <DependentUpon>ChiTiet_CaDay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CongViec.resx">
       <DependentUpon>CongViec.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FChiTietDK_TT.resx">
+      <DependentUpon>FChiTietDK_TT.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GiangVien.resx">
       <DependentUpon>GiangVien.cs</DependentUpon>

@@ -50,7 +50,6 @@ D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\bin\Debug\DAL.pdb
 D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\bin\Debug\DTO.pdb
 D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.csproj.AssemblyReference.cache
 D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.ChiNhanh.resources
-D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.ChiTietDK_TT.resources
 D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.Home.resources
 D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.KetQua.resources
 D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.LopHoc.resources
@@ -65,3 +64,4 @@ D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.CongViec.resource
 D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.GiangVien.resources
 D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.TaoLopHoc.resources
 D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.ThiThu.resources
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.FChiTietDK_TT.resources

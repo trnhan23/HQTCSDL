@@ -165,13 +165,19 @@ namespace GUI
 
         private void button5_Click(object sender, EventArgs e)
         {
+            OpenChildForm(new ThiThu());
+            label_nameButton.Text = btnThiThu.Text;
             showSubMenu(panelThiThu);
-           
-
+        }
+        private void btnThiThu_Click(object sender, EventArgs e)
+        {
+            hideSubMenu();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
+            OpenChildForm(new FChiTietDK_TT());
+            label_nameButton.Text = btnChiTietDKTT.Text;
             hideSubMenu();
         }
 
@@ -197,6 +203,8 @@ namespace GUI
 
         private void button10_Click(object sender, EventArgs e)
         {
+            OpenChildForm(new GiangVien());
+            label_nameButton.Text = btnGiangVien.Text;
             showSubMenu(panelGiangVien);
         }
 
@@ -214,5 +222,7 @@ namespace GUI
         {
 
         }
+
+        
     }
 }

@@ -45,9 +45,17 @@ namespace GUI
                     TimeSpan GioThi = reader.GetTimeSpan(3);
                     lvi.SubItems.Add(GioThi.ToString());
                     
-                    int GioiHan = reader.GetInt32(4);
-                    lvi.SubItems.Add(GioiHan+"");
-                    lvi.SubItems.Add(reader.GetString(5));
+                   
+                    lvi.SubItems.Add(reader.GetString(4));
+                    if (!reader.IsDBNull(5))
+                    {
+                        lvi.SubItems.Add(reader.GetInt32(5)+"");
+                    }
+                    else
+                    {
+                        lvi.SubItems.Add("");
+                    }
+                   
                     livThiThu.Items.Add(lvi);
                 }
                 reader.Close();
@@ -93,8 +101,16 @@ namespace GUI
                     txtPhongThi.Text = reader.GetString(1);
                     txtNgayThi.Text = reader.GetDateTime(2).ToString("dd-MM-yyyy");
                     txtGioThi.Text = reader.GetTimeSpan(3).ToString();
-                    txtGioiHan.Text = reader.GetInt32(4) + "";
-                    txtMaNV.Text = reader.GetString(5);
+                    txtMaNV.Text = reader.GetString(4);
+                    if (!reader.IsDBNull(5))
+                    {
+                        txtGioiHan.Text = reader.GetInt32(5) + "";
+                    }
+                    else
+                    {
+                        txtGioiHan.Text = "";
+                    }
+                   
                 }
 
                 conn.Close();
@@ -238,6 +254,36 @@ namespace GUI
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

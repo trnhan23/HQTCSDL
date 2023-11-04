@@ -31,36 +31,36 @@
             this.panel_Left = new System.Windows.Forms.Panel();
             this.panelGiangVien = new System.Windows.Forms.Panel();
             this.button11 = new System.Windows.Forms.Button();
+            this.btnGiangVien = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
             this.panelNhanVien = new System.Windows.Forms.Panel();
             this.button8 = new System.Windows.Forms.Button();
+            this.btnNhanVien = new System.Windows.Forms.Button();
             this.panelHocVien = new System.Windows.Forms.Panel();
             this.button7 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
+            this.btnHocVien = new System.Windows.Forms.Button();
             this.panelThiThu = new System.Windows.Forms.Panel();
             this.btnKetQuaTT = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnChiTietDKTT = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.panel_Top = new System.Windows.Forms.Panel();
-            this.label_nameButton = new System.Windows.Forms.Label();
-            this.panel_Body = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.btnGiangVien = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
-            this.btnNhanVien = new System.Windows.Forms.Button();
-            this.btnHocVien = new System.Windows.Forms.Button();
             this.btnThiThu = new System.Windows.Forms.Button();
             this.btnLopHoc = new System.Windows.Forms.Button();
             this.btnChiNhanh = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.panel_Top = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label_nameButton = new System.Windows.Forms.Label();
+            this.panel_Body = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.panel_Left.SuspendLayout();
             this.panelGiangVien.SuspendLayout();
             this.panelNhanVien.SuspendLayout();
             this.panelHocVien.SuspendLayout();
             this.panelThiThu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel_Top.SuspendLayout();
             this.panel_Body.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel_Left
@@ -114,6 +114,49 @@
             this.button11.UseVisualStyleBackColor = true;
             this.button11.Click += new System.EventHandler(this.button11_Click);
             // 
+            // btnGiangVien
+            // 
+            this.btnGiangVien.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGiangVien.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnGiangVien.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.btnGiangVien.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
+            this.btnGiangVien.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnGiangVien.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGiangVien.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGiangVien.ForeColor = System.Drawing.Color.White;
+            this.btnGiangVien.Image = global::GUI.Properties.Resources.chevron_down_regular_24;
+            this.btnGiangVien.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnGiangVien.Location = new System.Drawing.Point(0, 748);
+            this.btnGiangVien.Name = "btnGiangVien";
+            this.btnGiangVien.Size = new System.Drawing.Size(259, 64);
+            this.btnGiangVien.TabIndex = 19;
+            this.btnGiangVien.Text = "Giảng Viên";
+            this.btnGiangVien.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnGiangVien.UseVisualStyleBackColor = true;
+            this.btnGiangVien.Click += new System.EventHandler(this.button10_Click);
+            // 
+            // button9
+            // 
+            this.button9.BackColor = System.Drawing.Color.Silver;
+            this.button9.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button9.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button9.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.button9.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
+            this.button9.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button9.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button9.ForeColor = System.Drawing.Color.White;
+            this.button9.Image = global::GUI.Properties.Resources.user_regular_24;
+            this.button9.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button9.Location = new System.Drawing.Point(0, 684);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(259, 64);
+            this.button9.TabIndex = 18;
+            this.button9.Text = "Tạo lớp học";
+            this.button9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button9.UseVisualStyleBackColor = false;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
             // panelNhanVien
             // 
             this.panelNhanVien.Controls.Add(this.button8);
@@ -142,6 +185,27 @@
             this.button8.Text = "Công Việc";
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // btnNhanVien
+            // 
+            this.btnNhanVien.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnNhanVien.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnNhanVien.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.btnNhanVien.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
+            this.btnNhanVien.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnNhanVien.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNhanVien.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNhanVien.ForeColor = System.Drawing.Color.White;
+            this.btnNhanVien.Image = global::GUI.Properties.Resources.chevron_down_regular_24;
+            this.btnNhanVien.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnNhanVien.Location = new System.Drawing.Point(0, 564);
+            this.btnNhanVien.Name = "btnNhanVien";
+            this.btnNhanVien.Size = new System.Drawing.Size(259, 64);
+            this.btnNhanVien.TabIndex = 16;
+            this.btnNhanVien.Text = "Nhân Viên";
+            this.btnNhanVien.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnNhanVien.UseVisualStyleBackColor = true;
+            this.btnNhanVien.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // panelHocVien
             // 
@@ -191,10 +255,32 @@
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
+            // btnHocVien
+            // 
+            this.btnHocVien.BackColor = System.Drawing.Color.Silver;
+            this.btnHocVien.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnHocVien.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnHocVien.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.btnHocVien.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
+            this.btnHocVien.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnHocVien.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHocVien.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHocVien.ForeColor = System.Drawing.Color.White;
+            this.btnHocVien.Image = global::GUI.Properties.Resources.chevron_down_regular_24;
+            this.btnHocVien.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnHocVien.Location = new System.Drawing.Point(0, 391);
+            this.btnHocVien.Name = "btnHocVien";
+            this.btnHocVien.Size = new System.Drawing.Size(259, 64);
+            this.btnHocVien.TabIndex = 14;
+            this.btnHocVien.Text = "Học Viên";
+            this.btnHocVien.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnHocVien.UseVisualStyleBackColor = false;
+            this.btnHocVien.Click += new System.EventHandler(this.button4_Click);
+            // 
             // panelThiThu
             // 
             this.panelThiThu.Controls.Add(this.btnKetQuaTT);
-            this.panelThiThu.Controls.Add(this.button3);
+            this.panelThiThu.Controls.Add(this.btnChiTietDKTT);
             this.panelThiThu.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelThiThu.Location = new System.Drawing.Point(0, 281);
             this.panelThiThu.Name = "panelThiThu";
@@ -220,24 +306,24 @@
             this.btnKetQuaTT.UseVisualStyleBackColor = true;
             this.btnKetQuaTT.Click += new System.EventHandler(this.btnKetQuaTT_Click_1);
             // 
-            // button3
+            // btnChiTietDKTT
             // 
-            this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.button3.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
-            this.button3.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
-            this.button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Century Gothic", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)), true);
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button3.Location = new System.Drawing.Point(0, 56);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(259, 54);
-            this.button3.TabIndex = 11;
-            this.button3.Text = "Đăng Ký Thi Thử";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.btnChiTietDKTT.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnChiTietDKTT.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnChiTietDKTT.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.btnChiTietDKTT.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
+            this.btnChiTietDKTT.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnChiTietDKTT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnChiTietDKTT.Font = new System.Drawing.Font("Century Gothic", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)), true);
+            this.btnChiTietDKTT.ForeColor = System.Drawing.Color.White;
+            this.btnChiTietDKTT.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnChiTietDKTT.Location = new System.Drawing.Point(0, 56);
+            this.btnChiTietDKTT.Name = "btnChiTietDKTT";
+            this.btnChiTietDKTT.Size = new System.Drawing.Size(259, 54);
+            this.btnChiTietDKTT.TabIndex = 11;
+            this.btnChiTietDKTT.Text = "Đăng Ký Thi Thử";
+            this.btnChiTietDKTT.UseVisualStyleBackColor = true;
+            this.btnChiTietDKTT.Click += new System.EventHandler(this.button3_Click);
             // 
             // label1
             // 
@@ -254,139 +340,6 @@
             this.label1.TabIndex = 9;
             this.label1.Text = "ADMIN";
             this.label1.Click += new System.EventHandler(this.label1_Click_1);
-            // 
-            // panel_Top
-            // 
-            this.panel_Top.BackColor = System.Drawing.SystemColors.GrayText;
-            this.panel_Top.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel_Top.Controls.Add(this.button1);
-            this.panel_Top.Controls.Add(this.label_nameButton);
-            this.panel_Top.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel_Top.Location = new System.Drawing.Point(259, 0);
-            this.panel_Top.Name = "panel_Top";
-            this.panel_Top.Size = new System.Drawing.Size(968, 60);
-            this.panel_Top.TabIndex = 1;
-            // 
-            // label_nameButton
-            // 
-            this.label_nameButton.AutoSize = true;
-            this.label_nameButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label_nameButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_nameButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label_nameButton.Location = new System.Drawing.Point(3, 8);
-            this.label_nameButton.Name = "label_nameButton";
-            this.label_nameButton.Size = new System.Drawing.Size(121, 29);
-            this.label_nameButton.TabIndex = 0;
-            this.label_nameButton.Text = "Trang chủ";
-            this.label_nameButton.Click += new System.EventHandler(this.label2_Click);
-            // 
-            // panel_Body
-            // 
-            this.panel_Body.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel_Body.Controls.Add(this.label2);
-            this.panel_Body.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel_Body.Location = new System.Drawing.Point(259, 60);
-            this.panel_Body.Name = "panel_Body";
-            this.panel_Body.Size = new System.Drawing.Size(968, 890);
-            this.panel_Body.TabIndex = 2;
-            this.panel_Body.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_Body_Paint);
-            // 
-            // button1
-            // 
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Image = global::GUI.Properties.Resources.log_out_regular_24;
-            this.button1.Location = new System.Drawing.Point(899, 6);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(45, 31);
-            this.button1.TabIndex = 0;
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // btnGiangVien
-            // 
-            this.btnGiangVien.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnGiangVien.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnGiangVien.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
-            this.btnGiangVien.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
-            this.btnGiangVien.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnGiangVien.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGiangVien.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGiangVien.ForeColor = System.Drawing.Color.White;
-            this.btnGiangVien.Image = global::GUI.Properties.Resources.chevron_down_regular_24;
-            this.btnGiangVien.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnGiangVien.Location = new System.Drawing.Point(0, 748);
-            this.btnGiangVien.Name = "btnGiangVien";
-            this.btnGiangVien.Size = new System.Drawing.Size(259, 64);
-            this.btnGiangVien.TabIndex = 19;
-            this.btnGiangVien.Text = "Giảng Viên";
-            this.btnGiangVien.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGiangVien.UseVisualStyleBackColor = true;
-            this.btnGiangVien.Click += new System.EventHandler(this.button10_Click);
-            // 
-            // button9
-            // 
-            this.button9.BackColor = System.Drawing.Color.Silver;
-            this.button9.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button9.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button9.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
-            this.button9.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
-            this.button9.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button9.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button9.ForeColor = System.Drawing.Color.White;
-            this.button9.Image = global::GUI.Properties.Resources.user_regular_24;
-            this.button9.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button9.Location = new System.Drawing.Point(0, 684);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(259, 64);
-            this.button9.TabIndex = 18;
-            this.button9.Text = "Tạo lớp học";
-            this.button9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button9.UseVisualStyleBackColor = false;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
-            // 
-            // btnNhanVien
-            // 
-            this.btnNhanVien.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnNhanVien.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnNhanVien.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
-            this.btnNhanVien.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
-            this.btnNhanVien.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnNhanVien.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNhanVien.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNhanVien.ForeColor = System.Drawing.Color.White;
-            this.btnNhanVien.Image = global::GUI.Properties.Resources.chevron_down_regular_24;
-            this.btnNhanVien.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnNhanVien.Location = new System.Drawing.Point(0, 564);
-            this.btnNhanVien.Name = "btnNhanVien";
-            this.btnNhanVien.Size = new System.Drawing.Size(259, 64);
-            this.btnNhanVien.TabIndex = 16;
-            this.btnNhanVien.Text = "Nhân Viên";
-            this.btnNhanVien.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnNhanVien.UseVisualStyleBackColor = true;
-            this.btnNhanVien.Click += new System.EventHandler(this.button2_Click_1);
-            // 
-            // btnHocVien
-            // 
-            this.btnHocVien.BackColor = System.Drawing.Color.Silver;
-            this.btnHocVien.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnHocVien.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnHocVien.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
-            this.btnHocVien.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
-            this.btnHocVien.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnHocVien.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnHocVien.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHocVien.ForeColor = System.Drawing.Color.White;
-            this.btnHocVien.Image = global::GUI.Properties.Resources.chevron_down_regular_24;
-            this.btnHocVien.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnHocVien.Location = new System.Drawing.Point(0, 391);
-            this.btnHocVien.Name = "btnHocVien";
-            this.btnHocVien.Size = new System.Drawing.Size(259, 64);
-            this.btnHocVien.TabIndex = 14;
-            this.btnHocVien.Text = "Học Viên";
-            this.btnHocVien.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnHocVien.UseVisualStyleBackColor = false;
-            this.btnHocVien.Click += new System.EventHandler(this.button4_Click);
             // 
             // btnThiThu
             // 
@@ -467,21 +420,70 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
+            // panel_Top
+            // 
+            this.panel_Top.BackColor = System.Drawing.SystemColors.GrayText;
+            this.panel_Top.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel_Top.Controls.Add(this.button1);
+            this.panel_Top.Controls.Add(this.label_nameButton);
+            this.panel_Top.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel_Top.Location = new System.Drawing.Point(259, 0);
+            this.panel_Top.Name = "panel_Top";
+            this.panel_Top.Size = new System.Drawing.Size(968, 60);
+            this.panel_Top.TabIndex = 1;
+            // 
+            // button1
+            // 
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Image = global::GUI.Properties.Resources.log_out_regular_24;
+            this.button1.Location = new System.Drawing.Point(899, 6);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(45, 31);
+            this.button1.TabIndex = 0;
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // label_nameButton
+            // 
+            this.label_nameButton.AutoSize = true;
+            this.label_nameButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label_nameButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_nameButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label_nameButton.Location = new System.Drawing.Point(3, 8);
+            this.label_nameButton.Name = "label_nameButton";
+            this.label_nameButton.Size = new System.Drawing.Size(121, 29);
+            this.label_nameButton.TabIndex = 0;
+            this.label_nameButton.Text = "Trang chủ";
+            this.label_nameButton.Click += new System.EventHandler(this.label2_Click);
+            // 
+            // panel_Body
+            // 
+            this.panel_Body.AutoScroll = true;
+            this.panel_Body.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel_Body.Controls.Add(this.label2);
+            this.panel_Body.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel_Body.Location = new System.Drawing.Point(259, 60);
+            this.panel_Body.Name = "panel_Body";
+            this.panel_Body.Size = new System.Drawing.Size(968, 890);
+            this.panel_Body.TabIndex = 2;
+            this.panel_Body.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_Body_Paint);
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.IndianRed;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(83, 210);
+            this.label2.Location = new System.Drawing.Point(34, 250);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(833, 46);
+            this.label2.Size = new System.Drawing.Size(910, 46);
             this.label2.TabIndex = 0;
-            this.label2.Text = "Chào mừng đến với trung tâm quản lý anh văn";
+            this.label2.Text = "Chào mừng đến với app quản lý trung tâm anh văn";
             // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoScroll = true;
             this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ClientSize = new System.Drawing.Size(1227, 950);
@@ -497,11 +499,11 @@
             this.panelNhanVien.ResumeLayout(false);
             this.panelHocVien.ResumeLayout(false);
             this.panelThiThu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel_Top.ResumeLayout(false);
             this.panel_Top.PerformLayout();
             this.panel_Body.ResumeLayout(false);
             this.panel_Body.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -520,7 +522,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panelThiThu;
         private System.Windows.Forms.Button btnKetQuaTT;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnChiTietDKTT;
         private System.Windows.Forms.Panel panelHocVien;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button btnHocVien;

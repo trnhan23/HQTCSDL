@@ -41,6 +41,7 @@ GO
 alter table NhanVien 
 add constraint FK_NhanVien_MaQL
 foreign key (MaQL) references NhanVien(MaNV)
+
 GO
 INSERT INTO NhanVien VALUES('NV01', 'Nguyen Van A', '82456157****', '0915161616', 150, 'CN01', 'CV01', null)
 INSERT INTO NhanVien VALUES('NV02', 'Tran Thi B',   '82455557****', '0915797979', 250, 'CN01', 'CV01', 'NV01')
@@ -58,9 +59,11 @@ CREATE TABLE ThiThu(
 	on delete set null
 	on update cascade
 );
+
 GO
 INSERT INTO ThiThu VALUES('TT01', 'A101', '2023-10-29', '13:00', 50, 'NV01')
 INSERT INTO ThiThu VALUES('TT02', 'B303', '2023-10-27', '7:00', 50, 'NV03')
+
 GO
 
 GO

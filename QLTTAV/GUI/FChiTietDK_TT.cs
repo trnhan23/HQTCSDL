@@ -14,9 +14,9 @@ using System.Windows.Forms;
 
 namespace GUI
 {
-    public partial class ChiTietDK_TT : Form
+    public partial class FChiTietDK_TT : Form
     {
-        public ChiTietDK_TT()
+        public FChiTietDK_TT()
         {
             InitializeComponent();
         }
@@ -42,7 +42,7 @@ namespace GUI
                     lvi.SubItems.Add(reader.GetString(1));
                     DateTime NgayDK = reader.GetDateTime(2);
                     lvi.SubItems.Add(NgayDK.ToString("dd-MM-yyyy"));
-                    
+
                     livChiTietDK_TT.Items.Add(lvi);
                 }
                 reader.Close();
@@ -52,7 +52,7 @@ namespace GUI
             {
                 MessageBox.Show(ex.Message);
             }
-}
+        }
 
         private void livChiTietDK_TT_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -65,7 +65,7 @@ namespace GUI
             String MaTT = lvi.SubItems[1].Text;
             lbMaThiThu.Text = MaTT;
 
-            HienThiTheoMaHV_TT(MaHV,MaTT);
+            HienThiTheoMaHV_TT(MaHV, MaTT);
             HienThiDanhSachHocVienDK_TT(MaTT);
         }
 
@@ -155,7 +155,7 @@ namespace GUI
 
                 cmd.Parameters.Add("@MaHV", SqlDbType.NChar).Value = txtMaHV.Text;
                 cmd.Parameters.Add("@MaTT", SqlDbType.NChar).Value = txtMaTT.Text;
-                
+
                 DateTime ngayDK;
                 if (DateTime.TryParseExact(txtNgayDK.Text, "dd-MM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out ngayDK))
                 {
@@ -163,10 +163,10 @@ namespace GUI
                 }
                 else
                 {
-                    MessageBox.Show("Ngày thi không hợp lệ.");
+                    MessageBox.Show("Ngày đăng kí không hợp lệ.");
                     return;
                 }
-                
+
                 int n = cmd.ExecuteNonQuery();
                 if (n > 0)
                 {
@@ -183,7 +183,7 @@ namespace GUI
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ngày đăng ký thi thử không hợp lệ!!!");
+                MessageBox.Show("Thông tin không hợp lệ!!!");
             }
         }
 
@@ -268,7 +268,7 @@ namespace GUI
                 if (n > 0)
                 {
                     HienThiThongTinChiTietDK_TT();
-                    
+
                     txtMaHV.Clear();
                     txtMaTT.Clear();
                     txtNgayDK.Clear();
