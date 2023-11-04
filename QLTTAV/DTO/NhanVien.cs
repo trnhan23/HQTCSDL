@@ -8,11 +8,12 @@ namespace DTO
 {
     public class NhanVien
     {
+        public NhanVien() { }
         public string MaNV {  get; set; }
         public string HoTenNV {  get; set; }
         public string CCCD { get; set; }
         public string SoDT { get; set; }
-        public float Luong { get; set; }
+        public double Luong { get; set; }
         public string MaCN { get; set; }
         public string MaQL { get; set; }
         public string MaCV { get; set; }

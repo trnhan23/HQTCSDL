@@ -13,7 +13,7 @@ namespace DAL
         public static SqlConnection Connect()
         {
             
-            string strCon = @"Data Source=ADMIN-PC;Initial Catalog=QL_TTANHNGU;User ID=sa; pwd=Nguyentam_@1984";
+            string strCon = @"Data Source=LAPTOP-NJI5KN3O;Initial Catalog=QL_TTANHNGU;User ID=sa; pwd = ThuLai*1212";
             SqlConnection conn = new SqlConnection(strCon);
             return conn;
         }
