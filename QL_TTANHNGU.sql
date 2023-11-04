@@ -914,3 +914,30 @@ AS
 GO
 
 select * from triggerLog
+
+-- Tìm kiếm lớp học theo mã lớp hoặc theo tên lớp hoặc theo cả 2
+CREATE or ALTER PROCEDURE TimKiemLopHoc
+    @MaLH nchar(10) = NULL,
+    @TenLH nvarchar(50) = NULL
+AS
+BEGIN
+    SELECT *
+    FROM LopHoc
+    WHERE (@MaLH IS NULL OR MaLH = @MaLH)
+        AND (@TenLH IS NULL OR TenLH LIKE '%' + @TenLH + '%');
+END;
+
+exec TimKiemLopHoc @TenLH = 'Can';
+-- Tìm kiếm kết quả thi thử theo mã học viên hoặc mã thi thử hoặc theo cả 2
+CREATE or ALTER PROCEDURE TimKetQuaThi
+    @MaHV nchar(10) = NULL,
+    @MaTT nchar(10) = NULL
+AS
+BEGIN
+    SELECT *
+    FROM KetQua
+    WHERE (@MaHV IS NULL OR MaHV = @MaHV)
+        AND (@MaTT IS NULL OR MaTT = @MaTT);
+END;
+
+exec TimKetQuaThi @MaHV = 'HV02';
