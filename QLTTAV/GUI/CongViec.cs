@@ -51,41 +51,6 @@ namespace GUI
             ListViewItem liv = lvCongViec.SelectedItems[0];
             String macv = liv.SubItems[0].Text;
             HienThiTheoMaCV(macv);
-            HienThiThongTinNhanVien(macv);
-        }
-
-        private void HienThiThongTinNhanVien(string macv)
-        {
-            SqlConnection conn = SQLConnectionData.Connect();
-            conn.Open();
-
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandText = "HienThiNhanVienTheoMaCV";
-            cmd.Connection = conn;
-
-            cmd.Parameters.Add("@macv", SqlDbType.Char).Value = macv;
-            SqlDataReader reader = cmd.ExecuteReader();
-            lvNhanVien.Items.Clear();
-            while (reader.Read())
-            {
-                ListViewItem item = new ListViewItem(reader.GetString(0));
-                item.SubItems.Add(reader.GetString(1));
-                item.SubItems.Add(reader.GetString(2));
-                item.SubItems.Add(reader.GetString(3));
-                item.SubItems.Add(reader.GetDouble(4).ToString());
-                item.SubItems.Add(reader.GetString(5));
-                if (!reader.IsDBNull(6))
-                {
-                    item.SubItems.Add(reader.GetString(6));
-                }
-                else
-                {
-                    item.SubItems.Add("");
-                }
-                lvNhanVien.Items.Add(item);
-            }
-            reader.Close();
         }
 
         private void HienThiTheoMaCV(string macv)
@@ -112,96 +77,72 @@ namespace GUI
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            try
+            SqlConnection conn = SQLConnectionData.Connect();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "ThemCongViec";
+            cmd.Connection = conn;
+
+            cmd.Parameters.Add("@macv", SqlDbType.NChar).Value = txtMaCV.Text;
+            cmd.Parameters.Add("@tencv", SqlDbType.NVarChar).Value = txtTenCV.Text;
+           
+            int n = cmd.ExecuteNonQuery();
+
+            if (n > 0)
             {
-                SqlConnection conn = SQLConnectionData.Connect();
-                conn.Open();
-
-                SqlCommand cmd = new SqlCommand();
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "ThemCongViec";
-                cmd.Connection = conn;
-
-                cmd.Parameters.Add("@macv", SqlDbType.NChar).Value = txtMaCV.Text;
-                cmd.Parameters.Add("@tencv", SqlDbType.NVarChar).Value = txtTenCV.Text;
-
-                int n = cmd.ExecuteNonQuery();
-
-                if (n > 0)
-                {
-                    HienThiThongTinCongViec();
-                    MessageBox.Show("Thêm thành công");
-                }
-                else
-                {
-                    MessageBox.Show("Thêm không thành công");
-                }
+                HienThiThongTinCongViec();
+                MessageBox.Show("Thêm thành công");
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Thêm không thành công");
             }
         }
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
 
-            try
-            {
-                SqlConnection conn = SQLConnectionData.Connect();
-                conn.Open();
+            SqlConnection conn = SQLConnectionData.Connect();
+            conn.Open();
 
-                SqlCommand cmd = new SqlCommand();
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "XoaCongViec";
-                cmd.Connection = conn;
-                cmd.Parameters.Add("@macv", SqlDbType.NChar).Value = txtMaCV.Text;
-                lvNhanVien.Items.Clear();
-                int n = cmd.ExecuteNonQuery();
-                if (n > 0)
-                {
-                    HienThiThongTinCongViec();
-                    MessageBox.Show("Xóa thành công");
-                }
-            }
-            catch (Exception ex)
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "XoaCongViec";
+            cmd.Connection = conn;
+            cmd.Parameters.Add("@macv", SqlDbType.NChar).Value = txtMaCV.Text;
+            int n = cmd.ExecuteNonQuery();
+            if (n > 0)
             {
-                MessageBox.Show(ex.Message );
+                HienThiThongTinCongViec();
+                MessageBox.Show("Xóa thành công");
             }
-            
         }
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-            try
+            SqlConnection conn = SQLConnectionData.Connect();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "SuaCongViec";
+            cmd.Connection = conn;
+
+            cmd.Parameters.Add("@macv", SqlDbType.NChar).Value = txtMaCV.Text;
+            cmd.Parameters.Add("@tencv", SqlDbType.NVarChar).Value = txtTenCV.Text;
+            
+            int n = cmd.ExecuteNonQuery();
+            if (n > 0)
             {
-                SqlConnection conn = SQLConnectionData.Connect();
-                conn.Open();
-
-                SqlCommand cmd = new SqlCommand();
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "SuaCongViec";
-                cmd.Connection = conn;
-
-                cmd.Parameters.Add("@macv", SqlDbType.NChar).Value = txtMaCV.Text;
-                cmd.Parameters.Add("@tencv", SqlDbType.NVarChar).Value = txtTenCV.Text;
-
-                int n = cmd.ExecuteNonQuery();
-                if (n > 0)
-                {
-                    HienThiThongTinCongViec();
-                    MessageBox.Show("Sửa thành công");
-                }
-                else
-                {
-                    MessageBox.Show("Sửa không thành công");
-                }
+                HienThiThongTinCongViec();
+                MessageBox.Show("Sửa thành công");
             }
-            catch (Exception ex)
-            { 
-                MessageBox.Show(ex.Message );
+            else
+            {
+                MessageBox.Show("Sửa không thành công");
             }
-
         }
     }
 }

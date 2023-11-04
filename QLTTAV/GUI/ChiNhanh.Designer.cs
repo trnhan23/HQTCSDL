@@ -147,6 +147,7 @@
             this.lvChiNhanh.TabIndex = 4;
             this.lvChiNhanh.UseCompatibleStateImageBehavior = false;
             this.lvChiNhanh.View = System.Windows.Forms.View.Details;
+            this.lvChiNhanh.SelectedIndexChanged += new System.EventHandler(this.lvChiNhanh_SelectedIndexChanged);
             // 
             // columnHeader1
             // 
