@@ -293,5 +293,60 @@ namespace GUI
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void btnTimKiemLH_Click(object sender, EventArgs e)
+        {
+            TimKiemLopHoc();
+        }
+
+        private void TimKiemLopHoc()
+        {
+            try
+            {
+                SqlConnection conn = SQLConnectionData.Connect();
+                conn.Open();
+                if (txtTKMaLop.Text == "" && txtTKTenlop.Text == "")
+                {
+                    ThongTinLopHoc();
+                }
+                else
+                {
+                    SqlCommand cmd = new SqlCommand();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "TimKiemLopHoc";
+                    cmd.Connection = conn;
+
+                    if (txtTKMaLop.Text == "" && txtTKTenlop.Text != "")
+                        cmd.Parameters.Add("@TenLH", SqlDbType.NChar).Value = txtTKTenlop.Text;
+                    else if (txtTKTenlop.Text == "" && txtTKMaLop.Text != "")
+                        cmd.Parameters.Add("@MaLH", SqlDbType.NVarChar).Value = txtTKMaLop.Text;
+                    else
+                    {
+                        cmd.Parameters.Add("@MaLH", SqlDbType.NChar).Value = txtTKMaLop.Text;
+                        cmd.Parameters.Add("@TenLH", SqlDbType.NVarChar).Value = txtTKTenlop.Text;
+                    }
+
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    lvLopHoc.Items.Clear();
+                    while (reader.Read())
+                    {
+                        ListViewItem item = new ListViewItem(reader.GetString(0));
+                        item.SubItems.Add(reader.GetString(1));
+                        item.SubItems.Add(reader.GetString(2));
+                        item.SubItems.Add(reader.GetDouble(3) + "");
+                        item.SubItems.Add(reader.GetInt32(4) + "");
+                        item.SubItems.Add(reader.GetInt32(5) + "");
+                        item.SubItems.Add(reader.GetString(6));
+                        lvLopHoc.Items.Add(item);
+                    }
+                    reader.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

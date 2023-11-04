@@ -229,5 +229,57 @@ namespace GUI
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void btnTimKiemKQTT_Click(object sender, EventArgs e)
+        {
+            TimKiemKetQuaTT();
+        }
+
+        private void TimKiemKetQuaTT()
+        {
+            try
+            {
+                SqlConnection conn = SQLConnectionData.Connect();
+                conn.Open();
+                if (txtTKMaHV.Text == "" && txtTKMaTT.Text == "")
+                {
+                    KetQuaThiThu();
+                }
+                else
+                {
+                    SqlCommand cmd = new SqlCommand();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "TimKetQuaThi";
+                    cmd.Connection = conn;
+
+                    if(txtTKMaHV.Text == "" && txtTKMaTT.Text != "")
+                        cmd.Parameters.Add("@MaTT", SqlDbType.NChar).Value = txtTKMaTT.Text;
+                    else if(txtTKMaTT.Text == "" && txtTKMaHV.Text != "")
+                        cmd.Parameters.Add("@MaHV", SqlDbType.NChar).Value = txtTKMaHV.Text;
+                    else
+                    {
+                        cmd.Parameters.Add("@MaTT", SqlDbType.NChar).Value = txtTKMaTT.Text;
+                        cmd.Parameters.Add("@MaHV", SqlDbType.NChar).Value = txtTKMaHV.Text;
+                    }
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    lvKetQua.Items.Clear();
+                    while (reader.Read())
+                    {
+                        ListViewItem item = new ListViewItem(reader.GetString(0));
+                        item.SubItems.Add(reader.GetString(1));
+                        item.SubItems.Add(reader.GetInt32(2) + "");
+                        item.SubItems.Add(reader.GetInt32(3) + "");
+                        item.SubItems.Add(reader.GetInt32(4) + "");
+                        lvKetQua.Items.Add(item);
+                    }
+                   
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

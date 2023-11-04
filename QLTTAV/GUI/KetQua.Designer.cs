@@ -49,6 +49,11 @@
             this.txtDiem = new System.Windows.Forms.TextBox();
             this.btnTinhDiem = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
+            this.btnTimKiemKQTT = new System.Windows.Forms.Button();
+            this.txtTKMaHV = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtTKMaTT = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // lvKetQua
@@ -62,9 +67,9 @@
             this.lvKetQua.FullRowSelect = true;
             this.lvKetQua.GridLines = true;
             this.lvKetQua.HideSelection = false;
-            this.lvKetQua.Location = new System.Drawing.Point(12, 97);
+            this.lvKetQua.Location = new System.Drawing.Point(12, 239);
             this.lvKetQua.Name = "lvKetQua";
-            this.lvKetQua.Size = new System.Drawing.Size(515, 296);
+            this.lvKetQua.Size = new System.Drawing.Size(515, 322);
             this.lvKetQua.TabIndex = 0;
             this.lvKetQua.UseCompatibleStateImageBehavior = false;
             this.lvKetQua.View = System.Windows.Forms.View.Details;
@@ -210,7 +215,7 @@
             // 
             // btnTinhDiem
             // 
-            this.btnTinhDiem.Location = new System.Drawing.Point(642, 423);
+            this.btnTinhDiem.Location = new System.Drawing.Point(643, 423);
             this.btnTinhDiem.Name = "btnTinhDiem";
             this.btnTinhDiem.Size = new System.Drawing.Size(194, 42);
             this.btnTinhDiem.TabIndex = 23;
@@ -230,12 +235,60 @@
             this.label6.TabIndex = 24;
             this.label6.Text = "Kết Quả Thi Thử";
             // 
+            // btnTimKiemKQTT
+            // 
+            this.btnTimKiemKQTT.BackColor = System.Drawing.Color.Turquoise;
+            this.btnTimKiemKQTT.Location = new System.Drawing.Point(12, 178);
+            this.btnTimKiemKQTT.Name = "btnTimKiemKQTT";
+            this.btnTimKiemKQTT.Size = new System.Drawing.Size(115, 33);
+            this.btnTimKiemKQTT.TabIndex = 27;
+            this.btnTimKiemKQTT.Text = "Tìm Kiếm";
+            this.btnTimKiemKQTT.UseVisualStyleBackColor = false;
+            this.btnTimKiemKQTT.Click += new System.EventHandler(this.btnTimKiemKQTT_Click);
+            // 
+            // txtTKMaHV
+            // 
+            this.txtTKMaHV.Location = new System.Drawing.Point(130, 98);
+            this.txtTKMaHV.Name = "txtTKMaHV";
+            this.txtTKMaHV.Size = new System.Drawing.Size(182, 26);
+            this.txtTKMaHV.TabIndex = 26;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(16, 100);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(93, 20);
+            this.label9.TabIndex = 25;
+            this.label9.Text = "Mã học viên";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(17, 135);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(79, 20);
+            this.label7.TabIndex = 25;
+            this.label7.Text = "Mã thi thử";
+            // 
+            // txtTKMaTT
+            // 
+            this.txtTKMaTT.Location = new System.Drawing.Point(130, 130);
+            this.txtTKMaTT.Name = "txtTKMaTT";
+            this.txtTKMaTT.Size = new System.Drawing.Size(182, 26);
+            this.txtTKMaTT.TabIndex = 26;
+            // 
             // KetQua
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.ClientSize = new System.Drawing.Size(977, 645);
+            this.Controls.Add(this.btnTimKiemKQTT);
+            this.Controls.Add(this.txtTKMaTT);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.txtTKMaHV);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.btnTinhDiem);
             this.Controls.Add(this.btnXoaKQ);
@@ -284,5 +337,10 @@
         private System.Windows.Forms.TextBox txtDiem;
         private System.Windows.Forms.Button btnTinhDiem;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button btnTimKiemKQTT;
+        private System.Windows.Forms.TextBox txtTKMaHV;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtTKMaTT;
     }
 }
