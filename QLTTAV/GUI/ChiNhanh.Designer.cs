@@ -171,7 +171,6 @@
             this.columnHeader5,
             this.columnHeader6,
             this.columnHeader7});
-            this.lv_ThongTin.FullRowSelect = true;
             this.lv_ThongTin.GridLines = true;
             this.lv_ThongTin.HideSelection = false;
             this.lv_ThongTin.Location = new System.Drawing.Point(12, 368);

@@ -64,7 +64,7 @@
             this.lvKetQua.HideSelection = false;
             this.lvKetQua.Location = new System.Drawing.Point(12, 97);
             this.lvKetQua.Name = "lvKetQua";
-            this.lvKetQua.Size = new System.Drawing.Size(515, 515);
+            this.lvKetQua.Size = new System.Drawing.Size(515, 296);
             this.lvKetQua.TabIndex = 0;
             this.lvKetQua.UseCompatibleStateImageBehavior = false;
             this.lvKetQua.View = System.Windows.Forms.View.Details;
