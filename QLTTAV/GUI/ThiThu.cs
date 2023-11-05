@@ -45,8 +45,16 @@ namespace GUI
                     TimeSpan GioThi = reader.GetTimeSpan(3);
                     lvi.SubItems.Add(GioThi.ToString());
                     
-                    int GioiHan = reader.GetInt32(4);
-                    lvi.SubItems.Add(GioiHan+"");
+                   
+                    
+                    if (!reader.IsDBNull(4))
+                    {
+                        lvi.SubItems.Add(reader.GetInt32(4)+"");
+                    }
+                    else
+                    {
+                        lvi.SubItems.Add("");
+                    }
                     lvi.SubItems.Add(reader.GetString(5));
                     livThiThu.Items.Add(lvi);
                 }
@@ -93,8 +101,17 @@ namespace GUI
                     txtPhongThi.Text = reader.GetString(1);
                     txtNgayThi.Text = reader.GetDateTime(2).ToString("dd-MM-yyyy");
                     txtGioThi.Text = reader.GetTimeSpan(3).ToString();
-                    txtGioiHan.Text = reader.GetInt32(4) + "";
+                    
+                    if (!reader.IsDBNull(4))
+                    {
+                        txtGioiHan.Text = reader.GetInt32(4) + "";
+                    }
+                    else
+                    {
+                        txtGioiHan.Text = "";
+                    }
                     txtMaNV.Text = reader.GetString(5);
+
                 }
 
                 conn.Close();
@@ -238,6 +255,36 @@ namespace GUI
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

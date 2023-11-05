@@ -39,34 +39,86 @@ D:\QLTTAV\QLTTAV\GUI\bin\Debug\BLL.pdb
 D:\QLTTAV\QLTTAV\GUI\bin\Debug\DAL.pdb
 D:\QLTTAV\QLTTAV\GUI\bin\Debug\DTO.pdb
 D:\QLTTAV\QLTTAV\GUI\obj\Debug\GUI.csproj.CopyComplete
-E:\SPKT\NAM3_HK1\HQTCSDL\Test\QLTTAV\GUI\bin\Debug\GUI.exe.config
-E:\SPKT\NAM3_HK1\HQTCSDL\Test\QLTTAV\GUI\bin\Debug\GUI.exe
-E:\SPKT\NAM3_HK1\HQTCSDL\Test\QLTTAV\GUI\bin\Debug\GUI.pdb
-E:\SPKT\NAM3_HK1\HQTCSDL\Test\QLTTAV\GUI\bin\Debug\BLL.dll
-E:\SPKT\NAM3_HK1\HQTCSDL\Test\QLTTAV\GUI\bin\Debug\DAL.dll
-E:\SPKT\NAM3_HK1\HQTCSDL\Test\QLTTAV\GUI\bin\Debug\DTO.dll
-E:\SPKT\NAM3_HK1\HQTCSDL\Test\QLTTAV\GUI\bin\Debug\BLL.pdb
-E:\SPKT\NAM3_HK1\HQTCSDL\Test\QLTTAV\GUI\bin\Debug\DAL.pdb
-E:\SPKT\NAM3_HK1\HQTCSDL\Test\QLTTAV\GUI\bin\Debug\DTO.pdb
-E:\SPKT\NAM3_HK1\HQTCSDL\Test\QLTTAV\GUI\obj\Debug\GUI.csproj.AssemblyReference.cache
-E:\SPKT\NAM3_HK1\HQTCSDL\Test\QLTTAV\GUI\obj\Debug\GUI.csproj.SuggestedBindingRedirects.cache
-E:\SPKT\NAM3_HK1\HQTCSDL\Test\QLTTAV\GUI\obj\Debug\GUI.ChiNhanh.resources
-E:\SPKT\NAM3_HK1\HQTCSDL\Test\QLTTAV\GUI\obj\Debug\GUI.ChiTietDK_TT.resources
-E:\SPKT\NAM3_HK1\HQTCSDL\Test\QLTTAV\GUI\obj\Debug\GUI.ChiTiet_CaDay.resources
-E:\SPKT\NAM3_HK1\HQTCSDL\Test\QLTTAV\GUI\obj\Debug\GUI.CongViec.resources
-E:\SPKT\NAM3_HK1\HQTCSDL\Test\QLTTAV\GUI\obj\Debug\GUI.GiangVien.resources
-E:\SPKT\NAM3_HK1\HQTCSDL\Test\QLTTAV\GUI\obj\Debug\GUI.Home.resources
-E:\SPKT\NAM3_HK1\HQTCSDL\Test\QLTTAV\GUI\obj\Debug\GUI.KetQua.resources
-E:\SPKT\NAM3_HK1\HQTCSDL\Test\QLTTAV\GUI\obj\Debug\GUI.LopHoc.resources
-E:\SPKT\NAM3_HK1\HQTCSDL\Test\QLTTAV\GUI\obj\Debug\GUI.NhanVien.resources
-E:\SPKT\NAM3_HK1\HQTCSDL\Test\QLTTAV\GUI\obj\Debug\GUI.Properties.Resources.resources
-E:\SPKT\NAM3_HK1\HQTCSDL\Test\QLTTAV\GUI\obj\Debug\GUI.TaoLopHoc.resources
-E:\SPKT\NAM3_HK1\HQTCSDL\Test\QLTTAV\GUI\obj\Debug\GUI.ThiThu.resources
-E:\SPKT\NAM3_HK1\HQTCSDL\Test\QLTTAV\GUI\obj\Debug\GUI.csproj.GenerateResource.cache
-E:\SPKT\NAM3_HK1\HQTCSDL\Test\QLTTAV\GUI\obj\Debug\GUI.csproj.CoreCompileInputs.cache
-E:\SPKT\NAM3_HK1\HQTCSDL\Test\QLTTAV\GUI\obj\Debug\GUI.csproj.CopyComplete
-E:\SPKT\NAM3_HK1\HQTCSDL\Test\QLTTAV\GUI\obj\Debug\GUI.exe
-E:\SPKT\NAM3_HK1\HQTCSDL\Test\QLTTAV\GUI\obj\Debug\GUI.pdb
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\bin\Debug\GUI.exe.config
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\bin\Debug\GUI.exe
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\bin\Debug\GUI.pdb
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\bin\Debug\BLL.dll
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\bin\Debug\DAL.dll
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\bin\Debug\DTO.dll
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\bin\Debug\BLL.pdb
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\bin\Debug\DAL.pdb
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\bin\Debug\DTO.pdb
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.csproj.AssemblyReference.cache
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.ChiNhanh.resources
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.Home.resources
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.KetQua.resources
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.LopHoc.resources
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.Properties.Resources.resources
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.csproj.GenerateResource.cache
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.csproj.CoreCompileInputs.cache
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.csproj.CopyComplete
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.exe
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.pdb
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.ChiTiet_CaDay.resources
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.CongViec.resources
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.GiangVien.resources
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.TaoLopHoc.resources
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.ThiThu.resources
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.FChiTietDK_TT.resources
+D:\SPKT\NĂM 3\HK1\DBMS\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\bin\Debug\GUI.exe.config
+D:\SPKT\NĂM 3\HK1\DBMS\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\bin\Debug\GUI.exe
+D:\SPKT\NĂM 3\HK1\DBMS\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\bin\Debug\GUI.pdb
+D:\SPKT\NĂM 3\HK1\DBMS\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\bin\Debug\BLL.dll
+D:\SPKT\NĂM 3\HK1\DBMS\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\bin\Debug\DAL.dll
+D:\SPKT\NĂM 3\HK1\DBMS\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\bin\Debug\DTO.dll
+D:\SPKT\NĂM 3\HK1\DBMS\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\bin\Debug\BLL.pdb
+D:\SPKT\NĂM 3\HK1\DBMS\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\bin\Debug\DAL.pdb
+D:\SPKT\NĂM 3\HK1\DBMS\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\bin\Debug\DTO.pdb
+D:\SPKT\NĂM 3\HK1\DBMS\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.csproj.AssemblyReference.cache
+D:\SPKT\NĂM 3\HK1\DBMS\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.ChiNhanh.resources
+D:\SPKT\NĂM 3\HK1\DBMS\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.FChiTietDK_TT.resources
+D:\SPKT\NĂM 3\HK1\DBMS\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.GiangVien.resources
+D:\SPKT\NĂM 3\HK1\DBMS\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.Home.resources
+D:\SPKT\NĂM 3\HK1\DBMS\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.KetQua.resources
+D:\SPKT\NĂM 3\HK1\DBMS\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.LopHoc.resources
+D:\SPKT\NĂM 3\HK1\DBMS\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.Properties.Resources.resources
+D:\SPKT\NĂM 3\HK1\DBMS\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.ThiThu.resources
+D:\SPKT\NĂM 3\HK1\DBMS\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.csproj.GenerateResource.cache
+D:\SPKT\NĂM 3\HK1\DBMS\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.csproj.CoreCompileInputs.cache
+D:\SPKT\NĂM 3\HK1\DBMS\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.csproj.CopyComplete
+D:\SPKT\NĂM 3\HK1\DBMS\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.exe
+D:\SPKT\NĂM 3\HK1\DBMS\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.pdb
+D:\SPKT\NĂM 3\HK1\DBMS\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.ChiTiet_CaDay.resources
+D:\SPKT\NĂM 3\HK1\DBMS\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.CongViec.resources
+D:\SPKT\NĂM 3\HK1\DBMS\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.NhanVien.resources
+D:\SPKT\NĂM 3\HK1\DBMS\Đồ án cuối kỳ\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.TaoLopHoc.resources
+D:\SPKT\NĂM 3\HK1\DBMS\DOANCUOIKY\HQTCSDL\QLTTAV\GUI\bin\Debug\GUI.exe.config
+D:\SPKT\NĂM 3\HK1\DBMS\DOANCUOIKY\HQTCSDL\QLTTAV\GUI\bin\Debug\GUI.exe
+D:\SPKT\NĂM 3\HK1\DBMS\DOANCUOIKY\HQTCSDL\QLTTAV\GUI\bin\Debug\GUI.pdb
+D:\SPKT\NĂM 3\HK1\DBMS\DOANCUOIKY\HQTCSDL\QLTTAV\GUI\bin\Debug\BLL.dll
+D:\SPKT\NĂM 3\HK1\DBMS\DOANCUOIKY\HQTCSDL\QLTTAV\GUI\bin\Debug\DAL.dll
+D:\SPKT\NĂM 3\HK1\DBMS\DOANCUOIKY\HQTCSDL\QLTTAV\GUI\bin\Debug\DTO.dll
+D:\SPKT\NĂM 3\HK1\DBMS\DOANCUOIKY\HQTCSDL\QLTTAV\GUI\bin\Debug\BLL.pdb
+D:\SPKT\NĂM 3\HK1\DBMS\DOANCUOIKY\HQTCSDL\QLTTAV\GUI\bin\Debug\DAL.pdb
+D:\SPKT\NĂM 3\HK1\DBMS\DOANCUOIKY\HQTCSDL\QLTTAV\GUI\bin\Debug\DTO.pdb
+D:\SPKT\NĂM 3\HK1\DBMS\DOANCUOIKY\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.csproj.AssemblyReference.cache
+D:\SPKT\NĂM 3\HK1\DBMS\DOANCUOIKY\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.ChiNhanh.resources
+D:\SPKT\NĂM 3\HK1\DBMS\DOANCUOIKY\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.ChiTiet_CaDay.resources
+D:\SPKT\NĂM 3\HK1\DBMS\DOANCUOIKY\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.CongViec.resources
+D:\SPKT\NĂM 3\HK1\DBMS\DOANCUOIKY\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.FChiTietDK_TT.resources
+D:\SPKT\NĂM 3\HK1\DBMS\DOANCUOIKY\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.GiangVien.resources
+D:\SPKT\NĂM 3\HK1\DBMS\DOANCUOIKY\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.Home.resources
+D:\SPKT\NĂM 3\HK1\DBMS\DOANCUOIKY\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.KetQua.resources
+D:\SPKT\NĂM 3\HK1\DBMS\DOANCUOIKY\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.LopHoc.resources
+D:\SPKT\NĂM 3\HK1\DBMS\DOANCUOIKY\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.NhanVien.resources
+D:\SPKT\NĂM 3\HK1\DBMS\DOANCUOIKY\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.Properties.Resources.resources
+D:\SPKT\NĂM 3\HK1\DBMS\DOANCUOIKY\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.TaoLopHoc.resources
+D:\SPKT\NĂM 3\HK1\DBMS\DOANCUOIKY\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.ThiThu.resources
+D:\SPKT\NĂM 3\HK1\DBMS\DOANCUOIKY\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.csproj.GenerateResource.cache
+D:\SPKT\NĂM 3\HK1\DBMS\DOANCUOIKY\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.csproj.CoreCompileInputs.cache
+D:\SPKT\NĂM 3\HK1\DBMS\DOANCUOIKY\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.csproj.CopyComplete
+D:\SPKT\NĂM 3\HK1\DBMS\DOANCUOIKY\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.exe
+D:\SPKT\NĂM 3\HK1\DBMS\DOANCUOIKY\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.pdb
 E:\SPKT\NAM3_HK1\HQTCSDL\CuoiKy\HQTCSDL\QLTTAV\GUI\bin\Debug\GUI.exe.config
 E:\SPKT\NAM3_HK1\HQTCSDL\CuoiKy\HQTCSDL\QLTTAV\GUI\bin\Debug\GUI.exe
 E:\SPKT\NAM3_HK1\HQTCSDL\CuoiKy\HQTCSDL\QLTTAV\GUI\bin\Debug\GUI.pdb
@@ -79,9 +131,9 @@ E:\SPKT\NAM3_HK1\HQTCSDL\CuoiKy\HQTCSDL\QLTTAV\GUI\bin\Debug\DTO.pdb
 E:\SPKT\NAM3_HK1\HQTCSDL\CuoiKy\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.csproj.AssemblyReference.cache
 E:\SPKT\NAM3_HK1\HQTCSDL\CuoiKy\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.csproj.SuggestedBindingRedirects.cache
 E:\SPKT\NAM3_HK1\HQTCSDL\CuoiKy\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.ChiNhanh.resources
-E:\SPKT\NAM3_HK1\HQTCSDL\CuoiKy\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.ChiTietDK_TT.resources
 E:\SPKT\NAM3_HK1\HQTCSDL\CuoiKy\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.ChiTiet_CaDay.resources
 E:\SPKT\NAM3_HK1\HQTCSDL\CuoiKy\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.CongViec.resources
+E:\SPKT\NAM3_HK1\HQTCSDL\CuoiKy\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.FChiTietDK_TT.resources
 E:\SPKT\NAM3_HK1\HQTCSDL\CuoiKy\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.GiangVien.resources
 E:\SPKT\NAM3_HK1\HQTCSDL\CuoiKy\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.Home.resources
 E:\SPKT\NAM3_HK1\HQTCSDL\CuoiKy\HQTCSDL\QLTTAV\GUI\obj\Debug\GUI.KetQua.resources

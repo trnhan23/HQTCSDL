@@ -7,12 +7,30 @@ D:\DBSM\Project\HQTCSDL\QLTTAV\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
 D:\DBSM\Project\HQTCSDL\QLTTAV\DAL\obj\Debug\DAL.csproj.CopyComplete
 D:\DBSM\Project\HQTCSDL\QLTTAV\DAL\obj\Debug\DAL.dll
 D:\DBSM\Project\HQTCSDL\QLTTAV\DAL\obj\Debug\DAL.pdb
-E:\SPKT\NAM3_HK1\HQTCSDL\Test\QLTTAV\DAL\bin\Debug\DAL.dll
-E:\SPKT\NAM3_HK1\HQTCSDL\Test\QLTTAV\DAL\bin\Debug\DAL.pdb
-E:\SPKT\NAM3_HK1\HQTCSDL\Test\QLTTAV\DAL\bin\Debug\DTO.dll
-E:\SPKT\NAM3_HK1\HQTCSDL\Test\QLTTAV\DAL\bin\Debug\DTO.pdb
-E:\SPKT\NAM3_HK1\HQTCSDL\Test\QLTTAV\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
-E:\SPKT\NAM3_HK1\HQTCSDL\Test\QLTTAV\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
-E:\SPKT\NAM3_HK1\HQTCSDL\Test\QLTTAV\DAL\obj\Debug\DAL.csproj.CopyComplete
-E:\SPKT\NAM3_HK1\HQTCSDL\Test\QLTTAV\DAL\obj\Debug\DAL.dll
-E:\SPKT\NAM3_HK1\HQTCSDL\Test\QLTTAV\DAL\obj\Debug\DAL.pdb
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\DAL\bin\Debug\DAL.dll
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\DAL\bin\Debug\DAL.pdb
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\DAL\bin\Debug\DTO.dll
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\DAL\bin\Debug\DTO.pdb
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\DAL\obj\Debug\DAL.csproj.CopyComplete
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\DAL\obj\Debug\DAL.dll
+D:\DBSM\Đồ án cuối kỳ\HQTCSDL\QLTTAV\DAL\obj\Debug\DAL.pdb
+D:\SPKT\NĂM 3\HK1\DBMS\Đồ án cuối kỳ\HQTCSDL\QLTTAV\DAL\bin\Debug\DAL.dll
+D:\SPKT\NĂM 3\HK1\DBMS\Đồ án cuối kỳ\HQTCSDL\QLTTAV\DAL\bin\Debug\DAL.pdb
+D:\SPKT\NĂM 3\HK1\DBMS\Đồ án cuối kỳ\HQTCSDL\QLTTAV\DAL\bin\Debug\DTO.dll
+D:\SPKT\NĂM 3\HK1\DBMS\Đồ án cuối kỳ\HQTCSDL\QLTTAV\DAL\bin\Debug\DTO.pdb
+D:\SPKT\NĂM 3\HK1\DBMS\Đồ án cuối kỳ\HQTCSDL\QLTTAV\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+D:\SPKT\NĂM 3\HK1\DBMS\Đồ án cuối kỳ\HQTCSDL\QLTTAV\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+D:\SPKT\NĂM 3\HK1\DBMS\Đồ án cuối kỳ\HQTCSDL\QLTTAV\DAL\obj\Debug\DAL.csproj.CopyComplete
+D:\SPKT\NĂM 3\HK1\DBMS\Đồ án cuối kỳ\HQTCSDL\QLTTAV\DAL\obj\Debug\DAL.dll
+D:\SPKT\NĂM 3\HK1\DBMS\Đồ án cuối kỳ\HQTCSDL\QLTTAV\DAL\obj\Debug\DAL.pdb
+E:\SPKT\NAM3_HK1\HQTCSDL\CuoiKy\HQTCSDL\QLTTAV\DAL\bin\Debug\DAL.dll
+E:\SPKT\NAM3_HK1\HQTCSDL\CuoiKy\HQTCSDL\QLTTAV\DAL\bin\Debug\DAL.pdb
+E:\SPKT\NAM3_HK1\HQTCSDL\CuoiKy\HQTCSDL\QLTTAV\DAL\bin\Debug\DTO.dll
+E:\SPKT\NAM3_HK1\HQTCSDL\CuoiKy\HQTCSDL\QLTTAV\DAL\bin\Debug\DTO.pdb
+E:\SPKT\NAM3_HK1\HQTCSDL\CuoiKy\HQTCSDL\QLTTAV\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+E:\SPKT\NAM3_HK1\HQTCSDL\CuoiKy\HQTCSDL\QLTTAV\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+E:\SPKT\NAM3_HK1\HQTCSDL\CuoiKy\HQTCSDL\QLTTAV\DAL\obj\Debug\DAL.csproj.CopyComplete
+E:\SPKT\NAM3_HK1\HQTCSDL\CuoiKy\HQTCSDL\QLTTAV\DAL\obj\Debug\DAL.dll
+E:\SPKT\NAM3_HK1\HQTCSDL\CuoiKy\HQTCSDL\QLTTAV\DAL\obj\Debug\DAL.pdb

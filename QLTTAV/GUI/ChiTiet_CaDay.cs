@@ -59,8 +59,54 @@ namespace GUI
             String malh = liv.SubItems[0].Text;
             String magv = liv.SubItems[1].Text;
             HienThiTheoMa(malh, magv);
+            HienThiLopHoc(malh);
+            HienThiGiangVien(magv);
         }
 
+        private void HienThiGiangVien(string magv)
+        {
+            SqlConnection conn = SQLConnectionData.Connect();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "ThongTinGiangVienTuChiTietCaDay";
+            cmd.Connection = conn;
+
+            cmd.Parameters.Add("@magv", SqlDbType.Char).Value = magv;
+            SqlDataReader reader = cmd.ExecuteReader();
+            lvGiangVien.Items.Clear();
+            while (reader.Read())
+            {
+                ListViewItem item = new ListViewItem(reader.GetString(0));
+                item.SubItems.Add(reader.GetString(1));
+               
+                lvGiangVien.Items.Add(item);
+            }
+            reader.Close();
+        }
+        private void HienThiLopHoc(string malh)
+        {
+            SqlConnection conn = SQLConnectionData.Connect();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "ThongTinLopHocTuChiTietCaDay";
+            cmd.Connection = conn;
+
+            cmd.Parameters.Add("@malh", SqlDbType.Char).Value = malh;
+            SqlDataReader reader = cmd.ExecuteReader();
+            lvLopHoc.Items.Clear();
+            while (reader.Read())
+            {
+                ListViewItem item = new ListViewItem(reader.GetString(0));
+                item.SubItems.Add(reader.GetString(1));
+                item.SubItems.Add(reader.GetString(2));
+                lvLopHoc.Items.Add(item);
+            }
+            reader.Close();
+        }
         private void HienThiTheoMa(string malh, string magv)
         {
             SqlConnection conn = SQLConnectionData.Connect();
@@ -87,115 +133,136 @@ namespace GUI
             }
             reader.Close();
         }
-
         private void btnThem_Click(object sender, EventArgs e)
         {
-            SqlConnection conn = SQLConnectionData.Connect();
-            conn.Open();
+            try
+            {
+                SqlConnection conn = SQLConnectionData.Connect();
+                conn.Open();
 
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandText = "ThemCTCaDay";
-            cmd.Connection = conn;
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "ThemCTCaDay";
+                cmd.Connection = conn;
 
-            cmd.Parameters.Add("@malh", SqlDbType.NChar).Value = txtMaLH.Text;
-            cmd.Parameters.Add("@magv", SqlDbType.NChar).Value = txtMaGV.Text;
-            DateTime ngayBatDau;
-            if (DateTime.TryParseExact(txtNgayBD.Text, "dd-MM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out ngayBatDau))
-            {
-                cmd.Parameters.Add("@ngaybatdau", SqlDbType.Date).Value = ngayBatDau;
-            }
-            else
-            {
-                MessageBox.Show("Ngày bắt đầu không hợp lệ. Vui lòng nhập theo định dạng dd-MM-yyyy.");
-                return; // Không thực hiện truy vấn nếu ngày không hợp lệ.
-            }
-            DateTime ngayKetThuc;
-            if (DateTime.TryParseExact(txtNgayKT.Text, "dd-MM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out ngayKetThuc))
-            {
-                cmd.Parameters.Add("@ngayketthuc", SqlDbType.Date).Value = ngayKetThuc;
-            }
-            else
-            {
-                MessageBox.Show("Ngày kết thúc không hợp lệ. Vui lòng nhập theo định dạng dd-MM-yyyy.");
-                return; // Không thực hiện truy vấn nếu ngày không hợp lệ.
-            }
-            cmd.Parameters.Add("caday", SqlDbType.NChar).Value =txtCaDay.Text;
+                cmd.Parameters.Add("@malh", SqlDbType.NChar).Value = txtMaLH.Text;
+                cmd.Parameters.Add("@magv", SqlDbType.NChar).Value = txtMaGV.Text;
+                DateTime ngayBatDau;
+                if (DateTime.TryParseExact(txtNgayBD.Text, "dd-MM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out ngayBatDau))
+                {
+                    cmd.Parameters.Add("@ngaybatdau", SqlDbType.Date).Value = ngayBatDau;
+                }
+                else
+                {
+                    MessageBox.Show("Ngày bắt đầu không hợp lệ. Vui lòng nhập theo định dạng dd-MM-yyyy.");
+                    return; // Không thực hiện truy vấn nếu ngày không hợp lệ.
+                }
+                DateTime ngayKetThuc;
+                if (DateTime.TryParseExact(txtNgayKT.Text, "dd-MM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out ngayKetThuc))
+                {
+                    cmd.Parameters.Add("@ngayketthuc", SqlDbType.Date).Value = ngayKetThuc;
+                }
+                else
+                {
+                    MessageBox.Show("Ngày kết thúc không hợp lệ. Vui lòng nhập theo định dạng dd-MM-yyyy.");
+                    return; // Không thực hiện truy vấn nếu ngày không hợp lệ.
+                }
+                cmd.Parameters.Add("caday", SqlDbType.NChar).Value = txtCaDay.Text;
 
-            int n = cmd.ExecuteNonQuery();
-            if (n > 0)
-            {
-                HienThiThongTinCTCaDay();
-                MessageBox.Show("Thêm thành công");
+                int n = cmd.ExecuteNonQuery();
+                if (n > 0)
+                {
+                    HienThiThongTinCTCaDay();
+                    MessageBox.Show("Thêm thành công");
+                }
+                else
+                {
+                    MessageBox.Show("Thêm không thành công");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Thêm không thành công");
+                MessageBox.Show(ex.Message);
             }
         }
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            SqlConnection conn = SQLConnectionData.Connect();
-            conn.Open();
-
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandText = "XoaCTCaDay";
-            cmd.Connection = conn;
-            cmd.Parameters.Add("@malh", SqlDbType.Char).Value = txtMaLH.Text;
-            cmd.Parameters.Add("@magv", SqlDbType.Char).Value = txtMaGV.Text;
-            int n = cmd.ExecuteNonQuery();
-            if (n > 0)
+            try
             {
-                HienThiThongTinCTCaDay();
-                MessageBox.Show("Xóa thành công");
+                SqlConnection conn = SQLConnectionData.Connect();
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "XoaCTCaDay";
+                cmd.Connection = conn;
+                cmd.Parameters.Add("@malh", SqlDbType.Char).Value = txtMaLH.Text;
+                cmd.Parameters.Add("@magv", SqlDbType.Char).Value = txtMaGV.Text;
+                int n = cmd.ExecuteNonQuery();
+                if (n > 0)
+                {
+                    HienThiThongTinCTCaDay();
+                    MessageBox.Show("Xóa thành công");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-            SqlConnection conn = SQLConnectionData.Connect();
-            conn.Open();
+            try
+            {
 
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandText = "SuaCTCaDay";
-            cmd.Connection = conn;
+                SqlConnection conn = SQLConnectionData.Connect();
+                conn.Open();
 
-            cmd.Parameters.Add("@malh", SqlDbType.NChar).Value = txtMaLH.Text;
-            cmd.Parameters.Add("@magv", SqlDbType.NChar).Value = txtMaGV.Text;
-            DateTime ngayBatDau;
-            if (DateTime.TryParseExact(txtNgayBD.Text, "dd-MM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out ngayBatDau))
-            {
-                cmd.Parameters.Add("@ngaybatdau", SqlDbType.Date).Value = ngayBatDau;
-            }
-            else
-            {
-                MessageBox.Show("Ngày bắt đầu không hợp lệ. Vui lòng nhập theo định dạng dd-MM-yyyy.");
-                return; // Không thực hiện truy vấn nếu ngày không hợp lệ.
-            }
-            DateTime ngayKetThuc;
-            if (DateTime.TryParseExact(txtNgayKT.Text, "dd-MM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out ngayKetThuc))
-            {
-                cmd.Parameters.Add("@ngayketthuc", SqlDbType.Date).Value = ngayKetThuc;
-            }
-            else
-            {
-                MessageBox.Show("Ngày kết thúc không hợp lệ. Vui lòng nhập theo định dạng dd-MM-yyyy.");
-                return; // Không thực hiện truy vấn nếu ngày không hợp lệ.
-            }
-            cmd.Parameters.Add("caday", SqlDbType.NChar).Value = txtCaDay.Text;
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "SuaCTCaDay";
+                cmd.Connection = conn;
 
-            int n = cmd.ExecuteNonQuery();
-            if (n > 0)
-            {
-                HienThiThongTinCTCaDay();
-                MessageBox.Show("Sửa thành công");
+                cmd.Parameters.Add("@malh", SqlDbType.NChar).Value = txtMaLH.Text;
+                cmd.Parameters.Add("@magv", SqlDbType.NChar).Value = txtMaGV.Text;
+                DateTime ngayBatDau;
+                if (DateTime.TryParseExact(txtNgayBD.Text, "dd-MM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out ngayBatDau))
+                {
+                    cmd.Parameters.Add("@ngaybatdau", SqlDbType.Date).Value = ngayBatDau;
+                }
+                else
+                {
+                    MessageBox.Show("Ngày bắt đầu không hợp lệ. Vui lòng nhập theo định dạng dd-MM-yyyy.");
+                    return; // Không thực hiện truy vấn nếu ngày không hợp lệ.
+                }
+                DateTime ngayKetThuc;
+                if (DateTime.TryParseExact(txtNgayKT.Text, "dd-MM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out ngayKetThuc))
+                {
+                    cmd.Parameters.Add("@ngayketthuc", SqlDbType.Date).Value = ngayKetThuc;
+                }
+                else
+                {
+                    MessageBox.Show("Ngày kết thúc không hợp lệ. Vui lòng nhập theo định dạng dd-MM-yyyy.");
+                    return; // Không thực hiện truy vấn nếu ngày không hợp lệ.
+                }
+                cmd.Parameters.Add("caday", SqlDbType.NChar).Value = txtCaDay.Text;
+
+                int n = cmd.ExecuteNonQuery();
+                if (n > 0)
+                {
+                    HienThiThongTinCTCaDay();
+                    MessageBox.Show("Sửa thành công");
+                }
+                else
+                {
+                    MessageBox.Show("Sửa không thành công");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Sửa không thành công");
+                MessageBox.Show(ex.Message);
             }
         }
     }

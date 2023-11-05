@@ -64,7 +64,45 @@ namespace GUI
             }
             ListViewItem liv = lvChiNhanh.SelectedItems[0];
             string MaCN = liv.SubItems[0].Text;
+            string TenCN = liv.SubItems[1].Text;
+            lb_CN.Text = TenCN;
             HienThiChiNhanhTheoMa(MaCN);
+            HienThiThongTinLienQuan(MaCN);
+        }
+
+        private void HienThiThongTinLienQuan(string maCN)
+        {
+            SqlConnection conn = SQLConnectionData.Connect();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "DemThongTinTheoMaCN";
+            cmd.Connection = conn;
+
+            cmd.Parameters.Add("@MaCN", SqlDbType.NChar).Value = maCN;
+            SqlDataReader reader = cmd.ExecuteReader();
+            lv_ThongTin.Items.Clear();
+            while (reader.Read())
+            {
+                if (!reader.IsDBNull(1))
+                {
+                    ListViewItem item = new ListViewItem(reader.GetString(0));
+
+                    // item.SubItems.Add(reader.GetString(0))
+                    item.SubItems.Add(reader.GetString(1));
+                    item.SubItems.Add(reader.GetInt32(2) + "");
+                    item.SubItems.Add(reader.GetInt32(3) + "");
+                    lv_ThongTin.Items.Add(item);
+                }
+                else
+                {
+                    //MessageBox.Show("Chưa thêm dữ liệu");
+                }
+            }
+
+            reader.Close();
+
         }
 
         private void HienThiChiNhanhTheoMa(string MaCN)
@@ -90,7 +128,7 @@ namespace GUI
 
         private void ChiNhanh_Load(object sender, EventArgs e)
         {
-            ThongTinChiNhanh();
+             ThongTinChiNhanh();
         }
 
         private void ThongTinChiNhanh()
@@ -182,6 +220,16 @@ namespace GUI
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }

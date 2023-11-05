@@ -193,7 +193,8 @@ namespace GUI
                     ThongTinLopHoc();
                     string maLH = txtMaLH.Text.Trim();
                     UpdateTrangThai(maLH);
-                    MessageBox.Show("Sửa lớp học thành công!");
+                    ThongBaoTuTrigger();
+                    
                 }
                 else
                 {
@@ -204,6 +205,26 @@ namespace GUI
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void ThongBaoTuTrigger()
+        {
+            SqlConnection conn = SQLConnectionData.Connect();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("select messageLog from triggerLog", conn);
+            SqlDataReader reader = cmd.ExecuteReader();
+            while(reader.Read())
+            {
+                string message = reader.GetString(0);
+                MessageBox.Show(message);
+            }
+            reader.Close();
+
+            cmd = new SqlCommand("delete from triggerLog", conn);
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            
         }
 
         private void UpdateTrangThai(string maLH)

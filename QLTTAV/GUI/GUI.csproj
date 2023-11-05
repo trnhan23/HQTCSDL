@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -52,12 +55,6 @@
     <Compile Include="ChiNhanh.Designer.cs">
       <DependentUpon>ChiNhanh.cs</DependentUpon>
     </Compile>
-    <Compile Include="ChiTietDK_TT.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ChiTietDK_TT.Designer.cs">
-      <DependentUpon>ChiTietDK_TT.cs</DependentUpon>
-    </Compile>
     <Compile Include="ChiTiet_CaDay.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -69,6 +66,12 @@
     </Compile>
     <Compile Include="CongViec.designer.cs">
       <DependentUpon>CongViec.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FChiTietDK_TT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FChiTietDK_TT.Designer.cs">
+      <DependentUpon>FChiTietDK_TT.cs</DependentUpon>
     </Compile>
     <Compile Include="GiangVien.cs">
       <SubType>Form</SubType>
@@ -117,14 +120,14 @@
     <EmbeddedResource Include="ChiNhanh.resx">
       <DependentUpon>ChiNhanh.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ChiTietDK_TT.resx">
-      <DependentUpon>ChiTietDK_TT.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="ChiTiet_CaDay.resx">
       <DependentUpon>ChiTiet_CaDay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CongViec.resx">
       <DependentUpon>CongViec.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FChiTietDK_TT.resx">
+      <DependentUpon>FChiTietDK_TT.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GiangVien.resx">
       <DependentUpon>GiangVien.cs</DependentUpon>
@@ -149,6 +152,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="TaoLopHoc.resx">
       <DependentUpon>TaoLopHoc.cs</DependentUpon>
@@ -182,6 +186,48 @@
       <Project>{de0094b9-97b8-4c2e-afed-d7c4477d0265}</Project>
       <Name>DTO</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reject.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\buildings-regular-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\buildings-solid-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\group-regular-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\door-open-regular-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\male-female-regular-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\registered-regular-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notepad-regular-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user-regular-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\log-out-regular-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\98c17eb653ed65ac1b2e588f8e9f00bd.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chevron-down-regular-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\up.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
