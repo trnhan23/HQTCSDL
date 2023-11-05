@@ -207,5 +207,68 @@ namespace GUI
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void btnTimKiem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlConnection conn = SQLConnectionData.Connect();
+                conn.Open();
+                if (txtTimMaGV.Text == "" && txtTimHoTen.Text == "")
+                {
+                    HienThiThongTinGiangVien();
+                }
+                else
+                {
+                    SqlCommand cmd = new SqlCommand();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "pr_TimKiemGiangVien";
+                    cmd.Connection = conn;
+
+                    if (txtTimMaGV.Text == "" && txtTimHoTen.Text != "")
+                        cmd.Parameters.Add("@HoTen", SqlDbType.NChar).Value = txtTimHoTen.Text;
+                    else if (txtTimMaGV.Text != "" && txtTimHoTen.Text == "")
+                        cmd.Parameters.Add("@MaGV", SqlDbType.NVarChar).Value = txtTimMaGV.Text;
+                    else
+                    {
+                        cmd.Parameters.Add("@MaGV", SqlDbType.NChar).Value = txtTimMaGV.Text;
+                        cmd.Parameters.Add("@HoTen", SqlDbType.NVarChar).Value = txtTimHoTen.Text;
+                    }
+
+                    txtMaGV.Clear();
+                    txtHoTen.Clear();
+                    txtCCCD.Clear();
+                    txtSoDT.Clear();
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    livGiangVien.Items.Clear();
+                    while (reader.Read())
+                    {
+                        ListViewItem lvi = new ListViewItem(reader.GetString(0));
+                        lvi.SubItems.Add(reader.GetString(1));
+                        lvi.SubItems.Add(reader.GetString(2));
+                        lvi.SubItems.Add(reader.GetString(3));
+
+                        Double Luong = reader.GetDouble(4);
+                        lvi.SubItems.Add(Luong + "");
+
+                        livGiangVien.Items.Add(lvi);
+                    }
+                    reader.Close();
+                    conn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            txtTimMaGV.Clear();
+            txtTimHoTen.Clear();
+            HienThiThongTinGiangVien();
+        }
     }
 }

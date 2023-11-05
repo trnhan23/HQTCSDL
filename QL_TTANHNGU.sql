@@ -111,7 +111,18 @@ CREATE TABLE GiangVien(
 	SoDT nchar(11) NOT NULL check (len(SoDT)=10),
 	Luong float
 );
-
+GO
+--Tim kiem Giang Vien
+CREATE or ALTER PROCEDURE pr_TimKiemGiangVien
+    @MaGV nchar(10) = NULL,
+    @HoTen nvarchar(50) = NULL
+AS
+BEGIN
+    SELECT *
+    FROM GiangVien
+    WHERE (@MaGV IS NULL OR MaGV = @MaGV)
+        AND (@HoTen IS NULL OR HoTen LIKE '%' + @HoTen + '%');
+END;
 GO
 insert into GiangVien values('GV01', 'Nguyen Van A', '07712345****','0123456789', 15000);
 insert into GiangVien values('GV02', 'Nguyen Quoc B','08724166****','0987654321', 20000);
@@ -625,139 +636,6 @@ SELECT TT.MaTT, HV.HoTenHV, HV.NgaySinh, TT.NgayThi
 FROM HocVien HV INNER JOIN ChiTietDK_TT DKTT ON HV.MaHV=DKTT.MaHV
 			INNER JOIN ThiThu TT ON DKTT.MaTT=TT.MaTT
 GO
-
-
-
-
-
-
-
---Hàm tính số buổi dạy của 1 giảng viên đối với 1 lớp trong nửa đầu tháng
-create function TinhSoBuoiDay1 (@ngayBatDau DATE, @caday nchar(10))
-returns int
-as
-begin
-	declare @soBuoiHoc int
-	declare @ngayCuoiThang DATE = DATEADD(d,-1, DATEADD(mm, DATEDIFF(mm, 0 ,@ngayBatDau)+1, 0))
-	declare @count INT = 0;
-	while @ngayBatDau <= @ngayCuoiThang
-	begin
-		if (@caday like '%357%')
-			begin
-			if DATEPART(WEEKDAY, @ngayBatDau) IN (3, 5, 7)
-				begin
-					set @count = @count + 1;
-				end
-			end
-		if (@caday like '%246%')
-			begin
-			if DATEPART(WEEKDAY, @ngayBatDau) IN (2, 4, 6)
-				begin
-					set @count = @count + 1;
-				end
-			end
-		set @ngayBatDau = DATEADD(DAY, 1, @ngayBatDau);
-	end
-	set @soBuoiHoc = @count
-	return @soBuoiHoc
-end
-go
-go
-
---Hàm tính số buổi dạy của 1 giảng viên đối với 1 lớp trong nửa cuối tháng
-create function TinhSoBuoiDay2 (@ngayKetThuc DATE, @caday nchar(10))
-returns int
-as
-begin
-	declare @soBuoiHoc int
-	declare @ngayDauThang DATE = DATEADD(MONTH, DATEDIFF(MONTH, 0, @ngayKetThuc), 0);
-	declare @count INT = 0;
-	while @ngayDauThang <= @ngayKetThuc
-	begin
-		if (@caday like '%357%')
-			begin
-			if DATEPART(WEEKDAY, @ngayDauThang) IN (3, 5, 7)
-				begin
-					set @count = @count + 1;
-				end
-			end
-		if (@caday like '%246%')
-			begin
-			if DATEPART(WEEKDAY, @ngayDauThang) IN (2, 4, 6)
-				begin
-					set @count = @count + 1;
-				end
-			end
-		set @ngayDauThang = DATEADD(DAY, 1, @ngayDauThang);
-	end
-	set @soBuoiHoc = @count
-	return @soBuoiHoc
-end
-go
-go
-
---Hàm tính số buổi dạy của giảng viên theo tháng
-create function TinhSoBuoiDayGiangVienTheoThang (@magv nchar(10), @thang date)
-returns int
-AS
-begin
-	declare @count2 int, @count3 int, @total int
-	
-	
-	select @count2 = sum(dbo.TinhSoBuoiDay1(NgayBatDau, CaDay))
-	from ChiTiet_CaDay
-	where MaGV = @magv and (year(@thang)=year(NgayBatDau) and  month(@thang) = month(NgayBatDau))
-	
-	select @count3 = sum(dbo.TinhSoBuoiDay2(NgayKetThuc, CaDay))
-	from ChiTiet_CaDay
-	where MaGV = @magv and (year(@thang)=year(NgayKetThuc) and  month(@thang) = month(NgayKetThuc))
-
-	set @total = @count2 + @count3
-	return @total
-end
-go
-
-drop function TinhSoBuoiDayGiangVienTheoThang
-go
-select dbo.TinhSoBuoiDayGiangVienTheoThang('GV01','2023-11-15')
-/*
-	select @count2 = sum(dbo.TinhSoBuoiDay1(NgayBatDau, CaDay))
-	from ChiTiet_CaDay
-	where MaGV = @magv and (year(@thang)=year(NgayBatDau) and  month(@thang) = month(NgayBatDau))
-	
-	
-	select @count3 = sum(dbo.TinhSoBuoiDay2(NgayKetThuc, CaDay))
-	from ChiTiet_CaDay
-	where MaGV = @magv and (year(@thang)=year(NgayKetThuc) and  month(@thang) = month(NgayKetThuc))
-
-	select @count1 = count(MaLH)*13 
-	from ChiTiet_CaDay
-	Where MaGV = @magv and (DATEDIFF(day, NgayBatDau ,DATEADD(MONTH, DATEDIFF(MONTH, 0, @thang), 0))>0
-						and DATEDIFF(day, DATEADD(d,-1, DATEADD(mm, DATEDIFF(mm, 0 ,@thang)+1, 0)), NgayKetThuc )<0)
-	*/
-
-go
-create function TinhBuoiDayCuaGiangVien(@magv nchar(10), @thang date)
-returns int
-as
-begin
-	declare @count2 int = 0
-	select @count2 = sum(dbo.TinhSoBuoiDay1(Q.NgayBatDau, Q.CaDay))
-	from (select NgayBatDau, CaDay, MaGV
-		from ChiTiet_CaDay
-		where MaGV = @magv) Q
-	where Q.MaGV = @magv
-	return @count2
-end
-go
-
-
-drop function TinhBuoiDayCuaGiangVien
-go
-select dbo.TinhBuoiDayCuaGiangVien('GV01','2023-11-15')
-
-
-
 
 
 
