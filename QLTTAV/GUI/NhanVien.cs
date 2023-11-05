@@ -223,7 +223,7 @@ namespace GUI
             SqlConnection conn = SQLConnectionData.Connect();
             conn.Open();
 
-            if (txtTimKiem.Text == "")
+            if (txtTimMaNV.Text == "" && txtTimTenNV.Text == "")
             {
                 HienThiThongTinNhanVien();
             }
@@ -231,11 +231,19 @@ namespace GUI
             {
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "HienThiTheoMaNV";
+                cmd.CommandText = "TimKiemNhanVien";
                 cmd.Connection = conn;
-                SqlParameter para = new SqlParameter("@manv", SqlDbType.Char);
-                para.Value = txtTimKiem.Text;
-                cmd.Parameters.Add(para);
+                if (txtTimMaNV.Text == "" && txtTimTenNV.Text != "")
+                {
+                    cmd.Parameters.Add("@tennv", SqlDbType.NVarChar).Value = txtTimTenNV.Text;
+                }
+                else if(txtTimMaNV.Text != "" && txtTimTenNV.Text == "")
+                    cmd.Parameters.Add("@manv", SqlDbType.NVarChar).Value = txtTimMaNV.Text;
+                else
+                {
+                    cmd.Parameters.Add("@manv", SqlDbType.NVarChar).Value = txtTimMaNV.Text;
+                    cmd.Parameters.Add("@tennv", SqlDbType.NVarChar).Value = txtTimTenNV.Text;
+                }
                 SqlDataReader reader = cmd.ExecuteReader();
                 lvNhanVien.Items.Clear();
                 while (reader.Read())

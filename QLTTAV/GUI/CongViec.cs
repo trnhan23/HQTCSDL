@@ -201,36 +201,6 @@ namespace GUI
             { 
                 MessageBox.Show(ex.Message );
             }
-
-        }
-
-        private void btnTimKiem_Click(object sender, EventArgs e)
-        {
-            SqlConnection conn = SQLConnectionData.Connect();
-            conn.Open();
-            if (txtTimKiem.Text == "")
-            {
-                HienThiThongTinCongViec();
-            }
-            else
-            {
-                SqlCommand cmd = new SqlCommand();
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "HienThiTheoMaCV";
-                cmd.Connection = conn;
-                SqlParameter para = new SqlParameter("@macv", SqlDbType.Char);
-                para.Value = txtTimKiem.Text;
-                cmd.Parameters.Add(para);
-                SqlDataReader reader = cmd.ExecuteReader();
-                lvCongViec.Items.Clear();
-                while (reader.Read())
-                {
-                    ListViewItem item = new ListViewItem(reader.GetString(0));
-                    item.SubItems.Add(reader.GetString(1));
-                    lvCongViec.Items.Add(item);
-                }
-                reader.Close();
-            }
         }
     }
 }

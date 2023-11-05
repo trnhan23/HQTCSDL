@@ -760,6 +760,18 @@ AS
 	SELECT * FROM NhanVien WHERE MaNV = @manv
 GO
 
+CREATE or ALTER PROCEDURE TimKiemNhanVien
+    @manv nchar(10) = NULL,
+    @tennv nvarchar(50) = NULL
+AS
+BEGIN
+    SELECT *
+    FROM NhanVien
+    WHERE (@manv IS NULL OR MaNV = @manv)
+        AND (@tennv IS NULL OR HoTenNV LIKE '%' + @tennv + '%');
+END;
+
+
 --proc thêm nhân viên
 CREATE PROC ThemNhanVien
 @manv nchar(10),

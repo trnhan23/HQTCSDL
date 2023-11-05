@@ -46,16 +46,16 @@ namespace GUI
                     lvi.SubItems.Add(GioThi.ToString());
                     
                    
-                    lvi.SubItems.Add(reader.GetString(4));
-                    if (!reader.IsDBNull(5))
+                    
+                    if (!reader.IsDBNull(4))
                     {
-                        lvi.SubItems.Add(reader.GetInt32(5)+"");
+                        lvi.SubItems.Add(reader.GetInt32(4)+"");
                     }
                     else
                     {
                         lvi.SubItems.Add("");
                     }
-                   
+                    lvi.SubItems.Add(reader.GetString(5));
                     livThiThu.Items.Add(lvi);
                 }
                 reader.Close();
@@ -101,16 +101,17 @@ namespace GUI
                     txtPhongThi.Text = reader.GetString(1);
                     txtNgayThi.Text = reader.GetDateTime(2).ToString("dd-MM-yyyy");
                     txtGioThi.Text = reader.GetTimeSpan(3).ToString();
-                    txtMaNV.Text = reader.GetString(4);
-                    if (!reader.IsDBNull(5))
+                    
+                    if (!reader.IsDBNull(4))
                     {
-                        txtGioiHan.Text = reader.GetInt32(5) + "";
+                        txtGioiHan.Text = reader.GetInt32(4) + "";
                     }
                     else
                     {
                         txtGioiHan.Text = "";
                     }
-                   
+                    txtMaNV.Text = reader.GetString(5);
+
                 }
 
                 conn.Close();
