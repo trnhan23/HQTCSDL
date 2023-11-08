@@ -41,6 +41,9 @@
             txtMaHV = new TextBox();
             lbNgayDangKy = new Label();
             lbMaHocVien = new Label();
+            btnTimKiem = new Button();
+            txtTimKiemMaHV = new TextBox();
+            txtTimKiemMaLH = new TextBox();
             columnHeader1 = new ColumnHeader();
             SuspendLayout();
             // 
@@ -82,7 +85,7 @@
             // 
             // txtMaLH
             // 
-            txtMaLH.Location = new Point(510, 136);
+            txtMaLH.Location = new Point(529, 231);
             txtMaLH.Name = "txtMaLH";
             txtMaLH.Size = new Size(216, 23);
             txtMaLH.TabIndex = 46;
@@ -91,7 +94,7 @@
             // 
             lbMaLH.AutoSize = true;
             lbMaLH.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            lbMaLH.Location = new Point(412, 140);
+            lbMaLH.Location = new Point(431, 235);
             lbMaLH.Name = "lbMaLH";
             lbMaLH.Size = new Size(76, 15);
             lbMaLH.TabIndex = 45;
@@ -103,7 +106,7 @@
             btnSua.Cursor = Cursors.No;
             btnSua.FlatStyle = FlatStyle.System;
             btnSua.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            btnSua.Location = new Point(649, 276);
+            btnSua.Location = new Point(668, 371);
             btnSua.Name = "btnSua";
             btnSua.Size = new Size(77, 33);
             btnSua.TabIndex = 44;
@@ -117,7 +120,7 @@
             btnXoa.Cursor = Cursors.No;
             btnXoa.FlatStyle = FlatStyle.System;
             btnXoa.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            btnXoa.Location = new Point(532, 276);
+            btnXoa.Location = new Point(551, 371);
             btnXoa.Name = "btnXoa";
             btnXoa.Size = new Size(77, 33);
             btnXoa.TabIndex = 43;
@@ -131,7 +134,7 @@
             btnThem.Cursor = Cursors.No;
             btnThem.FlatStyle = FlatStyle.System;
             btnThem.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            btnThem.Location = new Point(415, 276);
+            btnThem.Location = new Point(434, 371);
             btnThem.Name = "btnThem";
             btnThem.Size = new Size(77, 33);
             btnThem.TabIndex = 42;
@@ -141,14 +144,14 @@
             // 
             // txtNgayDangKy
             // 
-            txtNgayDangKy.Location = new Point(510, 210);
+            txtNgayDangKy.Location = new Point(529, 305);
             txtNgayDangKy.Name = "txtNgayDangKy";
             txtNgayDangKy.Size = new Size(216, 23);
             txtNgayDangKy.TabIndex = 39;
             // 
             // txtMaHV
             // 
-            txtMaHV.Location = new Point(510, 65);
+            txtMaHV.Location = new Point(529, 160);
             txtMaHV.Name = "txtMaHV";
             txtMaHV.Size = new Size(216, 23);
             txtMaHV.TabIndex = 38;
@@ -157,7 +160,7 @@
             // 
             lbNgayDangKy.AutoSize = true;
             lbNgayDangKy.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            lbNgayDangKy.Location = new Point(412, 213);
+            lbNgayDangKy.Location = new Point(431, 308);
             lbNgayDangKy.Name = "lbNgayDangKy";
             lbNgayDangKy.Size = new Size(87, 15);
             lbNgayDangKy.TabIndex = 35;
@@ -167,17 +170,56 @@
             // 
             lbMaHocVien.AutoSize = true;
             lbMaHocVien.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            lbMaHocVien.Location = new Point(412, 69);
+            lbMaHocVien.Location = new Point(431, 164);
             lbMaHocVien.Name = "lbMaHocVien";
             lbMaHocVien.Size = new Size(80, 15);
             lbMaHocVien.TabIndex = 34;
             lbMaHocVien.Text = "Mã Học Viên:";
+            // 
+            // btnTimKiem
+            // 
+            btnTimKiem.BackColor = SystemColors.Control;
+            btnTimKiem.Cursor = Cursors.No;
+            btnTimKiem.FlatStyle = FlatStyle.System;
+            btnTimKiem.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnTimKiem.Location = new Point(671, 70);
+            btnTimKiem.Name = "btnTimKiem";
+            btnTimKiem.Size = new Size(77, 29);
+            btnTimKiem.TabIndex = 49;
+            btnTimKiem.Text = "Search";
+            btnTimKiem.UseVisualStyleBackColor = false;
+            btnTimKiem.Click += btnTimKiem_Click;
+            // 
+            // txtTimKiemMaHV
+            // 
+            txtTimKiemMaHV.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point);
+            txtTimKiemMaHV.ForeColor = Color.DarkGray;
+            txtTimKiemMaHV.Location = new Point(434, 56);
+            txtTimKiemMaHV.Name = "txtTimKiemMaHV";
+            txtTimKiemMaHV.Size = new Size(216, 23);
+            txtTimKiemMaHV.TabIndex = 48;
+            txtTimKiemMaHV.Text = "Nhập Mã Học Viên Cần Tìm";
+            txtTimKiemMaHV.MouseCaptureChanged += txtTimKiemMaHV_MouseCaptureChanged;
+            // 
+            // txtTimKiemMaLH
+            // 
+            txtTimKiemMaLH.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point);
+            txtTimKiemMaLH.ForeColor = Color.DarkGray;
+            txtTimKiemMaLH.Location = new Point(434, 85);
+            txtTimKiemMaLH.Name = "txtTimKiemMaLH";
+            txtTimKiemMaLH.Size = new Size(216, 23);
+            txtTimKiemMaLH.TabIndex = 47;
+            txtTimKiemMaLH.Text = "Nhập Mã Lớp Học  Cần Tìm";
+            txtTimKiemMaLH.MouseCaptureChanged += txtTimKiemMaLH_MouseCaptureChanged;
             // 
             // F_ChiTietDK_LH
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnTimKiem);
+            Controls.Add(txtTimKiemMaHV);
+            Controls.Add(txtTimKiemMaLH);
             Controls.Add(txtMaLH);
             Controls.Add(lbMaLH);
             Controls.Add(btnSua);
@@ -209,5 +251,8 @@
         private TextBox txtMaHV;
         private Label lbNgayDangKy;
         private Label lbMaHocVien;
+        private Button btnTimKiem;
+        private TextBox txtTimKiemMaHV;
+        private TextBox txtTimKiemMaLH;
     }
 }

@@ -207,5 +207,74 @@ namespace QL_TTANHNGU
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void btnTimKiem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlConnection conn = SQLConnectionData.Connect();
+                conn.Open();
+                if (txtTimKiemMaHD.Text == "" && txtTimKiemMaHV.Text == "")
+                {
+                    ThongTinHoaDon();
+                }
+                else
+                {
+                    SqlCommand cmd = new SqlCommand();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "TimKiemHoaDon";
+                    cmd.Connection = conn;
+
+                    if (txtTimKiemMaHD.Text == "" && txtTimKiemMaHV.Text != "")
+                        cmd.Parameters.Add("@MaHV", SqlDbType.NChar).Value = txtTimKiemMaHV.Text;
+                    else if (txtTimKiemMaHD.Text != "" && txtTimKiemMaHV.Text == "")
+                        cmd.Parameters.Add("@MaHD", SqlDbType.NChar).Value = txtTimKiemMaHD.Text;
+                    else
+                    {
+                        cmd.Parameters.Add("@MaHD", SqlDbType.NChar).Value = txtTimKiemMaHD.Text;
+                        cmd.Parameters.Add("@MaHV", SqlDbType.NVarChar).Value = txtTimKiemMaHV.Text;
+                    }
+
+                    txtMaHD.Clear();
+                    txtNgayGiaoDich.Clear();
+                    txtSoTien.Clear();
+                    txtMaHV.Clear();
+                    txtMaLH.Clear();
+
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    lvHoaDon.Items.Clear();
+                    while (reader.Read())
+                    {
+                        ListViewItem item = new ListViewItem(reader.GetString(0));
+                        DateTime ngayGiaoDich = reader.GetDateTime(1);
+                        item.SubItems.Add(ngayGiaoDich.ToString("dd-MM-yyyy"));
+                        item.SubItems.Add(reader.GetDouble(2) + "");
+                        item.SubItems.Add(reader.GetString(3));
+                        item.SubItems.Add(reader.GetString(4));
+
+                        lvHoaDon.Items.Add(item);
+                    }
+                    reader.Close();
+                    conn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void txtTimKiemMaHD_MouseCaptureChanged(object sender, EventArgs e)
+        {
+            txtTimKiemMaHD.Clear();
+            txtTimKiemMaHD.ForeColor = Color.Black;
+        }
+
+        private void txtTimKiemMaHV_MouseCaptureChanged(object sender, EventArgs e)
+        {
+            txtTimKiemMaHV.Clear();
+            txtTimKiemMaHV.ForeColor = Color.Black;
+        }
     }
 }
