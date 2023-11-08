@@ -264,11 +264,5 @@ namespace GUI
             }
         }
 
-        private void btnClear_Click(object sender, EventArgs e)
-        {
-            txtTimMaGV.Clear();
-            txtTimHoTen.Clear();
-            HienThiThongTinGiangVien();
-        }
     }
 }

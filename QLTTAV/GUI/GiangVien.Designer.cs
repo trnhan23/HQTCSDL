@@ -53,7 +53,6 @@
             this.txtTimHoTen = new System.Windows.Forms.TextBox();
             this.lb_MaGV = new System.Windows.Forms.Label();
             this.lb_HoTen = new System.Windows.Forms.Label();
-            this.btnClear = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // livGiangVien
@@ -233,7 +232,7 @@
             // 
             // btnTimKiem
             // 
-            this.btnTimKiem.Location = new System.Drawing.Point(95, 110);
+            this.btnTimKiem.Location = new System.Drawing.Point(177, 110);
             this.btnTimKiem.Name = "btnTimKiem";
             this.btnTimKiem.Size = new System.Drawing.Size(76, 27);
             this.btnTimKiem.TabIndex = 19;
@@ -273,22 +272,11 @@
             this.lb_HoTen.TabIndex = 23;
             this.lb_HoTen.Text = "HoTen";
             // 
-            // btnClear
-            // 
-            this.btnClear.Location = new System.Drawing.Point(177, 110);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(76, 27);
-            this.btnClear.TabIndex = 24;
-            this.btnClear.Text = "Clear";
-            this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
-            // 
             // GiangVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(841, 667);
-            this.Controls.Add(this.btnClear);
             this.Controls.Add(this.lb_HoTen);
             this.Controls.Add(this.lb_MaGV);
             this.Controls.Add(this.txtTimHoTen);
@@ -344,6 +332,5 @@
         private System.Windows.Forms.TextBox txtTimHoTen;
         private System.Windows.Forms.Label lb_MaGV;
         private System.Windows.Forms.Label lb_HoTen;
-        private System.Windows.Forms.Button btnClear;
     }
 }
