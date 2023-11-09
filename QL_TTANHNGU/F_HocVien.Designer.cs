@@ -52,7 +52,6 @@
             btnSua = new Button();
             txtTimKiemMaHV = new TextBox();
             btnTimKiem = new Button();
-            txtTimKiemTenHV = new TextBox();
             columnHeader1 = new ColumnHeader();
             SuspendLayout();
             // 
@@ -256,7 +255,7 @@
             // 
             txtTimKiemMaHV.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point);
             txtTimKiemMaHV.ForeColor = Color.DarkGray;
-            txtTimKiemMaHV.Location = new Point(465, 44);
+            txtTimKiemMaHV.Location = new Point(465, 56);
             txtTimKiemMaHV.Name = "txtTimKiemMaHV";
             txtTimKiemMaHV.Size = new Size(246, 23);
             txtTimKiemMaHV.TabIndex = 16;
@@ -277,23 +276,11 @@
             btnTimKiem.UseVisualStyleBackColor = false;
             btnTimKiem.Click += btnTimKiem_Click;
             // 
-            // txtTimKiemTenHV
-            // 
-            txtTimKiemTenHV.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point);
-            txtTimKiemTenHV.ForeColor = Color.DarkGray;
-            txtTimKiemTenHV.Location = new Point(465, 73);
-            txtTimKiemTenHV.Name = "txtTimKiemTenHV";
-            txtTimKiemTenHV.Size = new Size(246, 23);
-            txtTimKiemTenHV.TabIndex = 18;
-            txtTimKiemTenHV.Text = "Nhập Tên Học Viên Cần Tìm ";
-            txtTimKiemTenHV.MouseCaptureChanged += txtTimKiemTenHV_MouseCaptureChanged;
-            // 
             // F_HocVien
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(txtTimKiemTenHV);
             Controls.Add(btnTimKiem);
             Controls.Add(txtTimKiemMaHV);
             Controls.Add(btnSua);
@@ -345,6 +332,5 @@
         private Button btnSua;
         private TextBox txtTimKiemMaHV;
         private Button btnTimKiem;
-        private TextBox txtTimKiemTenHV;
     }
 }

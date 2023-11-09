@@ -48,7 +48,6 @@
             txtMaLH = new TextBox();
             label1 = new Label();
             txtTimKiemMaHD = new TextBox();
-            txtTimKiemMaHV = new TextBox();
             btnTimKiem = new Button();
             columnHeader1 = new ColumnHeader();
             SuspendLayout();
@@ -231,23 +230,12 @@
             // 
             txtTimKiemMaHD.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point);
             txtTimKiemMaHD.ForeColor = Color.DarkGray;
-            txtTimKiemMaHD.Location = new Point(458, 31);
+            txtTimKiemMaHD.Location = new Point(458, 53);
             txtTimKiemMaHD.Name = "txtTimKiemMaHD";
             txtTimKiemMaHD.Size = new Size(216, 23);
             txtTimKiemMaHD.TabIndex = 34;
             txtTimKiemMaHD.Text = "Nhập Mã Hóa Đơn Cần Tìm";
             txtTimKiemMaHD.MouseCaptureChanged += txtTimKiemMaHD_MouseCaptureChanged;
-            // 
-            // txtTimKiemMaHV
-            // 
-            txtTimKiemMaHV.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point);
-            txtTimKiemMaHV.ForeColor = Color.DarkGray;
-            txtTimKiemMaHV.Location = new Point(458, 70);
-            txtTimKiemMaHV.Name = "txtTimKiemMaHV";
-            txtTimKiemMaHV.Size = new Size(216, 23);
-            txtTimKiemMaHV.TabIndex = 35;
-            txtTimKiemMaHV.Text = "Nhập Mã Học Viên Cần Tìm";
-            txtTimKiemMaHV.MouseCaptureChanged += txtTimKiemMaHV_MouseCaptureChanged;
             // 
             // btnTimKiem
             // 
@@ -255,9 +243,9 @@
             btnTimKiem.Cursor = Cursors.No;
             btnTimKiem.FlatStyle = FlatStyle.System;
             btnTimKiem.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            btnTimKiem.Location = new Point(695, 48);
+            btnTimKiem.Location = new Point(695, 52);
             btnTimKiem.Name = "btnTimKiem";
-            btnTimKiem.Size = new Size(77, 29);
+            btnTimKiem.Size = new Size(77, 28);
             btnTimKiem.TabIndex = 36;
             btnTimKiem.Text = "Search";
             btnTimKiem.UseVisualStyleBackColor = false;
@@ -269,7 +257,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(btnTimKiem);
-            Controls.Add(txtTimKiemMaHV);
             Controls.Add(txtTimKiemMaHD);
             Controls.Add(txtMaLH);
             Controls.Add(label1);
@@ -313,7 +300,6 @@
         private Label label1;
         private ColumnHeader columnHeader5;
         private TextBox txtTimKiemMaHD;
-        private TextBox txtTimKiemMaHV;
         private Button btnTimKiem;
     }
 }

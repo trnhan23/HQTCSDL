@@ -12,8 +12,8 @@ namespace QL_TTANHNGU
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             //Application.Run(new F_HocVien());
-            //Application.Run(new F_HoaDon());
-            Application.Run(new F_ChiTietDK_LH());
+            Application.Run(new F_HoaDon());
+            //Application.Run(new F_ChiTietDK_LH());
         }
     }
 }

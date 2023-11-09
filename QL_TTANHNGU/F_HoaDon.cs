@@ -20,6 +20,35 @@ namespace QL_TTANHNGU
         }
 
 
+        private void ThongBaoTrigger()
+        {
+            try
+            {
+                SqlConnection conn = SQLConnectionData.Connect();
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand("Select messageLog From triggerLog", conn);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    string message = reader.GetString(0);
+                    MessageBox.Show(message);
+                }
+                reader.Close();
+                cmd = new SqlCommand("delete From triggerLog", conn);
+                cmd.ExecuteNonQuery();
+
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+
+        }
+
+
         private void btnThem_Click(object sender, EventArgs e)
         {
             try
@@ -42,6 +71,7 @@ namespace QL_TTANHNGU
                 if (n > 0)
                 {
                     ThongTinHoaDon();
+                    ThongBaoTrigger();
                     MessageBox.Show("Thêm thành công!");
                     conn.Close();
                 }
@@ -214,36 +244,18 @@ namespace QL_TTANHNGU
             {
                 SqlConnection conn = SQLConnectionData.Connect();
                 conn.Open();
-                if (txtTimKiemMaHD.Text == "" && txtTimKiemMaHV.Text == "")
+                if (txtTimKiemMaHD == null)
                 {
                     ThongTinHoaDon();
                 }
                 else
                 {
-                    SqlCommand cmd = new SqlCommand();
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "TimKiemHoaDon";
-                    cmd.Connection = conn;
+                    SqlCommand cmd = new SqlCommand("select * from dbo.func_TimKiemHoaDon (@MaHD)", conn);
+                    cmd.Parameters.Add("@MaHD", SqlDbType.NChar).Value = txtTimKiemMaHD.Text;
 
-                    if (txtTimKiemMaHD.Text == "" && txtTimKiemMaHV.Text != "")
-                        cmd.Parameters.Add("@MaHV", SqlDbType.NChar).Value = txtTimKiemMaHV.Text;
-                    else if (txtTimKiemMaHD.Text != "" && txtTimKiemMaHV.Text == "")
-                        cmd.Parameters.Add("@MaHD", SqlDbType.NChar).Value = txtTimKiemMaHD.Text;
-                    else
-                    {
-                        cmd.Parameters.Add("@MaHD", SqlDbType.NChar).Value = txtTimKiemMaHD.Text;
-                        cmd.Parameters.Add("@MaHV", SqlDbType.NVarChar).Value = txtTimKiemMaHV.Text;
-                    }
-
-                    txtMaHD.Clear();
-                    txtNgayGiaoDich.Clear();
-                    txtSoTien.Clear();
-                    txtMaHV.Clear();
-                    txtMaLH.Clear();
-
+                    lvHoaDon.Items.Clear();
 
                     SqlDataReader reader = cmd.ExecuteReader();
-                    lvHoaDon.Items.Clear();
                     while (reader.Read())
                     {
                         ListViewItem item = new ListViewItem(reader.GetString(0));
@@ -271,10 +283,5 @@ namespace QL_TTANHNGU
             txtTimKiemMaHD.ForeColor = Color.Black;
         }
 
-        private void txtTimKiemMaHV_MouseCaptureChanged(object sender, EventArgs e)
-        {
-            txtTimKiemMaHV.Clear();
-            txtTimKiemMaHV.ForeColor = Color.Black;
-        }
     }
 }

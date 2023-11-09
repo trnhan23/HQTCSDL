@@ -157,3 +157,42 @@ BEGIN
     WHERE (@MaHV IS NULL OR MaHV = @MaHV)
         AND (@MaLH IS NULL OR MaLH LIKE '%' + @MaLH + '%');
 END;
+
+CREATE FUNCTION dbo.func_TimKiemHocVien (@MaHV nchar(10))
+returns @HocVien table (MaHV nchar(10), HoTenHV nvarchar(50), NgaySinh date, GioiTinh nvarchar(3), SoDT nchar(11), DiaChiHV nvarchar(100))
+as
+begin
+	Insert into @HocVien
+	SELECT *
+    FROM dbo.HocVien
+    WHERE MaHV = @MaHV
+
+	return
+end;
+
+Drop function dbo.func_TimKiemHocVien
+
+CREATE FUNCTION dbo.func_TimKiemHoaDon (@MaHD nchar(10))
+returns @HoaDon table (MaHD nchar(10), NgayGD date, SoTien float, MaHV nchar(10), MaLH nchar(10))
+as
+begin
+	Insert into @HoaDon
+	SELECT *
+    FROM dbo.HoaDon
+    WHERE MaHD = @MaHD
+
+	return
+end;
+
+CREATE FUNCTION dbo.func_TimKiemChiTietDK_LH (@MaHV nchar(10), @MaLH nchar(10))
+returns @ChiTietDK_LH table (MaHV nchar(10), MaLH nchar(10), NgayDK date)
+as
+begin
+	Insert into @ChiTietDK_LH
+	SELECT *
+    FROM dbo.ChiTietDK_LH
+    WHERE (@MaHV IS NULL OR MaHV = @MaHV)
+        AND (@MaLH IS NULL OR MaLH = @MaLH);
+
+	return
+end;

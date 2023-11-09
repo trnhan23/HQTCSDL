@@ -238,20 +238,19 @@ namespace QL_TTANHNGU
             {
                 SqlConnection conn = SQLConnectionData.Connect();
                 conn.Open();
-                if (txtTimKiemMaHV.Text == "" && txtTimKiemMaLH.Text == "")
+                if (txtTimKiemMaHV == null && txtTimKiemMaLH == null)
                 {
                     ThongTinChiTietDK_LH();
                 }
                 else
                 {
-                    SqlCommand cmd = new SqlCommand();
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "TimKiemChiTietDK_LH";
-                    cmd.Connection = conn;
 
-                    if (txtTimKiemMaHV.Text == "" && txtTimKiemMaLH.Text != "")
+                    SqlCommand cmd = new SqlCommand("select * from dbo.func_TimKiemChiTietDK_LH (@MaHV, @MaLH)", conn);
+
+
+                    if (txtTimKiemMaHV.Text == null && txtTimKiemMaLH.Text != null)
                         cmd.Parameters.Add("@MaLH", SqlDbType.NChar).Value = txtTimKiemMaLH.Text;
-                    else if (txtTimKiemMaHV.Text != "" && txtTimKiemMaLH.Text == "")
+                    else if (txtTimKiemMaHV.Text != null && txtTimKiemMaLH.Text == null)
                         cmd.Parameters.Add("@MaHV", SqlDbType.NChar).Value = txtTimKiemMaHV.Text;
                     else
                     {
@@ -259,13 +258,9 @@ namespace QL_TTANHNGU
                         cmd.Parameters.Add("@MaLH", SqlDbType.NVarChar).Value = txtTimKiemMaLH.Text;
                     }
 
-                    txtMaHV.Clear();
-                    txtMaLH.Clear();
-                    txtNgayDangKy.Clear();
-
+                    lvChiTietDK_LH.Items.Clear();
 
                     SqlDataReader reader = cmd.ExecuteReader();
-                    lvChiTietDK_LH.Items.Clear();
                     while (reader.Read())
                     {
                         ListViewItem item = new ListViewItem(reader.GetString(0));
